@@ -18,7 +18,6 @@ public class MainRobot {
     DcMotor UltraSlideMotorH;//Horizontal ultra slide motor
 
     // GYRO
-
     GyroSensor gyro;
 
     private static double ClosePos = 0.0;

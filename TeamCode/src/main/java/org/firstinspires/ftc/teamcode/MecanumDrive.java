@@ -8,10 +8,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 public class MecanumDrive{
 
     public void init(HardwareMap HM) {
-        LFWheel = HM.dcMotor.get("lf");// map the wheel
-        LBWheel = HM.dcMotor.get("lb");// map the wheel
-        RFWheel = HM.dcMotor.get("rf");// map the wheel
-        RBWheel = HM.dcMotor.get("rb");// map the wheel
+        LFWheel = HM.dcMotor.get("lf"); LBWheel = HM.dcMotor.get("lb"); // map the Front wheels
+        RFWheel = HM.dcMotor.get("rf"); RBWheel = HM.dcMotor.get("rb"); // Map the Back wheels
 
         RFWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         RBWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -31,16 +29,11 @@ public class MecanumDrive{
         LBWheel.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheel direction
     }
 
-    DcMotor LFWheel; // Left Front Wheel
-    DcMotor LBWheel; // Left Back Wheel
-    DcMotor RFWheel; // Right Front Wheel
-    DcMotor RBWheel; // Right Back Wheel
+    DcMotor LFWheel; DcMotor LBWheel; // Left Wheels
+    DcMotor RFWheel; DcMotor RBWheel; // Right Wheels
 
-    double LFWheelPower;// left front wheel power
-    double LBWheelPower;// left back wheel power
-    double RFWheelPower;// right front wheel power
-    double RBWheelPower;// right back wheel power
-
+    double LFWheelPower; double LBWheelPower;// left wheels power
+    double RFWheelPower; double RBWheelPower;// right wheels power
 
 
     /*public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {// the math for the mecanum wheel
@@ -62,10 +55,8 @@ public class MecanumDrive{
     }
 
     public void SetMotorPower(){
-        LFWheel.setPower(LFWheelPower);// set the wheel power to what it should be
-        LBWheel.setPower(LBWheelPower);// set the wheel power to what it should be
-        RFWheel.setPower(RFWheelPower);// set the wheel power to what it should be
-        RBWheel.setPower(RBWheelPower);// set the wheel power to what it should be
+        LFWheel.setPower(LFWheelPower); LBWheel.setPower(LBWheelPower);// set the wheel power to what it should be
+        RFWheel.setPower(RFWheelPower); RBWheel.setPower(RBWheelPower);// set the wheel power to what it should be
         // The strafing makes the front go forward and back go backward when controller goes to the right
     }
 
