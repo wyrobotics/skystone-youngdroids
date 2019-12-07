@@ -26,10 +26,10 @@ public class BlueAutonLeft extends LinearOpMode {
 
         waitForStart();
 
-        while(opModeIsActive()){
+        //while(opModeIsActive()){
 
-            help.
+          //  help.   INCOMPLETE
 
-        }
+        //}
     }
 }
