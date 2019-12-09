@@ -11,22 +11,15 @@ public class MecanumDrive{
         LFWheel = HM.dcMotor.get("lf"); LBWheel = HM.dcMotor.get("lb"); // map the Front wheels
         RFWheel = HM.dcMotor.get("rf"); RBWheel = HM.dcMotor.get("rb"); // Map the Back wheels
 
-        RFWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        RBWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        LFWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        LBWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        RFWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        RBWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LFWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LBWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        RFWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); RBWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        LFWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); LBWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        RFWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER); RBWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        LFWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER); LBWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        RFWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        RBWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LFWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LBWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        RFWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); RBWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        LFWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); LBWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        LFWheel.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheel direction
-        LBWheel.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheel direction
+        LFWheel.setDirection(DcMotorSimple.Direction.REVERSE); LBWheel.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
     }
 
     DcMotor LFWheel; DcMotor LBWheel; // Left Wheels

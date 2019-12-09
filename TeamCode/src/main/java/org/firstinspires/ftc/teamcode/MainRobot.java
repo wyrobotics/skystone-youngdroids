@@ -10,18 +10,15 @@ public class MainRobot {
     // SERVOS
     Servo GrabServo; // The servo that grabs the block
 
-    Servo PlateGrabberL;//Servo that grabs the plate to move it
-    Servo PlateGrabberR;//Servo that grabs the plate to move it
+    Servo PlateGrabberL, PlateGrabberR;//Servo that grabs the plate to move it
 
     // MOTORS
-    DcMotor UltraSlideMotorV;//vertical ultra slide motor
-    DcMotor UltraSlideMotorH;//Horizontal ultra slide motor
+    DcMotor UltraSlideMotorV, UltraSlideMotorH;//Horizontal ultra slide motor
 
     // GYRO
     GyroSensor gyro;
 
-    private static double ClosePos = 0.0;
-    private static double OpenPos = 1.0;
+    private static double ClosePos = 0.0, OpenPos = 1.0;
     public static boolean GrabOpen = false;
 
     public void init(HardwareMap HM) {
@@ -56,9 +53,7 @@ public class MainRobot {
     public void TurnGrabberLeft(){
         GrabServoDif -= 1 / 180;
     }
-    public void TurnGrabberRight(){
-        GrabServoDif += 1 / 180;
-    }
+    public void TurnGrabberRight(){ GrabServoDif += 1 / 180; }
 
     public void GrabBlock(){
         GrabServo.setPosition(ClosePos);
@@ -75,5 +70,5 @@ public class MainRobot {
         PlateGrabberR.setPosition(0);
     }
 
-    // add the function that sets what the grabber direction should be
+    // TODO: add the function that sets what the grabber direction should be
 }

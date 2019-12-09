@@ -18,13 +18,7 @@ public class MainOpMode extends LinearOpMode {
 
     MecanumDrive Drive = new MecanumDrive();
 
-
-
-    private static double LFMotorPower = 0.0;
-    private static double LBMotorPower = 0.0;
-    private static double RFMotorPower = 0.0;
-    private static double RBMotorPower = 0.0;
-
+    private static double LFMotorPower = 0.0, LBMotorPower = 0.0, RFMotorPower = 0.0, RBMotorPower = 0.0;
 
     @Override
     public void runOpMode() throws InterruptedException {

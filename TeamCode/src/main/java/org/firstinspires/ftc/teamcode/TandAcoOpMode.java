@@ -14,20 +14,15 @@ import java.lang.Math;
 public class TandAcoOpMode extends LinearOpMode {
 
     //Drivebase motors
-    private DcMotor frontLeft;
-    private DcMotor frontRight;
-    private DcMotor backLeft;
-    private DcMotor backRight;
+    private DcMotor frontLeft; private DcMotor frontRight;
+    private DcMotor backLeft; private DcMotor backRight;
 
-    //Arm/hand stuff
-    private DcMotor lifter;
-    private CRServo extender;
-    private Servo rotator;
-    private Servo grabber;
+    //Arm Servos
+    private DcMotor lifter; private CRServo extender;
+    private Servo rotator; private Servo grabber;
 
     //Plate movers, names based on facing robot from behind
-    private Servo leftPlatform;
-    private Servo rightPlatform;
+    private Servo leftPlatform; private Servo rightPlatform;
 
     private double[] transform(double[] input) {
 
@@ -37,9 +32,10 @@ public class TandAcoOpMode extends LinearOpMode {
         output[1] = input[1] - input[0];
 
         return output;
-
     }
-
+    public static double dist(double x, double y) {
+        return Math.sqrt( x * x + y * y);
+    }
     @Override
     public void runOpMode() {
 
@@ -56,100 +52,82 @@ public class TandAcoOpMode extends LinearOpMode {
         leftPlatform = hardwareMap.get(Servo.class, "leftPlatform");
         rightPlatform = hardwareMap.get(Servo.class, "rightPlatform");
 
-        frontLeft.setDirection(DcMotor.Direction.FORWARD);
-        frontRight.setDirection(DcMotor.Direction.REVERSE);
-        backLeft.setDirection(DcMotor.Direction.FORWARD);
-        backRight.setDirection(DcMotor.Direction.REVERSE);
+        // Sets Directions for Servos and Motors
+        frontLeft.setDirection(DcMotor.Direction.FORWARD); frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.FORWARD); backRight.setDirection(DcMotor.Direction.REVERSE);
 
-        leftPlatform.setDirection(Servo.Direction.REVERSE);
-        rightPlatform.setDirection(Servo.Direction.FORWARD);
+        leftPlatform.setDirection(Servo.Direction.REVERSE); rightPlatform.setDirection(Servo.Direction.FORWARD);
+
+
 
         waitForStart();
 
         while(opModeIsActive()) {
 
-            double flPower;
-            double frPower;
-            double blPower;
-            double brPower;
+            double flPower, frPower, blPower, brPower;
 
-            boolean aPressed = false;
-            boolean bPressed = false;
-            boolean yPressed = false;
-            boolean xPressed = false;
+            boolean aPressed = false, bPressed = false, yPressed = false, xPressed = false;
 
             boolean rotatecw = false;
 
-            boolean rightTrigger = false;
-            boolean leftTrigger = false;
-            boolean rightTab = false;
-            boolean leftTab = false;
+            boolean rightTrigger = false, leftTrigger = false;
+            boolean rightTab = false, leftTab = false;
 
-            boolean dPadUp = false;
-            boolean dPadDown = false;
+            boolean dPadUp = false, dPadDown = false;
 
             double rotatorInc = 0.0;
 
-            double[] leftStick = {-1 * this.gamepad1.left_stick_x,this.gamepad1.left_stick_y};
+            double[] leftStick = {-1 * this.gamepad1.left_stick_x,this.gamepad1.left_stick_y}; // The JoyStick
 
-            double mag = Math.sqrt((leftStick[0] * leftStick[0]) + (leftStick[1] * leftStick[1]));
+            double mag = dist(leftStick[0], leftStick[1]); // Distance from center
 
-            double[] unitLeftStick = {(leftStick[0] / Math.sqrt((leftStick[0] * leftStick[0]) + (leftStick[1] * leftStick[1]))),
-                    (leftStick[1] / Math.sqrt((leftStick[0] * leftStick[0]) + (leftStick[1] * leftStick[1])))};
+            double[] unitLeftStick = {leftStick[0] / mag, leftStick[1] / mag}; // Unit left Stick
             unitLeftStick = transform(unitLeftStick);
             leftStick = transform(leftStick);
-            leftStick[0] = leftStick[0] / Math.sqrt((unitLeftStick[0] * unitLeftStick[0]) + (unitLeftStick[1] * unitLeftStick[1]));
-            leftStick[1] = leftStick[1] / Math.sqrt((unitLeftStick[0] * unitLeftStick[0]) + (unitLeftStick[1] * unitLeftStick[1]));
 
-            if (mag == 0) {
-                flPower = 0;
-                brPower = 0;
-                frPower = 0;
-                blPower = 0;
+            leftStick[0] /= dist(unitLeftStick[0], unitLeftStick[1]);
+            leftStick[1] /= dist(unitLeftStick[0], unitLeftStick[1]);
+
+            if (mag == 0) { // If Joystick is at center, stop robot
+                flPower = brPower = frPower = blPower = 0;
             } else {
-                flPower = leftStick[0];
-                brPower = leftStick[0];
-                frPower = leftStick[1];
-                blPower = leftStick[1];
+                flPower = brPower = leftStick[0];
+                frPower = blPower = leftStick[1];
             }
 
             double rotationScalar = 1 + Math.abs(this.gamepad1.right_stick_x);
 
-            flPower = (flPower - gamepad1.right_stick_x)  / rotationScalar;
-            brPower = (brPower + gamepad1.right_stick_x) / rotationScalar;
-            frPower = (frPower + gamepad1.right_stick_x) / rotationScalar;
-            blPower = (blPower - gamepad1.right_stick_x) / rotationScalar;
+            flPower = (flPower - gamepad1.right_stick_x)  / rotationScalar; brPower = (brPower + gamepad1.right_stick_x) / rotationScalar;
+            frPower = (frPower + gamepad1.right_stick_x) / rotationScalar; blPower = (blPower - gamepad1.right_stick_x) / rotationScalar;
 
-            frontLeft.setPower(flPower);
-            frontRight.setPower(frPower);
-            backRight.setPower(brPower);
-            backLeft.setPower(blPower);
+            frontLeft.setPower(flPower); frontRight.setPower(frPower); // Sets power of all wheels
+            backRight.setPower(brPower); backLeft.setPower(blPower);
 
 
 
-            if(!(!aPressed ^ this.gamepad1.a)) {
+            if(!(!aPressed ^ this.gamepad1.a)) { // Changes a and b according to whether the first gamePad is pressed
                 aPressed = !aPressed;
             }
             if(!(!bPressed ^ this.gamepad1.b)) {
                 bPressed = !bPressed;
             }
-            if(aPressed && !bPressed) {
+
+
+            if(aPressed && !bPressed) { // If a is pressed, moves platforms to their positions, else, moves them  back
                 rightPlatform.setPosition(0.4);
                 leftPlatform.setPosition(0.4);
             } else if(bPressed) {
                 rightPlatform.setPosition(0.0);
                 leftPlatform.setPosition(0.0);
             }
-            if(this.gamepad1.right_bumper || this.gamepad2.right_bumper){
-                frontLeft.setPower(-.2);
-                frontRight.setPower(-.2);
-                backRight.setPower(.2);
-                backLeft.setPower(.2);
+
+
+            if(this.gamepad1.right_bumper || this.gamepad2.right_bumper){ // For strafing the robot
+                frontLeft.setPower(-.2); frontRight.setPower(-.2);
+                backRight.setPower(.2); backLeft.setPower(.2);
             } else if(this.gamepad1.left_bumper || this.gamepad2.left_bumper){
-                frontLeft.setPower(.2);
-                frontRight.setPower(.2);
-                backRight.setPower(-.2);
-                backLeft.setPower(-.2);
+                frontLeft.setPower(.2); frontRight.setPower(.2);
+                backRight.setPower(-.2); backLeft.setPower(-.2);
             }
 
 
@@ -168,7 +146,7 @@ public class TandAcoOpMode extends LinearOpMode {
                     xPressed = !xPressed;
                 }
 
-                /*if(!(!rightTrigger ^ this.gamepad2.x)) {
+                if(!(!rightTrigger ^ this.gamepad2.x)) {
                     rightTrigger = !rightTrigger;
                 }
                 if(!(!leftTrigger ^ this.gamepad2.x)) {
@@ -178,14 +156,14 @@ public class TandAcoOpMode extends LinearOpMode {
                     rotatorInc = 0.02;
                 } else if(xPressed) {
                     rotatorInc = -0.02;
-                }*/
+                }
                 //rotator.setPosition(Math.max(0, Math.min(1, rotator.getPosition() + rotatorInc)));
 
 
-                if(!(!aPressed ^ this.gamepad2.a)) {
+                if(!aPressed == this.gamepad2.a) {
                     aPressed = !aPressed;
                 }
-                if(!(!bPressed ^ this.gamepad2.b)) {
+                if(!bPressed == this.gamepad2.b) {
                     bPressed = !bPressed;
                 }
                 if(aPressed && !bPressed) {
