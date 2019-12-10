@@ -22,11 +22,11 @@ public class MecanumDrive{
         LFWheel.setDirection(DcMotorSimple.Direction.REVERSE); LBWheel.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
     }
 
-    DcMotor LFWheel; DcMotor LBWheel; // Left Wheels
-    DcMotor RFWheel; DcMotor RBWheel; // Right Wheels
+    DcMotor LFWheel, LBWheel; // Left Wheels
+    DcMotor RFWheel,RBWheel; // Right Wheels
 
-    double LFWheelPower; double LBWheelPower;// left wheels power
-    double RFWheelPower; double RBWheelPower;// right wheels power
+    double LFWheelPower, LBWheelPower;// left wheels power
+    double RFWheelPower, RBWheelPower;// right wheels power
 
 
     /*public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {// the math for the mecanum wheel

@@ -11,7 +11,6 @@ import java.sql.Driver;
         name = "BlueAutonLeft"
 )
 public class BlueAutonLeft extends LinearOpMode {
-
     MecanumDrive Drive = new MecanumDrive();
     AutonFunctions help = new AutonFunctions();
     GyroSensor gyro;

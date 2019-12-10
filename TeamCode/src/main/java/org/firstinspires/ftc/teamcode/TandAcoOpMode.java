@@ -105,10 +105,10 @@ public class TandAcoOpMode extends LinearOpMode {
 
 
 
-            if(!(!aPressed ^ this.gamepad1.a)) { // Changes a and b according to whether the first gamePad is pressed
+            if(!aPressed == this.gamepad1.a) { // Changes a and b according to whether the first gamePad is pressed
                 aPressed = !aPressed;
             }
-            if(!(!bPressed ^ this.gamepad1.b)) {
+            if(!bPressed == this.gamepad1.b) {
                 bPressed = !bPressed;
             }
 
@@ -146,10 +146,10 @@ public class TandAcoOpMode extends LinearOpMode {
                     xPressed = !xPressed;
                 }
 
-                if(!(!rightTrigger ^ this.gamepad2.x)) {
+                if(!rightTrigger == this.gamepad2.x) {
                     rightTrigger = !rightTrigger;
                 }
-                if(!(!leftTrigger ^ this.gamepad2.x)) {
+                if(!leftTrigger == this.gamepad2.x) {
                     leftTrigger = !leftTrigger;
                 }
                 if(rightTrigger && !leftTrigger) {
@@ -184,4 +184,4 @@ public class TandAcoOpMode extends LinearOpMode {
 
         }
 
-    }
+    } //TODO: Ava wants to use the DPad to control the initiator things
