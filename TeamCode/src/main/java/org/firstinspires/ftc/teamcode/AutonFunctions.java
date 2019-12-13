@@ -12,7 +12,6 @@ public class AutonFunctions {
     public double RotationsPerTileForward = 2100;
 
 
-
     public void Turn90CW(GyroSensor gyro, DcMotor FL, DcMotor FR, DcMotor BL, DcMotor BR){ // Turns the robot 90dg cw
         int StartDegree = gyro.getHeading(); // Initial position of the gyro
         while(gyro.getHeading() != StartDegree + 90){ // While the gyro hasn't turned 90 more degrees, keep turning

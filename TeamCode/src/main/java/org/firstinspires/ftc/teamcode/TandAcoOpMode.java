@@ -132,9 +132,9 @@ public class TandAcoOpMode extends LinearOpMode {
 
 
 
-                extender.setPower(-gamepad2.right_stick_y);
+            extender.setPower(-gamepad2.right_stick_y);
 
-                lifter.setPower(-gamepad2.left_stick_y);
+            lifter.setPower(-gamepad2.left_stick_y);
 
                 if(rotatecw){
                     rotator.setPosition(0);

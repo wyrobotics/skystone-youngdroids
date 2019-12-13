@@ -22,11 +22,9 @@ public class MecanumDrive{
         LFWheel.setDirection(DcMotorSimple.Direction.REVERSE); LBWheel.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
     }
 
-    DcMotor LFWheel, LBWheel; // Left Wheels
-    DcMotor RFWheel,RBWheel; // Right Wheels
+    DcMotor LFWheel, LBWheel, RFWheel,RBWheel; // Wheels
 
-    double LFWheelPower, LBWheelPower;// left wheels power
-    double RFWheelPower, RBWheelPower;// right wheels power
+    double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power of Wheels
 
 
     /*public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {// the math for the mecanum wheel
@@ -49,7 +47,7 @@ public class MecanumDrive{
 
     public void SetMotorPower(){
         LFWheel.setPower(LFWheelPower); LBWheel.setPower(LBWheelPower);// set the wheel power to what it should be
-        RFWheel.setPower(RFWheelPower); RBWheel.setPower(RBWheelPower);// set the wheel power to what it should be
+        RFWheel.setPower(RFWheelPower); RBWheel.setPower(RBWheelPower);
         // The strafing makes the front go forward and back go backward when controller goes to the right
     }
 
