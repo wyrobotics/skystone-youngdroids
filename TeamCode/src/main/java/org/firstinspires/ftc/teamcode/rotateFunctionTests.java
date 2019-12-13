@@ -7,85 +7,62 @@ import com.qualcomm.robotcore.hardware.GyroSensor;
 
 @TeleOp(name = "Rotate 90")
 public class rotateFunctionTests extends LinearOpMode {
-    DcMotor lf = hardwareMap.dcMotor.get("lf");
-    DcMotor lb = hardwareMap.dcMotor.get("lb");
-    DcMotor rf = hardwareMap.dcMotor.get("rf");
-    DcMotor rb = hardwareMap.dcMotor.get("rb");
+    DcMotor lf = hardwareMap.dcMotor.get("lf"), lb = hardwareMap.dcMotor.get("lb");
+    DcMotor rf = hardwareMap.dcMotor.get("rf"), rb = hardwareMap.dcMotor.get("rb");
+
     GyroSensor gyro = hardwareMap.gyroSensor.get("gyro");
-    boolean bPressed = false;
-    boolean xPressed = false;
+    boolean bPressed = false, xPressed = false;
+
+    public void turnBase(double a) { // sets the power of the left wheels to and and the right ones to -a
+        lf.setPower(a); lb.setPower(a);
+        rf.setPower(-a); rb.setPower(-a);
+    }
 
     public void ZeroMotors(){
-        lf.setPower(0);
-        lb.setPower(0);
-        rf.setPower(0);
-        rb.setPower(0);
+        turnBase(0);
     }
 
     public void rotateCW(int degree, int error){
         int initialHeading = gyro.getHeading();
         if(degree > gyro.getHeading()){
             while(gyro.getHeading() - initialHeading < 360 - initialHeading) {
-                lf.setPower(1);
-                lb.setPower(1);
-                rf.setPower(-1);
-                rb.setPower(-1);
+                turnBase(1);
             }
         }
         while(gyro.getHeading() < degree){
-            lf.setPower(1);
-            lb.setPower(1);
-            rf.setPower(-1);
-            rb.setPower(-1);
+            turnBase(1);
         }
         while(! (Math.abs(degree - gyro.getHeading()) <= error)){
             if(gyro.getHeading() > degree){
-                lf.setPower(-0.1);
-                lb.setPower(-0.1);
-                rf.setPower(0.1);
-                rb.setPower(0.1);
+                turnBase(-.1);
             }
             if(gyro.getHeading() < degree) {
-                lf.setPower(0.1);
-                lb.setPower(0.1);
-                rf.setPower(-0.1);
-                rb.setPower(-0.1);
+                turnBase(.1);
             }
-            ZeroMotors();
+            ZeroMotors(); //TODO: Is this supposed to be inside the loop?
         }
     }
     public void rotateCCW(int degree, int error){
         int initialHeading = gyro.getHeading();
         while(initialHeading - gyro.getHeading() > 0){
-            lf.setPower(-1);
-            lb.setPower(-1);
-            rf.setPower(1);
-            rb.setPower(1);
+            turnBase(-1);
         }
         while(gyro.getHeading() > degree){
-            lf.setPower(-1);
-            lb.setPower(-1);
-            rf.setPower(1);
-            rb.setPower(1);
+            turnBase(-1);
         }
         while(! (Math.abs(degree - gyro.getHeading()) <= error)) {
             if (gyro.getHeading() > degree) {
-                lf.setPower(-0.1);
-                lb.setPower(-0.1);
-                rf.setPower(0.1);
-                rb.setPower(0.1);
+                turnBase(-.1);
             }
             if (gyro.getHeading() < degree) {
-                lf.setPower(0.1);
-                lb.setPower(0.1);
-                rf.setPower(-0.1);
-                rb.setPower(-0.1);
+                turnBase(.1);
             }
             ZeroMotors();
         }
     }
 
-    @Override public void runOpMode(){
+    @Override
+    public void runOpMode(){
 
         gyro.calibrate();
 
@@ -102,6 +79,6 @@ public class rotateFunctionTests extends LinearOpMode {
             bPressed = !bPressed;
         }
     }
-
+    //TODO: Code looks good, should add more things though
 
 }
