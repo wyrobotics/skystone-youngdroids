@@ -75,16 +75,26 @@ public class BlueAutonLeft extends LinearOpMode {
             PlateGrabL.setPower(0);
             PlateGrabR.setPower(0);
             Rotate90(-.5);
+            Strafe(1.5);
+            PlateGrabL.setPower(-1);
+            PlateGrabR.setPower(-1);
+            wait(500);
+            PlateGrabL.setPower(0);
+            PlateGrabR.setPower(0);
+            MoveForward(-2.3);
 
-          //TODO: help.   INCOMPLETE
 
         }
     }
 
     public void Rotate90(double pow){ // pow is how fast it moves, + is CW, - is CCW
+        double dir = 1;
+        if(pow < 0){
+            dir = -1;
+        }
         double InitLeft = InitLeftPos();
         double InitRight = InitRightPos();
-        while(InitLeftPos() - InitLeft <= RotationsPer90 && InitRightPos() - InitRight <= RotationsPer90){
+        while( dir * (InitLeftPos() - InitLeft) <= RotationsPer90 && dir * (InitRightPos() - InitRight) <= RotationsPer90){
             FL.setPower(pow); BL.setPower(pow);
             FR.setPower(-pow); BR.setPower(-pow);
         }
@@ -100,11 +110,13 @@ public class BlueAutonLeft extends LinearOpMode {
         double InitFR = FR.getCurrentPosition();
         double InitBL = BL.getCurrentPosition();
         double InitBR = BR.getCurrentPosition();
-        while( dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR) > dir * tiles * RotationsPerStafe &&
-                dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFL - InitBR) > dir * tiles * RotationsPerStafe){
+        while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe &&
+                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe){
             FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
             FR.setPower(.5 * dir); BR.setPower(-.5 * dir);
         }
+        FL.setPower(0); BL.setPower(0);
+        FR.setPower(0); BR.setPower(0);
     }
     public double InitLeftPos(){
         return (FL.getCurrentPosition() + BL.getCurrentPosition()) / 2;
@@ -116,14 +128,14 @@ public class BlueAutonLeft extends LinearOpMode {
         return (FL.getCurrentPosition() + FR.getCurrentPosition() + BL.getCurrentPosition() + BR.getCurrentPosition()) / 4;
     }
     public void MoveForward(double tiles){ // Moves forward [x] tiles TODO: when it moves backwards, the telemetry shows it going backwards so it'll never be > goal telemetry
-        double pow = 0.5; // Sets value of power for wheels, negative if moving back a number of tiles
+        double pow = 1; // Sets value of power for wheels, negative if moving back a number of tiles
         if (tiles < 0) {
             pow *= -1;
         }
         int AverageStartRotation = AverageRotation();
-        while(AverageRotation() - AverageStartRotation <= tiles * RotationsPerTileForward){ // Checks to see if it has travelled [x] tiles
-            FL.setPower(pow); BL.setPower(pow); // If not, keep moving forward
-            FR.setPower(pow); BR.setPower(pow);
+        while( pow * AverageRotation() - AverageStartRotation <= tiles * RotationsPerTileForward){ // Checks to see if it has travelled [x] tiles
+            FL.setPower(pow * .5); BL.setPower(pow * .5); // If not, keep moving forward
+            FR.setPower(pow * .5); BR.setPower(pow * .5);
         }
         FL.setPower(0); BL.setPower(0);
         FR.setPower(0); BR.setPower(0);
