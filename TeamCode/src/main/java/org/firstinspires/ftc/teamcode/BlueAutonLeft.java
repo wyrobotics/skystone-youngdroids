@@ -27,6 +27,7 @@ public class BlueAutonLeft extends LinearOpMode {
 
     public double RotationsPerTileForward = 2100;
     public double RotationsPer90 = 1050;
+    public double RotationsPerStafe = 1050;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -89,7 +90,13 @@ public class BlueAutonLeft extends LinearOpMode {
         }
         FL.setPower(0); BL.setPower(0);
         FR.setPower(0); BR.setPower(0);
-        //TODO: Make a new rotate function?
+    }
+    public void Strafe(double tiles){ // + is to the right, - to the left
+        double InitFL = FL.getCurrentPosition();
+        double InitFR = FR.getCurrentPosition();
+        double InitBL = BL.getCurrentPosition();
+        double InitBR = BR.getCurrentPosition();
+
     }
     public double InitLeftPos(){
         return (FL.getCurrentPosition() + BL.getCurrentPosition()) / 2;
