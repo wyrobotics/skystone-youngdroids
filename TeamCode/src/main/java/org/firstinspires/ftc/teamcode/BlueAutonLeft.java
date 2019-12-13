@@ -80,7 +80,9 @@ public class BlueAutonLeft extends LinearOpMode {
         }
     }
 
-    public void Rotate90
+    public void Rotate90(){
+
+    }
     public int AverageRotation(){ //Averages the number of rotations that the 4 wheels have
         return (FL.getCurrentPosition() + FR.getCurrentPosition() + BL.getCurrentPosition() + BR.getCurrentPosition()) / 4;
     }
