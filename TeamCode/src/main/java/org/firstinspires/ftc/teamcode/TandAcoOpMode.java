@@ -14,15 +14,14 @@ import java.lang.Math;
 public class TandAcoOpMode extends LinearOpMode {
 
     //Drivebase motors
-    private DcMotor frontLeft; private DcMotor frontRight;
-    private DcMotor backLeft; private DcMotor backRight;
+    private DcMotor frontLeft, frontRight, backLeft, backRight;
 
     //Arm Servos
     private DcMotor lifter; private CRServo extender;
     private Servo rotator; private Servo grabber;
 
     //Plate movers, names based on facing robot from behind
-    private Servo leftPlatform; private Servo rightPlatform;
+    private Servo leftPlatform, rightPlatform;
 
     private double[] transform(double[] input) {
 
@@ -130,8 +129,6 @@ public class TandAcoOpMode extends LinearOpMode {
                 backRight.setPower(-.2); backLeft.setPower(-.2);
             }
 
-
-
             extender.setPower(-gamepad2.right_stick_y);
 
             lifter.setPower(-gamepad2.left_stick_y);
@@ -179,7 +176,7 @@ public class TandAcoOpMode extends LinearOpMode {
                 telemetry.addData("Back Right", brPower);
 
                 telemetry.update();
-
+                //TODO: Is this supposed ot be indented?
             }
 
         }
