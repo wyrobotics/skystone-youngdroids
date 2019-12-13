@@ -1,30 +1,37 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 
 public class MecanumDrive{
 
     public void init(HardwareMap HM) {
-        LFWheel = HM.dcMotor.get("lf"); LBWheel = HM.dcMotor.get("lb"); // map the Front wheels
-        RFWheel = HM.dcMotor.get("rf"); RBWheel = HM.dcMotor.get("rb"); // Map the Back wheels
+        fl = HM.dcMotor.get("fl"); bl = HM.dcMotor.get("bl"); // map the Front wheels
+        fr = HM.dcMotor.get("fr"); br = HM.dcMotor.get("br"); // Map the Back wheels
+        InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
+        releaseIn = HM.crservo.get("releaseIn");
+        PlateGrabL = HM.crservo.get("PlateGrabL"); PlateGrabR = HM.crservo.get("PlateGrabR");
 
-        RFWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); RBWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        LFWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); LBWheel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        RFWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER); RBWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        LFWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER); LBWheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        RFWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); RBWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        LFWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); LBWheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER); br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER); bl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        LFWheel.setDirection(DcMotorSimple.Direction.REVERSE); LBWheel.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
+        fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        fl.setDirection(DcMotorSimple.Direction.REVERSE); fl.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
     }
 
-    DcMotor LFWheel, LBWheel, RFWheel,RBWheel; // Wheels
-
-    double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power of Wheels
+    DcMotor fl, bl, fr, br; // 4 Drive Motors
+    DcMotor InL, InR; // Intake Motors
+    CRServo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
+    double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower, releaseInPower, PlateGrabLPower, PlateGrabRPower, InLPower, InRPower; // Power of Wheels
 
 
     /*public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {// the math for the mecanum wheel
@@ -46,8 +53,12 @@ public class MecanumDrive{
     }
 
     public void SetMotorPower(){
-        LFWheel.setPower(LFWheelPower); LBWheel.setPower(LBWheelPower);// set the wheel power to what it should be
-        RFWheel.setPower(RFWheelPower); RBWheel.setPower(RBWheelPower);
+        fl.setPower(LFWheelPower); bl.setPower(LBWheelPower);// set the wheel power to what it should be
+        fr.setPower(RFWheelPower); br.setPower(RBWheelPower);
+
+        releaseIn.setPower(releaseInPower);
+        PlateGrabL.setPower(PlateGrabLPower); PlateGrabR.setPower(PlateGrabRPower);
+        InL.setPower(InLPower); InR.setPower(InLPower);
         // The strafing makes the front go forward and back go backward when controller goes to the right
     }
 

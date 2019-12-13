@@ -3,13 +3,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.robotcore.internal.android.dx.command.Main;
-import org.firstinspires.ftc.robotcore.internal.ui.GamepadUser;
 
 @TeleOp(name="MainOpMode", group="Robot")
 public class MainOpMode extends LinearOpMode {
@@ -24,33 +19,33 @@ public class MainOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         //Robot.init(hardwareMap);
         Drive.init(hardwareMap);
-        //DcMotor UltraSlideV = Robot.UltraSlideMotorV;
-        //DcMotor UltraSlideH = Robot.UltraSlideMotorH;
-        //Servo PlateGrabberL = Robot.PlateGrabberL;
-        //Servo PlateGrabberR = Robot.PlateGrabberR;
-        //Servo Grabber = Robot.GrabServo;
+        DcMotor InL, InR;
+        Servo PlateGrabberL, PlateGrabberR, Grabber;
 
         telemetry.addData("say", "before opmode");
         telemetry.update();
         waitForStart();
 
+        boolean xPressed, yPressed, aPressed, bPressed, dPadUp, dPadDown, rightTrigger, leftTrigger;
+
         while (opModeIsActive()) {
             Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
             Drive.SetMotorPower();
-            /*if(gamepad1.y){
-                Robot.GrabPlate();
+
+            if (!this.gamepad1.dpad_up == this.gamepad1.dpad_down) { //TODO: Copy and paste code,
+                                                                    // but make the robot strafe instead of moving the release
+                if (!this.gamepad1.dpad_up) {
+                    Drive.releaseInPower = 0.2;
+                }
+                else {
+                    Drive.releaseInPower = -0.2;
+                }
+            } else {
+                Drive.releaseInPower = 0;
             }
-            if(gamepad1.x) {
-                Robot.ReleasePlate();
-            }*/
-            /*if(gamepad1.a){
-                if(Robot.GrabOpen){
-                    Robot.GrabBlock();
-                }
-                else{
-                    Robot.ReleaseBlock();
-                }
-            }*/
+            //TODO: Make the X button turn on/off the intakes
+            //TODO: Something to use strafe (Not required)
+            //TODO: Controls for the Plate Grabbers
 
 
             telemetry.addData("LFMotorPower",Drive.LFWheelPower);
@@ -58,7 +53,13 @@ public class MainOpMode extends LinearOpMode {
             telemetry.addData("RFMotorPower",Drive.RFWheelPower);
             telemetry.addData("RBMotorPower",Drive.RBWheelPower);
             //telemetry.addData("Grabber Open?",Robot.GrabOpen);
+            telemetry.addData("LF Position: ", Drive.fl.getCurrentPosition());
+            telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());
+            telemetry.addData("RF Position: ", Drive.fr.getCurrentPosition());
+            telemetry.addData("RB Position: ", Drive.br.getCurrentPosition());
             telemetry.update();
+            //
+
         }
 
 

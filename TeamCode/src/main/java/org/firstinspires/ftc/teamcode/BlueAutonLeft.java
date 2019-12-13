@@ -25,16 +25,14 @@ public class BlueAutonLeft extends LinearOpMode {
 
     GyroSensor gyro;
 
-    public double RotationsPerTileForward = 2100;
-    public double RotationsPer90 = 1050;
-    public double RotationsPerStafe = 1050;
+    public double RotationsPerTileForward = 2100, RotationsPer90 = 1050, RotationsPerStafe = 1050;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         // HARDWARE MAPPING AND INITIALIZING
         FL = hardwareMap.dcMotor.get("fl"); FR = hardwareMap.dcMotor.get("fr");
-        BL = hardwareMap.dcMotor.get("BL"); BR = hardwareMap.dcMotor.get("BR");
+        BL = hardwareMap.dcMotor.get("bl"); BR = hardwareMap.dcMotor.get("br");
 
         InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
 
@@ -63,27 +61,24 @@ public class BlueAutonLeft extends LinearOpMode {
         while(opModeIsActive()){
 
             InR.setPower(.75); InL.setPower(.75);
-            MoveForward(1.5);
-            MoveForward(-.4);
-            Rotate90(-.5);
-            MoveForward(3);
-            Rotate90(.5);
-            MoveForward(.4);
-            PlateGrabL.setPower(1);
-            PlateGrabR.setPower(1);
+
+            MoveForward(1.5); MoveForward(-.4);
+
+            Rotate90(-.5); MoveForward(3);
+            Rotate90(.5); MoveForward(.4);
+
+            PlateGrabL.setPower(1); PlateGrabR.setPower(1);
             wait(500);
-            PlateGrabL.setPower(0);
-            PlateGrabR.setPower(0);
-            Rotate90(-.5);
-            Strafe(1.5);
-            PlateGrabL.setPower(-1);
-            PlateGrabR.setPower(-1);
+
+            PlateGrabL.setPower(0); PlateGrabR.setPower(0);
+
+            Rotate90(-.5); Strafe(1.5);
+
+            PlateGrabL.setPower(-1); PlateGrabR.setPower(-1);
             wait(500);
-            PlateGrabL.setPower(0);
-            PlateGrabR.setPower(0);
+
+            PlateGrabL.setPower(0); PlateGrabR.setPower(0);
             MoveForward(-2.3);
-
-
         }
     }
 
@@ -92,8 +87,7 @@ public class BlueAutonLeft extends LinearOpMode {
         if(pow < 0){
             dir = -1;
         }
-        double InitLeft = InitLeftPos();
-        double InitRight = InitRightPos();
+        double InitLeft = InitLeftPos(), InitRight = InitRightPos();
         while( dir * (InitLeftPos() - InitLeft) <= RotationsPer90 && dir * (InitRightPos() - InitRight) <= RotationsPer90){
             FL.setPower(pow); BL.setPower(pow);
             FR.setPower(-pow); BR.setPower(-pow);
@@ -106,10 +100,9 @@ public class BlueAutonLeft extends LinearOpMode {
         if (tiles < 0){
             dir = -1;
         }
-        double InitFL = FL.getCurrentPosition();
-        double InitFR = FR.getCurrentPosition();
-        double InitBL = BL.getCurrentPosition();
-        double InitBR = BR.getCurrentPosition();
+        double InitFL = FL.getCurrentPosition(), InitFR = FR.getCurrentPosition();
+        double InitBL = BL.getCurrentPosition(), InitBR = BR.getCurrentPosition();
+
         while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe &&
                 (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe){
             FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
