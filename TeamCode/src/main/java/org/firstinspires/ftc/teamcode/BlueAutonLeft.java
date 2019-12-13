@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 
 import java.sql.Driver;
@@ -43,6 +44,23 @@ public class BlueAutonLeft extends LinearOpMode {
         releaseIn = hardwareMap.crservo.get("releaseIn");
         PlateGrabL = hardwareMap.crservo.get("PlateGrabL");
         PlateGrabR = hardwareMap.crservo.get("PlateGrabR");
+        FR.setDirection(DcMotor.Direction.REVERSE);
+        BR.setDirection(DcMotor.Direction.REVERSE);
+        InR.setDirection(DcMotor.Direction.REVERSE);
+        PlateGrabR.setDirection(CRServo.Direction.REVERSE);
+        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         gyro = hardwareMap.gyroSensor.get("gyro");// map the gyro
 
@@ -52,6 +70,8 @@ public class BlueAutonLeft extends LinearOpMode {
 
         while(opModeIsActive()){
 
+            InR.setPower(.75);
+            InL.setPower(.75);
             MoveForward(1.5);
             MoveBackward(.5);
 
@@ -60,6 +80,7 @@ public class BlueAutonLeft extends LinearOpMode {
         }
     }
 
+    public void Rotate90
     public int AverageRotation(){ //Averages the number of rotations that the 4 wheels have
         return (FL.getCurrentPosition() + FR.getCurrentPosition() + BL.getCurrentPosition() + BR.getCurrentPosition()) / 4;
     }
