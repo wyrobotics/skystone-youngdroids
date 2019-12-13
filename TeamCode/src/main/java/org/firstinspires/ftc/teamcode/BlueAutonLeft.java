@@ -92,11 +92,19 @@ public class BlueAutonLeft extends LinearOpMode {
         FR.setPower(0); BR.setPower(0);
     }
     public void Strafe(double tiles){ // + is to the right, - to the left
+        int dir = 1;
+        if (tiles < 0){
+            dir = -1;
+        }
         double InitFL = FL.getCurrentPosition();
         double InitFR = FR.getCurrentPosition();
         double InitBL = BL.getCurrentPosition();
         double InitBR = BR.getCurrentPosition();
-
+        while( dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR) > dir * tiles * RotationsPerStafe &&
+                dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFL - InitBR) > dir * tiles * RotationsPerStafe){
+            FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
+            FR.setPower(.5 * dir); BR.setPower(-.5 * dir);
+        }
     }
     public double InitLeftPos(){
         return (FL.getCurrentPosition() + BL.getCurrentPosition()) / 2;
@@ -107,7 +115,7 @@ public class BlueAutonLeft extends LinearOpMode {
     public int AverageRotation(){ //Averages the number of rotations that the 4 wheels have
         return (FL.getCurrentPosition() + FR.getCurrentPosition() + BL.getCurrentPosition() + BR.getCurrentPosition()) / 4;
     }
-    public void MoveForward(double tiles){ // Moves forward [x] tiles
+    public void MoveForward(double tiles){ // Moves forward [x] tiles TODO: when it moves backwards, the telemetry shows it going backwards so it'll never be > goal telemetry
         double pow = 0.5; // Sets value of power for wheels, negative if moving back a number of tiles
         if (tiles < 0) {
             pow *= -1;
