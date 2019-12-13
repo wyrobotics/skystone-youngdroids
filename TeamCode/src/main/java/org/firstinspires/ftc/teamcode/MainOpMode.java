@@ -3,13 +3,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-
-import org.firstinspires.ftc.robotcore.internal.android.dx.command.Main;
-import org.firstinspires.ftc.robotcore.internal.ui.GamepadUser;
 
 @TeleOp(name="MainOpMode", group="Robot")
 public class MainOpMode extends LinearOpMode {
@@ -24,11 +19,11 @@ public class MainOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         //Robot.init(hardwareMap);
         Drive.init(hardwareMap);
-        //DcMotor UltraSlideV = Robot.UltraSlideMotorV;
-        //DcMotor UltraSlideH = Robot.UltraSlideMotorH;
-        //Servo PlateGrabberL = Robot.PlateGrabberL;
-        //Servo PlateGrabberR = Robot.PlateGrabberR;
-        //Servo Grabber = Robot.GrabServo;
+        DcMotor InL;
+        DcMotor InR;
+        Servo PlateGrabberL;
+        Servo PlateGrabberR;
+        Servo Grabber;
 
         telemetry.addData("say", "before opmode");
         telemetry.update();
@@ -58,6 +53,10 @@ public class MainOpMode extends LinearOpMode {
             telemetry.addData("RFMotorPower",Drive.RFWheelPower);
             telemetry.addData("RBMotorPower",Drive.RBWheelPower);
             //telemetry.addData("Grabber Open?",Robot.GrabOpen);
+            telemetry.addData("LF Position: ", Drive.LF.getCurrentPosition());
+            telemetry.addData("LR Position: ", Drive.LB.getCurrentPosition());
+            telemetry.addData("RF Position: ", Drive.RF.getCurrentPosition());
+            telemetry.addData("RB Position: ", Drive.RB.getCurrentPosition());
             telemetry.update();
         }
 
