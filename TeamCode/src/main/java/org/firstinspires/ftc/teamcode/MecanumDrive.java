@@ -27,7 +27,7 @@ public class MecanumDrive{
         fl.setDirection(DcMotorSimple.Direction.REVERSE); bl.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
-        PlateGrabR.setDirection(Servo.Direction.FORWARD);
+        //PlateGrabR.setDirection(Servo.Direction.FORWARD);
     }
 
     DcMotor fl, bl, fr, br; // 4 Drive Motors

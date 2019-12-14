@@ -29,7 +29,7 @@ public class MainOpMode extends LinearOpMode {
         boolean aPressed = false;
         boolean yPressed = false;
         boolean xPressed = true;
-        boolean bPressed;
+        boolean bPressed = true;
         boolean dPadUp = false;
         boolean dPadDown = false;
         boolean rightTrigger = false, leftTrigger = false;
@@ -43,9 +43,9 @@ public class MainOpMode extends LinearOpMode {
             else {
                 Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
             }
-
+            if(bPressed)
             Drive.SetMotorPower();
-
+            Drive.releaseInPos = .5;
             if(aPressed){
                 Drive.InLPower = 1;
                 Drive.InRPower = 1;
@@ -57,18 +57,11 @@ public class MainOpMode extends LinearOpMode {
                 Drive.InRPower = -1;
             }
             if(dPadUp){
-                Drive.PlateGrabLPos = .1;
-                Drive.PlateGrabRPos = .1;
+                Drive.PlateGrabLPos = .45;
+                Drive.PlateGrabRPos = .45;
             } else if (dPadDown){
-                Drive.PlateGrabLPos = .6;
-                Drive.PlateGrabRPos = .6;
-            }
-            if(gamepad1.left_bumper){
-                Drive.PlateGrabLPos += .1;
-                Drive.PlateGrabRPos += .1;
-            } else if(gamepad1.right_bumper){
-                Drive.PlateGrabLPos -= .1;
-                Drive.PlateGrabRPos -= .1;
+                Drive.PlateGrabLPos = 0;
+                Drive.PlateGrabRPos = 0;
             }
 
             if(gamepad1.dpad_up){

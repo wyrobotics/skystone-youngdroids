@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -31,7 +32,25 @@ public class RedAutonLeft extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         // HARDWARE MAPPING AND INITIALIZING
-        FL = hardwareMap.dcMotor.get("fl"); FR = hardwareMap.dcMotor.get("fr");
+        FL = hardwareMap.dcMotor.get("fl"); BL = hardwareMap.dcMotor.get("bl"); // map the Front wheels
+        FR = hardwareMap.dcMotor.get("fr"); BR = hardwareMap.dcMotor.get("br"); // Map the Back wheels
+        InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
+        releaseIn = hardwareMap.servo.get("releaseIn");
+        PlateGrabL = hardwareMap.servo.get("PlateGrabL"); PlateGrabR = hardwareMap.servo.get("PlateGrabR");
+
+
+        FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
+        InL.setDirection(DcMotorSimple.Direction.REVERSE);
+        PlateGrabL.setDirection(Servo.Direction.REVERSE);
+  /*      FL = hardwareMap.dcMotor.get("fl"); FR = hardwareMap.dcMotor.get("fr");
         BL = hardwareMap.dcMotor.get("bl"); BR = hardwareMap.dcMotor.get("br");
 
         InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
@@ -53,7 +72,7 @@ public class RedAutonLeft extends LinearOpMode {
 
         FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
+*/
 
         waitForStart();
 
@@ -69,6 +88,7 @@ public class RedAutonLeft extends LinearOpMode {
             PlateGrabL.setPosition(1); PlateGrabR.setPosition(1);
 
             Rotate90(.5); Strafe(-1.5);
+            wait(500);
 
             PlateGrabL.setPosition(0); PlateGrabR.setPosition(0);
             Strafe(1.5);

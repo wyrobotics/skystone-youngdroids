@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import java.sql.Driver;
@@ -22,50 +23,50 @@ public class BlueAutonRight extends LinearOpMode {
     Servo PlateGrabL, PlateGrabR; // Plate grab servos
 
 
-    public double RotationsPerTileForward = 2150, RotationsPer90 = 1600, RotationsPerStafe = 3000;
+    public double RotationsPerTileForward = 2150, RotationsPer90 = 1800, RotationsPerStafe = 3000;
 
     @Override
     public void runOpMode() throws InterruptedException {
 
         // HARDWARE MAPPING AND INITIALIZING
-        FL = hardwareMap.dcMotor.get("fl"); FR = hardwareMap.dcMotor.get("fr");
-        BL = hardwareMap.dcMotor.get("bl"); BR = hardwareMap.dcMotor.get("br");
-
+        FL = hardwareMap.dcMotor.get("fl"); BL = hardwareMap.dcMotor.get("bl"); // map the Front wheels
+        FR = hardwareMap.dcMotor.get("fr"); BR = hardwareMap.dcMotor.get("br"); // Map the Back wheels
         InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
-
         releaseIn = hardwareMap.servo.get("releaseIn");
-
         PlateGrabL = hardwareMap.servo.get("PlateGrabL"); PlateGrabR = hardwareMap.servo.get("PlateGrabR");
 
-        FR.setDirection(DcMotor.Direction.REVERSE); BR.setDirection(DcMotor.Direction.REVERSE);
 
-        InR.setDirection(DcMotor.Direction.REVERSE);
-        PlateGrabR.setDirection(Servo.Direction.REVERSE);
-
-        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
+        InL.setDirection(DcMotorSimple.Direction.REVERSE);
+        PlateGrabL.setDirection(Servo.Direction.REVERSE);
+        releaseIn.setPosition(.5);
         waitForStart();
 
-        while(opModeIsActive()){
+        if (opModeIsActive()){
+
+            releaseIn.setPosition(.5);
+            //MoveForward(1);
+            //Rotate90(-.6);
+            //MoveForward(1);
 
             InR.setPower(.75); InL.setPower(.75);
 
             MoveForward(1.5); MoveForward(-.4);
 
-            Rotate90(-.5); MoveForward(3);
-            Rotate90(-.5); MoveForward(-.4);
+            Rotate90(-.6); MoveForward(3);
+            Rotate90(-.6); MoveForward(-.4);
 
             PlateGrabL.setPosition(1); PlateGrabR.setPosition(1);
 
-            Rotate90(-.5); Strafe(1.5);
+            Rotate90(-.6); Strafe(1.5);
 
             PlateGrabL.setPosition(0); PlateGrabR.setPosition(0);
 
@@ -80,7 +81,7 @@ public class BlueAutonRight extends LinearOpMode {
             dir = -1;
         }
         double InitLeft = InitLeftPos(), InitRight = InitRightPos();
-        while( dir * (InitLeftPos() - InitLeft) <= RotationsPer90 && dir * (InitRightPos() - InitRight) <= RotationsPer90){
+        while( dir * (InitLeftPos() - InitLeft) <= RotationsPer90 && dir * (InitRightPos() - InitRight) <= RotationsPer90 && opModeIsActive()){
             FL.setPower(pow); BL.setPower(pow);
             FR.setPower(-pow); BR.setPower(-pow);
         }
@@ -96,7 +97,8 @@ public class BlueAutonRight extends LinearOpMode {
         double InitBL = BL.getCurrentPosition(), InitBR = BR.getCurrentPosition();
 
         while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe &&
-                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFR - InitBL)) / 2 > tiles * RotationsPerStafe){
+                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFR - InitBL)) / 2 > tiles * RotationsPerStafe &&
+        opModeIsActive()){
             FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
             FR.setPower(.5 * dir); BR.setPower(-.5 * dir);
         }
@@ -118,7 +120,7 @@ public class BlueAutonRight extends LinearOpMode {
             pow *= -1;
         }
         int AverageStartRotation = AverageRotation();
-        while( pow * AverageRotation() - AverageStartRotation <= tiles * RotationsPerTileForward){ // Checks to see if it has travelled [x] tiles
+        while( pow * AverageRotation() - AverageStartRotation <= tiles * RotationsPerTileForward && opModeIsActive()){ // Checks to see if it has travelled [x] tiles
             FL.setPower(pow * .5); BL.setPower(pow * .5); // If not, keep moving forward
             FR.setPower(pow * .5); BR.setPower(pow * .5);
         }
