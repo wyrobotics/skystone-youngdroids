@@ -24,8 +24,9 @@ public class MecanumDrive{
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        fr.setDirection(DcMotorSimple.Direction.REVERSE); br.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
-        InR.setDirection(DcMotorSimple.Direction.REVERSE);
+        fl.setDirection(DcMotorSimple.Direction.REVERSE); bl.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
+        InL.setDirection(DcMotorSimple.Direction.REVERSE);
+        PlateGrabR.setDirection(Servo.Direction.REVERSE);
     }
 
     DcMotor fl, bl, fr, br; // 4 Drive Motors
@@ -46,10 +47,10 @@ public class MecanumDrive{
     }
      */
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {// the math for the mecanum wheel
-        LFWheelPower = -left_stick_y - right_stick_x + left_stick_x;
-        LBWheelPower = -left_stick_y - right_stick_x - left_stick_x;
-        RFWheelPower = -left_stick_y + right_stick_x - left_stick_x;
-        RBWheelPower = -left_stick_y + right_stick_x + left_stick_x;
+        LFWheelPower = -left_stick_y + right_stick_x + left_stick_x;
+        LBWheelPower = -left_stick_y + right_stick_x - left_stick_x;
+        RFWheelPower = -left_stick_y - right_stick_x - left_stick_x;
+        RBWheelPower = -left_stick_y - right_stick_x + left_stick_x;
     }
 
     public void SetMotorPower(){

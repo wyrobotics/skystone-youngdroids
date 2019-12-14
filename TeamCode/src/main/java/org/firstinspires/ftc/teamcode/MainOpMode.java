@@ -8,14 +8,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.internal.ftdi.eeprom.FT_EEPROM_232H;
 
-@TeleOp(name="MainOpMode", group="Robot")
+@TeleOp(name="MainOpModeNew", group="Robot")
 public class MainOpMode extends LinearOpMode {
 
-    //MainRobot Robot = new MainRobot();
 
     MecanumDrive Drive = new MecanumDrive();
 
-    private static double LFMotorPower = 0.0, LBMotorPower = 0.0, RFMotorPower = 0.0, RBMotorPower = 0.0;
 
     @Override
     public void runOpMode() {
@@ -32,7 +30,7 @@ public class MainOpMode extends LinearOpMode {
         boolean yPressed = false;
         boolean xPressed = true;
         boolean bPressed;
-        boolean dPadUp = true;
+        boolean dPadUp = false;
         boolean dPadDown = false;
         boolean rightTrigger, leftTrigger;
 
@@ -41,23 +39,29 @@ public class MainOpMode extends LinearOpMode {
             Drive.SetMotorPower();
 
             if(aPressed){
-                Drive.InLPower = .5;
-                Drive.InRPower = .5;
+                Drive.InLPower = 1;
+                Drive.InRPower = 1;
             } else if (xPressed){
                 Drive.InLPower = 0;
                 Drive.InRPower = 0;
             } else if (yPressed){
-                Drive.InLPower = -.5;
-                Drive.InRPower = -.5;
+                Drive.InLPower = -1;
+                Drive.InRPower = -1;
             }
             if(dPadUp){
-                Drive.PlateGrabLPos = 1;
-                Drive.PlateGrabRPos = 1;
+                Drive.PlateGrabLPos = .1;
+                Drive.PlateGrabRPos = .1;
             } else if (dPadDown){
-                Drive.PlateGrabLPos = 0;
-                Drive.PlateGrabRPos = 0;
+                Drive.PlateGrabLPos = .6;
+                Drive.PlateGrabRPos = .6;
             }
-
+            if(gamepad1.left_bumper){
+                Drive.PlateGrabLPos += .1;
+                Drive.PlateGrabRPos += .1;
+            } else if(gamepad1.right_bumper){
+                Drive.PlateGrabLPos -= .1;
+                Drive.PlateGrabRPos -= .1;
+            }
 
 
             if(gamepad1.dpad_up){
@@ -96,6 +100,10 @@ public class MainOpMode extends LinearOpMode {
             telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());
             telemetry.addData("RF Position: ", Drive.fr.getCurrentPosition());
             telemetry.addData("RB Position: ", Drive.br.getCurrentPosition());
+            telemetry.addData("GrabL Current Pos: ", Drive.PlateGrabL.getPosition());
+            telemetry.addData("GrabL Target Pos: ", Drive.PlateGrabLPos);
+            telemetry.addData("GrabR Current Pos: ", Drive.PlateGrabR.getPosition());
+            telemetry.addData("GrabR Target Pos: ", Drive.PlateGrabRPos);
             telemetry.update();
             //
 
