@@ -24,7 +24,6 @@ public class RedAutonLeft extends LinearOpMode {
 
     Servo PlateGrabL, PlateGrabR; // Plate grab servos
 
-    GyroSensor gyro;
 
     public double RotationsPerTileForward = 2100, RotationsPer90 = 1050, RotationsPerStafe = 1050;
 
@@ -50,48 +49,25 @@ public class RedAutonLeft extends LinearOpMode {
         FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
-  /*      FL = hardwareMap.dcMotor.get("fl"); FR = hardwareMap.dcMotor.get("fr");
-        BL = hardwareMap.dcMotor.get("bl"); BR = hardwareMap.dcMotor.get("br");
 
-        InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
-
-        releaseIn = hardwareMap.servo.get("releaseIn");
-
-        PlateGrabL = hardwareMap.servo.get("PlateGrabL"); PlateGrabR = hardwareMap.servo.get("PlateGrabR");
-
-        FR.setDirection(DcMotor.Direction.REVERSE); BR.setDirection(DcMotor.Direction.REVERSE);
-
-        InR.setDirection(DcMotor.Direction.REVERSE);
-        PlateGrabR.setDirection(Servo.Direction.REVERSE);
-
-        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
-        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-*/
-        releaseIn.setPosition(.5);
         waitForStart();
 
         if(opModeIsActive()){
 
             releaseIn.setPosition(.5);
-            //MoveForward(1);
-            //Rotate90(-.6);
-            //MoveForward(1);
+            MoveForward(1);
+            Rotate90(.6);
+            MoveForward(1);
 
-            InR.setPower(.75); InL.setPower(.75);
+            /*InR.setPower(.75); InL.setPower(.75);
 
             MoveForward(1.5);
             MoveForward(-.2);
             Rotate90(.6);
             Rotate90(.6);
             InR.setPower(-.75); InL.setPower(-.75);
-            MoveForward(1.4);
-            MoveForward(-1.7);
+            MoveForward(1.3);
+            MoveForward(-1.7);*/
             /*InR.setPower(.75); InL.setPower(.75);
 
             MoveForward(1.5); MoveForward(-.4);
@@ -107,6 +83,7 @@ public class RedAutonLeft extends LinearOpMode {
             PlateGrabL.setPosition(0); PlateGrabR.setPosition(0);
             Strafe(1.5);
             MoveForward(2.3);*/
+            telemetry.addData("Avg Rotation: ", AverageRotation());
         }
     }
 

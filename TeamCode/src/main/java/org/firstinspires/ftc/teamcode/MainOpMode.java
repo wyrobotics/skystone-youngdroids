@@ -102,10 +102,10 @@ public class MainOpMode extends LinearOpMode {
             //we have four motors for the drive base, and two at the front of the robot for intake. We have two rev servos at the back that control the clamps for pulling out the building spot. we are planning on adding a servo in the middle of the robot too hold back the intake at the beginning of the game. i think we should have that rotate up to release the intake in auton, or if it doesnt get released during auton we should have the X button release it
             //for the servos maybe we should use the dpad up and down and for the intake um idk maybe the left and right bumper?
 
-            telemetry.addData("LFMotorPower",Drive.LFWheelPower);
-            telemetry.addData("LBMotorPower",Drive.LBWheelPower);
-            telemetry.addData("RFMotorPower",Drive.RFWheelPower);
-            telemetry.addData("RBMotorPower",Drive.RBWheelPower);
+            telemetry.addData("LFMotorPower",Drive.fl.getPower());
+            telemetry.addData("LBMotorPower",Drive.bl.getPower());
+            telemetry.addData("RFMotorPower",Drive.fr.getPower());
+            telemetry.addData("RBMotorPower",Drive.br.getPower());
             //telemetry.addData("Grabber Open?",Robot.GrabOpen);
             telemetry.addData("LF Position: ", Drive.fl.getCurrentPosition());
             telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());

@@ -47,24 +47,23 @@ public class BlueAutonRight extends LinearOpMode {
         FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
-        releaseIn.setPosition(.5);
         waitForStart();
 
         if (opModeIsActive()){
 
             releaseIn.setPosition(.5);
-            //MoveForward(1);
-            //Rotate90(-.6);
-            //MoveForward(1);
+            MoveForward(1);
+            Rotate90(-.6);
+            MoveForward(1);
 
-            InR.setPower(.75); InL.setPower(.75);
+            /*InR.setPower(.75); InL.setPower(.75);
 
             MoveForward(1.5);
             MoveForward(-.2);
             Rotate90(-.6);
             InR.setPower(-.75); InL.setPower(-.75);
-            MoveForward(1.4);
-            MoveForward(-1.7);
+            MoveForward(1.5);
+            MoveForward(-1.7);*/
             /*MoveForward(1.5); MoveForward(-.4);
 
             Rotate90(-.6); MoveForward(3);
