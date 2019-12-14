@@ -52,6 +52,10 @@ public class MecanumDrive{
         RFWheelPower = -left_stick_y - right_stick_x - left_stick_x;
         RBWheelPower = -left_stick_y - right_stick_x + left_stick_x;
     }
+    public void DriveTrain(double x) {// the math for the mecanum wheel
+        LFWheelPower = RFWheelPower = x;
+        LBWheelPower = RBWheelPower = -x;
+    }
 
     public void SetMotorPower(){
         fl.setPower(LFWheelPower); bl.setPower(LBWheelPower);// set the wheel power to what it should be

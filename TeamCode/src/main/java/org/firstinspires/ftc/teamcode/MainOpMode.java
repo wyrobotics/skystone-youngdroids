@@ -32,10 +32,18 @@ public class MainOpMode extends LinearOpMode {
         boolean bPressed;
         boolean dPadUp = false;
         boolean dPadDown = false;
-        boolean rightTrigger, leftTrigger;
+        boolean rightTrigger = false, leftTrigger = false;
 
         while (opModeIsActive()) {
-            Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
+            if (rightTrigger) {
+                Drive.DriveTrain(5);
+            } else if (leftTrigger) {
+                Drive.DriveTrain(-5);
+            }
+            else {
+                Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
+            }
+
             Drive.SetMotorPower();
 
             if(aPressed){
@@ -63,13 +71,14 @@ public class MainOpMode extends LinearOpMode {
                 Drive.PlateGrabRPos -= .1;
             }
 
-
             if(gamepad1.dpad_up){
                 dPadUp = true;
                 dPadDown = false;
             } else if (gamepad1.dpad_down){
                 dPadUp = false;
                 dPadDown = true;
+            } else {
+                dPadUp = dPadDown = false;
             }
             if(gamepad1.a){
                 aPressed = true;
@@ -83,9 +92,19 @@ public class MainOpMode extends LinearOpMode {
                 aPressed = false;
                 xPressed = false;
                 yPressed = true;
+            } else {
+                aPressed = xPressed = yPressed = false;
             }
 
-
+            if (gamepad1.left_trigger > 0) { // Unsure how Triggers work, might give negative value instead of positive
+                leftTrigger = true;
+                rightTrigger = false;
+            } else if (gamepad1.right_trigger > 0) {
+                rightTrigger = true;
+                leftTrigger = false;
+            } else {
+                rightTrigger = leftTrigger = false;
+            }
 
             //TODO: Something to use strafe (Not required)
             //we have four motors for the drive base, and two at the front of the robot for intake. We have two rev servos at the back that control the clamps for pulling out the building spot. we are planning on adding a servo in the middle of the robot too hold back the intake at the beginning of the game. i think we should have that rotate up to release the intake in auton, or if it doesnt get released during auton we should have the X button release it
