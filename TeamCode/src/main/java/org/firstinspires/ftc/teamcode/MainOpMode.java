@@ -100,6 +100,7 @@ public class MainOpMode extends LinearOpMode {
             telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());
             telemetry.addData("RF Position: ", Drive.fr.getCurrentPosition());
             telemetry.addData("RB Position: ", Drive.br.getCurrentPosition());
+            telemetry.addData("Average Pos: ", AverageRotation());
             telemetry.addData("GrabL Current Pos: ", Drive.PlateGrabL.getPosition());
             telemetry.addData("GrabL Target Pos: ", Drive.PlateGrabLPos);
             telemetry.addData("GrabR Current Pos: ", Drive.PlateGrabR.getPosition());
@@ -113,5 +114,9 @@ public class MainOpMode extends LinearOpMode {
 
 
 
+
+    }
+    public double AverageRotation(){ //Averages the number of rotations that the 4 wheels have
+        return (Drive.fl.getCurrentPosition() + Drive.fr.getCurrentPosition() + Drive.bl.getCurrentPosition() + Drive.br.getCurrentPosition()) / 4;
     }
 }

@@ -24,9 +24,8 @@ public class BlueAutonRight extends LinearOpMode {
 
     Servo PlateGrabL, PlateGrabR; // Plate grab servos
 
-    GyroSensor gyro;
 
-    public double RotationsPerTileForward = 2100, RotationsPer90 = 1050, RotationsPerStafe = 1050;
+    public double RotationsPerTileForward = 2150, RotationsPer90 = 1600, RotationsPerStafe = 3000;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -100,7 +99,7 @@ public class BlueAutonRight extends LinearOpMode {
         double InitBL = BL.getCurrentPosition(), InitBR = BR.getCurrentPosition();
 
         while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe &&
-                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe){
+                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFR - InitBL)) / 2 > tiles * RotationsPerStafe){
             FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
             FR.setPower(.5 * dir); BR.setPower(-.5 * dir);
         }

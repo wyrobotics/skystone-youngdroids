@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import java.sql.Driver;
 
@@ -18,9 +19,9 @@ public class RedAutonLeft extends LinearOpMode {
 
     DcMotor InL, InR; // Intake motors
 
-    CRServo releaseIn; // Intake release
+    Servo releaseIn; // Intake release
 
-    CRServo PlateGrabL, PlateGrabR; // Plate grab servos
+    Servo PlateGrabL, PlateGrabR; // Plate grab servos
 
     GyroSensor gyro;
 
@@ -35,14 +36,14 @@ public class RedAutonLeft extends LinearOpMode {
 
         InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
 
-        releaseIn = hardwareMap.crservo.get("releaseIn");
+        releaseIn = hardwareMap.servo.get("releaseIn");
 
-        PlateGrabL = hardwareMap.crservo.get("PlateGrabL"); PlateGrabR = hardwareMap.crservo.get("PlateGrabR");
+        PlateGrabL = hardwareMap.servo.get("PlateGrabL"); PlateGrabR = hardwareMap.servo.get("PlateGrabR");
 
         FR.setDirection(DcMotor.Direction.REVERSE); BR.setDirection(DcMotor.Direction.REVERSE);
 
         InR.setDirection(DcMotor.Direction.REVERSE);
-        PlateGrabR.setDirection(CRServo.Direction.REVERSE);
+        PlateGrabR.setDirection(Servo.Direction.REVERSE);
 
         FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -65,17 +66,11 @@ public class RedAutonLeft extends LinearOpMode {
             Rotate90(.5); MoveForward(3);
             Rotate90(.5); MoveForward(-.4);
 
-            PlateGrabL.setPower(1); PlateGrabR.setPower(1);
-            wait(500);
-
-            PlateGrabL.setPower(0); PlateGrabR.setPower(0);
+            PlateGrabL.setPosition(1); PlateGrabR.setPosition(1);
 
             Rotate90(.5); Strafe(-1.5);
 
-            PlateGrabL.setPower(-1); PlateGrabR.setPower(-1);
-            wait(500);
-
-            PlateGrabL.setPower(0); PlateGrabR.setPower(0);
+            PlateGrabL.setPosition(0); PlateGrabR.setPosition(0);
             Strafe(1.5);
             MoveForward(2.3);
         }
@@ -103,7 +98,7 @@ public class RedAutonLeft extends LinearOpMode {
         double InitBL = BL.getCurrentPosition(), InitBR = BR.getCurrentPosition();
 
         while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe &&
-                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe){
+                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFR - InitBL)) / 2 > tiles * RotationsPerStafe){
             FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
             FR.setPower(.5 * dir); BR.setPower(-.5 * dir);
         }
