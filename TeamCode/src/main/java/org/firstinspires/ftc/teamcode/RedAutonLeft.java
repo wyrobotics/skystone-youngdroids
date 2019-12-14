@@ -73,12 +73,26 @@ public class RedAutonLeft extends LinearOpMode {
         FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 */
-
+        releaseIn.setPosition(.5);
         waitForStart();
 
-        while(opModeIsActive()){
+        if(opModeIsActive()){
+
+            releaseIn.setPosition(.5);
+            //MoveForward(1);
+            //Rotate90(-.6);
+            //MoveForward(1);
 
             InR.setPower(.75); InL.setPower(.75);
+
+            MoveForward(1.5);
+            MoveForward(-.2);
+            Rotate90(.6);
+            Rotate90(.6);
+            InR.setPower(-.75); InL.setPower(-.75);
+            MoveForward(1.4);
+            MoveForward(-1.7);
+            /*InR.setPower(.75); InL.setPower(.75);
 
             MoveForward(1.5); MoveForward(-.4);
 
@@ -92,7 +106,7 @@ public class RedAutonLeft extends LinearOpMode {
 
             PlateGrabL.setPosition(0); PlateGrabR.setPosition(0);
             Strafe(1.5);
-            MoveForward(2.3);
+            MoveForward(2.3);*/
         }
     }
 
@@ -102,7 +116,7 @@ public class RedAutonLeft extends LinearOpMode {
             dir = -1;
         }
         double InitLeft = InitLeftPos(), InitRight = InitRightPos();
-        while( dir * (InitLeftPos() - InitLeft) <= RotationsPer90 && dir * (InitRightPos() - InitRight) <= RotationsPer90){
+        while( dir * (InitLeftPos() - InitLeft) <= RotationsPer90 && dir * (InitRightPos() - InitRight) <= RotationsPer90 && opModeIsActive()){
             FL.setPower(pow); BL.setPower(pow);
             FR.setPower(-pow); BR.setPower(-pow);
         }
@@ -118,7 +132,7 @@ public class RedAutonLeft extends LinearOpMode {
         double InitBL = BL.getCurrentPosition(), InitBR = BR.getCurrentPosition();
 
         while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition() - InitFL - InitBR)) / 2 > tiles * RotationsPerStafe &&
-                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFR - InitBL)) / 2 > tiles * RotationsPerStafe){
+                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition() - InitFR - InitBL)) / 2 > tiles * RotationsPerStafe && opModeIsActive()){
             FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
             FR.setPower(.5 * dir); BR.setPower(-.5 * dir);
         }
@@ -140,7 +154,7 @@ public class RedAutonLeft extends LinearOpMode {
             pow *= -1;
         }
         int AverageStartRotation = AverageRotation();
-        while( pow * AverageRotation() - AverageStartRotation <= tiles * RotationsPerTileForward){ // Checks to see if it has travelled [x] tiles
+        while( pow * AverageRotation() - AverageStartRotation <= tiles * RotationsPerTileForward && opModeIsActive()){ // Checks to see if it has travelled [x] tiles
             FL.setPower(pow * .5); BL.setPower(pow * .5); // If not, keep moving forward
             FR.setPower(pow * .5); BR.setPower(pow * .5);
         }

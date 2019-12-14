@@ -30,7 +30,7 @@ public class MainOpMode extends LinearOpMode {
         boolean yPressed = false;
         boolean xPressed = true;
         boolean bPressed = true;
-        boolean dPadUp = false;
+        boolean dPadUp = true;
         boolean dPadDown = false;
         boolean rightTrigger = false, leftTrigger = false;
 
@@ -44,7 +44,6 @@ public class MainOpMode extends LinearOpMode {
                 Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
             }
             if(bPressed)
-            Drive.SetMotorPower();
             Drive.releaseInPos = .5;
             if(aPressed){
                 Drive.InLPower = 1;
@@ -63,7 +62,7 @@ public class MainOpMode extends LinearOpMode {
                 Drive.PlateGrabLPos = 0;
                 Drive.PlateGrabRPos = 0;
             }
-
+            Drive.SetMotorPower();
             if(gamepad1.dpad_up){
                 dPadUp = true;
                 dPadDown = false;
