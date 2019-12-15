@@ -17,10 +17,7 @@ public class MainOpMode extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        //Robot.init(hardwareMap);
         Drive.init(hardwareMap);
-        DcMotor InL, InR;
-        Servo PlateGrabberL, PlateGrabberR, Grabber;
 
         telemetry.addData("say", "before opmode");
         telemetry.update();
@@ -32,12 +29,12 @@ public class MainOpMode extends LinearOpMode {
         boolean bPressed = true;
         boolean dPadUp = true;
         boolean dPadDown = false;
-        boolean rightTrigger = false, leftTrigger = false;
+        boolean rightBumper = false, leftBumper = false;
 
         while (opModeIsActive()) {
-            if (rightTrigger) {
+            if (rightBumper) {
                 Drive.DriveTrain(5);
-            } else if (leftTrigger) {
+            } else if (leftBumper) {
                 Drive.DriveTrain(-5);
             }
             else {
@@ -88,14 +85,14 @@ public class MainOpMode extends LinearOpMode {
                 aPressed = xPressed = yPressed = false;
             }
 
-            if (gamepad1.left_trigger > 0) { // Unsure how Triggers work, might give negative value instead of positive
-                leftTrigger = true;
-                rightTrigger = false;
-            } else if (gamepad1.right_trigger > 0) {
-                rightTrigger = true;
-                leftTrigger = false;
+            if (gamepad1.left_bumper) { // Unsure how Triggers work, might give negative value instead of positive
+                leftBumper = true;
+                rightBumper = false;
+            } else if (gamepad1.right_bumper) {
+                rightBumper = true;
+                leftBumper = false;
             } else {
-                rightTrigger = leftTrigger = false;
+                rightBumper = leftBumper = false;
             }
 
             //TODO: Something to use strafe (Not required)
@@ -106,7 +103,6 @@ public class MainOpMode extends LinearOpMode {
             telemetry.addData("LBMotorPower",Drive.bl.getPower());
             telemetry.addData("RFMotorPower",Drive.fr.getPower());
             telemetry.addData("RBMotorPower",Drive.br.getPower());
-            //telemetry.addData("Grabber Open?",Robot.GrabOpen);
             telemetry.addData("LF Position: ", Drive.fl.getCurrentPosition());
             telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());
             telemetry.addData("RF Position: ", Drive.fr.getCurrentPosition());
