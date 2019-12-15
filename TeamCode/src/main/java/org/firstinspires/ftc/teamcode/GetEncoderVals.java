@@ -12,7 +12,6 @@ public class GetEncoderVals extends LinearOpMode {
     DcMotor FL, FR, BL, BR; // All 4 drive motors
 
     DcMotor InL, InR; // Intake motors
-
     Servo releaseIn; // Intake release
 
     Servo PlateGrabL, PlateGrabR; // Plate grab servos
@@ -24,64 +23,49 @@ public class GetEncoderVals extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         // HARDWARE MAPPING AND INITIALIZING
-        FL = hardwareMap.dcMotor.get("fl");
-        BL = hardwareMap.dcMotor.get("bl"); // map the Front wheels
-        FR = hardwareMap.dcMotor.get("fr");
-        BR = hardwareMap.dcMotor.get("br"); // Map the Back wheels
-        InL = hardwareMap.dcMotor.get("InL");
-        InR = hardwareMap.dcMotor.get("InR");
+        FL = hardwareMap.dcMotor.get("fl"); BL = hardwareMap.dcMotor.get("bl");
+        FR = hardwareMap.dcMotor.get("fr"); BR = hardwareMap.dcMotor.get("br");
+
+        InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
         releaseIn = hardwareMap.servo.get("releaseIn");
-        PlateGrabL = hardwareMap.servo.get("PlateGrabL");
-        PlateGrabR = hardwareMap.servo.get("PlateGrabR");
+
+        PlateGrabL = hardwareMap.servo.get("PlateGrabL"); PlateGrabR = hardwareMap.servo.get("PlateGrabR");
 
 
-        FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        FL.setDirection(DcMotorSimple.Direction.REVERSE);
-        BL.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
+        FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
 
         releaseIn.setPosition(.5);
         waitForStart();
 
-        boolean aPressed, bPressed, xPressed, yPressed, Lbumper, Rbumper;
         while(opModeIsActive()){
             if(gamepad1.y){
                 MoveForward(1);
-                yPressed = false;
             }
             if(gamepad1.a){
                 MoveForward(-1);
-                aPressed = false;
             }
             if(gamepad1.x){
                 Strafe(-1);
-                xPressed = false;
             }
             if(gamepad1.b){
                 Strafe(1);
-                bPressed = false;
             }
             if(gamepad1.left_bumper){
                 Rotate90(-.6);
-                Lbumper = false;
             }
             if(gamepad1.right_bumper){
                 Rotate90(.6);
-                Rbumper = false;
             }
         }
     }
@@ -128,17 +112,13 @@ public class GetEncoderVals extends LinearOpMode {
         int AverageStartRotation = AverageRotation();
         if (tiles < 0) {
             while( AverageRotation() -  AverageStartRotation <= tiles * RotationsPerTileForward && opModeIsActive()) { // Checks to see if it has travelled [x] tiles
-                FL.setPower(-.5);
-                BL.setPower(-.5); // If not, keep moving forward
-                FR.setPower(-.5);
-                BR.setPower(-.5);
+                FL.setPower(-.5); BL.setPower(-.5); // If not, keep moving forward
+                FR.setPower(-.5); BR.setPower(-.5);
             }
         } else {
             while( AverageRotation() >= tiles * RotationsPerTileForward + AverageStartRotation && opModeIsActive()) { // Checks to see if it has travelled [x] tiles
-                FL.setPower(.5);
-                BL.setPower(.5); // If not, keep moving forward
-                FR.setPower(.5);
-                BR.setPower(.5);
+                FL.setPower(.5); BL.setPower(.5); // If not, keep moving forward
+                FR.setPower(.5); BR.setPower(.5);
             }
         }
         FL.setPower(0); BL.setPower(0);
