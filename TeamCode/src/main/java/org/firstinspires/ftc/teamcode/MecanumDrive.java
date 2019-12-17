@@ -14,6 +14,9 @@ public class MecanumDrive{
         releaseIn = HM.servo.get("releaseIn");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
 
+        grabberGrip = HM.dcMotor.get("grabberGrip");
+        grabberHeight = HM.dcMotor.get("grabberHeight"); grabberLength = HM.dcMotor.get("grabberLength");
+
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER); br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -30,10 +33,11 @@ public class MecanumDrive{
 
     DcMotor fl, bl, fr, br; // 4 Drive Motors
     DcMotor InL, InR; // Intake Motors
+    DcMotor grabberGrip, grabberHeight, grabberLength;
     Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
     double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
-
+    double grabberGrab, grabberX, grabberY;
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
         // the math for the mecanum wheel
@@ -55,6 +59,8 @@ public class MecanumDrive{
         releaseIn.setPosition(releaseInPos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
         InL.setPower(InLPower); InR.setPower(InLPower);
+
+
     }
 
 }
