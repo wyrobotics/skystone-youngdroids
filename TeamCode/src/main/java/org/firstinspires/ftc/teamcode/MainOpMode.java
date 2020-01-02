@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import java.lang.Math;
 
 @TeleOp(name="MainOpModeNew", group="Robot")
 public class MainOpMode extends LinearOpMode {
@@ -16,13 +17,16 @@ public class MainOpMode extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
-        boolean aPressed = false; // Initialize Button Variables
-        boolean yPressed = false;
-        boolean xPressed = true;
-        boolean bPressed = true;
+        boolean aToggle = false; // Initialize Button Variables
+        boolean yToggle = false;
+        boolean xToggle = false;
+        boolean bPressed = false;
+        boolean startToggle = false;
 
-        boolean dPadUp = true, dPadDown = false; // Initialize dPad and Bumper Variables
+        boolean dPadUp = false, dPadDown = false; // Initialize dPad and Bumper Variables
         boolean rightBumper = false, leftBumper = false;
+
+
 
         while (opModeIsActive()) {
 
@@ -36,22 +40,27 @@ public class MainOpMode extends LinearOpMode {
             else {
                 Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
             }
-            if(bPressed)
-            Drive.releaseInPos = .5;
-            if(aPressed){
-                Drive.InLPower = 1;
-                Drive.InRPower = 1;
-            } else if (xPressed){
-                Drive.InLPower = 0;
-                Drive.InRPower = 0;
-            } else if (yPressed){
+            if(startToggle) {
+                Drive.releaseInPos = .5;
+            } else {
+                Drive. releaseInPos = 0;
+            }
+
+            if(aToggle && yToggle){
                 Drive.InLPower = -1;
                 Drive.InRPower = -1;
+            } else if (aToggle){
+                Drive.InLPower = 1;
+                Drive.InRPower = 1;
+            } else {
+                Drive.InLPower = 0;
+                Drive.InRPower = 0;
             }
-            if(dPadUp){
+
+            if(xToggle){
                 Drive.PlateGrabLPos = .45;
                 Drive.PlateGrabRPos = .45;
-            } else if (dPadDown){
+            } else {
                 Drive.PlateGrabLPos = 0;
                 Drive.PlateGrabRPos = 0;
             }
@@ -59,6 +68,7 @@ public class MainOpMode extends LinearOpMode {
 
 
             // Changes the variables accordingly with the controller
+  
             if(gamepad1.dpad_up){
                 dPadUp = true;
                 dPadDown = false;
@@ -69,20 +79,17 @@ public class MainOpMode extends LinearOpMode {
                 dPadUp = dPadDown = false;
             }
 
-            if(gamepad1.a){
-                aPressed = true;
-                xPressed = false;
-                yPressed = false;
-            } else if (gamepad1.x){
-                aPressed = false;
-                xPressed = true;
-                yPressed = false;
-            } else if (gamepad1.y){
-                aPressed = false;
-                xPressed = false;
-                yPressed = true;
-            } else {
-                aPressed = xPressed = yPressed = false;
+            if(gamepad1.a) {
+                aToggle = !aToggle;
+            }
+            if (gamepad1.y) {
+                yToggle = !yToggle;
+            }
+            if (gamepad1.start) {
+                startToggle = !startToggle;
+            }
+            if (gamepad1.x) {
+                xToggle = !xToggle;
             }
 
             if (gamepad1.left_bumper) {

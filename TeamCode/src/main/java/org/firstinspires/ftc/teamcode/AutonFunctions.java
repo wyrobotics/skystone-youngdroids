@@ -63,8 +63,8 @@ public class AutonFunctions {
             dir = -1;
         }
 
-        while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition())) / 2 > dir *tiles * RotationsPerStafe &&
-                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition())) / 2 > dir * tiles * RotationsPerStafe &&
+        while( (dir * (FL.getCurrentPosition() + BR.getCurrentPosition())) / 2.0 > dir *tiles * RotationsPerStafe &&
+                (dir * (FR.getCurrentPosition() + BL.getCurrentPosition())) / 2.0 > dir * tiles * RotationsPerStafe &&
                 opActive){
             FL.setPower(-.5 * dir); BL.setPower(.5 * dir);
             FR.setPower(.5 * dir); BR.setPower(-.5 * dir);

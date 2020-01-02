@@ -17,7 +17,6 @@ public class RedAutonLeft extends LinearOpMode {
 
         auton.init(hardwareMap);
 
-
         waitForStart();
 
         if(opModeIsActive()){
