@@ -1,12 +1,28 @@
-# Created by .ignore support plugin (hsz.mobi)
+# built application files
+*.apk
+*.ap_
 
-# Created by https://www.gitignore.io/api/java,androidstudio
-# Edit at https://www.gitignore.io/?templates=java,androidstudio
+# Java class files
+*.class
 
-### C++ ###
-# Add file names of files that need to be ignored here
+# generated files
+bin/
+gen/
 
+# Local configuration file (sdk path, etc)
+local.properties
 
-### AndroidStudio ###
+# Windows thumbnail db
+Thumbs.db
 
-# End of https://www.gitignore.io/api/java,androidstudio
+# OSX files
+.DS_Store
+
+# Android Studio
+*.iml
+.idea
+.gradle
+build/
+
+*ASUS_PC_01*
+
