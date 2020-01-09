@@ -32,7 +32,6 @@ public class MecanumDrive{
 
     DcMotor fl, bl, fr, br; // 4 Drive Motors
     DcMotor InL, InR; // Intake Motors
-    DcMotor grabberGrip, grabberHeight, grabberLength;
     Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
     double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
