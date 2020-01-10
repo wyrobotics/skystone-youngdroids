@@ -19,11 +19,15 @@ public class MecanumDrive{
 
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        sLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER); br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER); bl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        sLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        sLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //Reverse Direction of certain motors/servos
         fl.setDirection(DcMotorSimple.Direction.REVERSE); bl.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -38,6 +42,7 @@ public class MecanumDrive{
     Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
     double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
+    double GrabberPos, sLiftPower;
 
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
@@ -56,6 +61,7 @@ public class MecanumDrive{
         // Sets the power/pos of all our hardware to what it should be
         fl.setPower(LFWheelPower); bl.setPower(LBWheelPower);//
         fr.setPower(RFWheelPower); br.setPower(RBWheelPower);
+        Grabber.setPosition(GrabberPos); sLift.setPower(sLiftPower);
 
         releaseIn.setPosition(releaseInPos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
