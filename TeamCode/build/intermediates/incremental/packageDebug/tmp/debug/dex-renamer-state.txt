@@ -1,4 +1,4 @@
-#Sat Dec 14 15:34:25 CST 2019
-base.0=C\:\\Users\\tobyc\\AndroidStudioProjects\\skystone\\TeamCode\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
+#Mon Jan 06 21:41:14 CST 2020
+base.0=D\:\\FTC Stuff\\myCopy\\skystone-youngdroids\\TeamCode\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -22,10 +22,14 @@ public class MainOpMode extends LinearOpMode {
         boolean xToggle = false;
         boolean bPressed = false;
         boolean startToggle = false;
+        boolean guideToggle = false;
+        boolean backToggle = false;
 
-        boolean dPadUp = false, dPadDown = false; // Initialize dPad and Bumper Variables
+        boolean leftStickButton = false, rightStickButton = false;
+
+        boolean dPadUp = false, dPadDown = false, dPadLeft = false, dPadRight = false; // Initialize dPad and Bumper Variables
         boolean rightBumper = false, leftBumper = false;
-
+        float rightTrigger = 0, leftTrigger = 0;
 
         
 
@@ -41,11 +45,7 @@ public class MainOpMode extends LinearOpMode {
             else {
                 Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
             }
-            if(startToggle) {
-                Drive.releaseInPos = .5;
-            } else {
-                Drive. releaseInPos = 0;
-            }
+
 
             if(aToggle && yToggle){
                 Drive.InLPower = -1;
@@ -86,9 +86,7 @@ public class MainOpMode extends LinearOpMode {
             if (gamepad1.y) {
                 yToggle = !yToggle;
             }
-            if (gamepad1.start) {
-                startToggle = !startToggle;
-            }
+
             if (gamepad1.x) {
                 xToggle = !xToggle;
             }

@@ -14,6 +14,7 @@ public class MecanumDrive{
         releaseIn = HM.servo.get("releaseIn");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
 
+        Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
 
 
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -32,6 +33,8 @@ public class MecanumDrive{
 
     DcMotor fl, bl, fr, br; // 4 Drive Motors
     DcMotor InL, InR; // Intake Motors
+    DcMotor sLift;
+    Servo Grabber;
     Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
     double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
