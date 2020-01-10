@@ -82,6 +82,13 @@ public class MainCoOpMode extends LinearOpMode {
                 Drive.sLiftPower = 0;
             }
 
+            if (Drive.sLift.getCurrentPosition() > 10.0) {
+                Drive.sLiftPower = Math.min(0, Drive.sLiftPower);
+            }
+
+            Drive.GrabberPos = Math.min(Drive.Grabber.getPosition(), 10);
+
+
             if (aBut2) {
                 Drive.GrabberPos += 0.5;
             } else if (xBut2) {
@@ -147,15 +154,22 @@ public class MainCoOpMode extends LinearOpMode {
             telemetry.addData("LBMotorPower",Drive.bl.getPower());
             telemetry.addData("RFMotorPower",Drive.fr.getPower());
             telemetry.addData("RBMotorPower",Drive.br.getPower());
+
             telemetry.addData("LF Position: ", Drive.fl.getCurrentPosition());
             telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());
             telemetry.addData("RF Position: ", Drive.fr.getCurrentPosition());
             telemetry.addData("RB Position: ", Drive.br.getCurrentPosition());
             telemetry.addData("Average Pos: ", AverageRotation());
+
             telemetry.addData("GrabL Current Pos: ", Drive.PlateGrabL.getPosition());
             telemetry.addData("GrabL Target Pos: ", Drive.PlateGrabLPos);
             telemetry.addData("GrabR Current Pos: ", Drive.PlateGrabR.getPosition());
             telemetry.addData("GrabR Target Pos: ", Drive.PlateGrabRPos);
+
+            telemetry.addData("Grabber Pos:", Drive.Grabber.getPosition());
+            telemetry.addData("Scissor Lift Power: ", Drive.sLift.getPowerFloat());
+            telemetry.addData("Scissor Lift Position: ", Drive.sLift.getCurrentPosition());
+
             telemetry.update();
         }
     }
