@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import java.lang.Math;
 
-@TeleOp(name="MainOpModeNew", group="Robot")
-public class MainOpMode extends LinearOpMode {
+@TeleOp(name="MainCoOpModeNew", group="Robot")
+public class MainCoOpMode extends LinearOpMode {
 
     MecanumDrive Drive = new MecanumDrive();
 
@@ -25,13 +25,20 @@ public class MainOpMode extends LinearOpMode {
         boolean guideToggle = false;
         boolean backToggle = false;
 
+
+
+        boolean dpUp2 = false, dpDwn2 = false;
+        boolean aBut2 = false, xBut2 = false;
+
+
+
         boolean leftStickButton = false, rightStickButton = false;
 
         boolean dPadUp = false, dPadDown = false, dPadLeft = false, dPadRight = false; // Initialize dPad and Bumper Variables
         boolean rightBumper = false, leftBumper = false;
         float rightTrigger = 0, leftTrigger = 0;
 
-        
+
 
         while (opModeIsActive()) {
 
@@ -47,7 +54,7 @@ public class MainOpMode extends LinearOpMode {
             }
 
 
-            if(aToggle && yToggle){
+            if (aToggle && yToggle){
                 Drive.InLPower = -1;
                 Drive.InRPower = -1;
             } else if (aToggle){
@@ -58,7 +65,7 @@ public class MainOpMode extends LinearOpMode {
                 Drive.InRPower = 0;
             }
 
-            if(xToggle){
+            if (xToggle){
                 Drive.PlateGrabLPos = .45;
                 Drive.PlateGrabRPos = .45;
             } else {
@@ -67,15 +74,29 @@ public class MainOpMode extends LinearOpMode {
             }
             Drive.SetMotorPower();
 
-            if (dPadUp) {
-                Drive.intakeRPos += 5;
-            } else if (dPadDown) {
-                Drive.intakeRPos -= 5;
+            if (dpUp2) {
+                Drive.sLiftPower = 1;
+            } else if (dpDwn2) {
+                Drive.sLiftPower = -1;
+            } else {
+                Drive.sLiftPower = 0;
             }
 
+            if (Drive.sLift.getCurrentPosition() > 10.0) {
+                Drive.sLiftPower = Math.min(0, Drive.sLiftPower);
+            }
+
+            Drive.GrabberPos = Math.min(Drive.Grabber.getPosition(), 10);
+
+
+            if (aBut2) {
+                Drive.GrabberPos += 0.5;
+            } else if (xBut2) {
+                Drive.GrabberPos -= 0.5;
+            }
             // Changes the variables accordingly with the controller
-  
-            if(gamepad1.dpad_up){
+
+            /* if(gamepad1.dpad_up){
                 dPadUp = true;
                 dPadDown = false;
             } else if (gamepad1.dpad_down){
@@ -83,7 +104,7 @@ public class MainOpMode extends LinearOpMode {
                 dPadDown = true;
             } else {
                 dPadUp = dPadDown = false;
-            }
+            } */
 
             if(gamepad1.a) {
                 aToggle = !aToggle;
@@ -106,24 +127,49 @@ public class MainOpMode extends LinearOpMode {
                 rightBumper = leftBumper = false;
             }
 
+            if (dpUp2 != gamepad2.dpad_up) {
+                dpUp2 = gamepad2.dpad_up;
+                dpDwn2 = !dpUp2;
+            } else if (dpDwn2 != gamepad2.dpad_down) {
+                dpDwn2 = gamepad2.dpad_down;
+                dpUp2 = !dpDwn2;
+            } else {
+                dpDwn2 = dpUp2 = false;
+            }
+
+            if (aBut2 != gamepad2.a) {
+                aBut2 = gamepad2.a;
+                xBut2 = !aBut2;
+            } else if (xBut2 != gamepad2.x) {
+                xBut2 = gamepad2.x;
+                aBut2 = !xBut2;
+            } else {
+                aBut2 = xBut2 = false;
+            }
+
+
 
             // Tells phone what information to display
             telemetry.addData("LFMotorPower",Drive.fl.getPower());
             telemetry.addData("LBMotorPower",Drive.bl.getPower());
             telemetry.addData("RFMotorPower",Drive.fr.getPower());
             telemetry.addData("RBMotorPower",Drive.br.getPower());
+
             telemetry.addData("LF Position: ", Drive.fl.getCurrentPosition());
             telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());
             telemetry.addData("RF Position: ", Drive.fr.getCurrentPosition());
             telemetry.addData("RB Position: ", Drive.br.getCurrentPosition());
             telemetry.addData("Average Pos: ", AverageRotation());
+
             telemetry.addData("GrabL Current Pos: ", Drive.PlateGrabL.getPosition());
             telemetry.addData("GrabL Target Pos: ", Drive.PlateGrabLPos);
             telemetry.addData("GrabR Current Pos: ", Drive.PlateGrabR.getPosition());
             telemetry.addData("GrabR Target Pos: ", Drive.PlateGrabRPos);
 
-            telemetry.addData("Intake Release pos: ", Drive.intakeR.getPosition());
-            telemetry.addData("Intake R Target pos: ", Drive.intakeRPos);
+            telemetry.addData("Grabber Pos:", Drive.Grabber.getPosition());
+            telemetry.addData("Scissor Lift Power: ", Drive.sLift.getPowerFloat());
+            telemetry.addData("Scissor Lift Position: ", Drive.sLift.getCurrentPosition());
+
             telemetry.update();
         }
     }

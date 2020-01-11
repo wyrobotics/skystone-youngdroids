@@ -45,7 +45,7 @@ public class MainRobot {
 
     public double GrabServoDir() {
         if (gyro.getHeading() <= 90) {
-            return (gyro.getHeading() / 180) + 0.5 + GrabServoDif;
+            return gyro.getHeading() / 180 + 0.5 + GrabServoDif;
         }
         if (gyro.getHeading() >= 270) {
             return -gyro.getHeading() / 180 + 2 + GrabServoDif;
