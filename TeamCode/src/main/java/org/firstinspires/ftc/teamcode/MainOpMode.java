@@ -67,6 +67,11 @@ public class MainOpMode extends LinearOpMode {
             }
             Drive.SetMotorPower();
 
+            if (dPadUp) {
+                Drive.intakeRPos += 5;
+            } else if (dPadDown) {
+                Drive.intakeRPos -= 5;
+            }
 
             // Changes the variables accordingly with the controller
   
@@ -116,6 +121,9 @@ public class MainOpMode extends LinearOpMode {
             telemetry.addData("GrabL Target Pos: ", Drive.PlateGrabLPos);
             telemetry.addData("GrabR Current Pos: ", Drive.PlateGrabR.getPosition());
             telemetry.addData("GrabR Target Pos: ", Drive.PlateGrabRPos);
+
+            telemetry.addData("Intake Release pos: ", Drive.intakeR.getPosition());
+            telemetry.addData("Intake R Target pos: ", Drive.intakeRPos);
             telemetry.update();
         }
     }

@@ -13,6 +13,7 @@ public class MecanumDrive{
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
         releaseIn = HM.servo.get("releaseIn");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
+        intakeR = HM.servo.get("intakeR");
 
         Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
 
@@ -38,11 +39,11 @@ public class MecanumDrive{
     DcMotor fl, bl, fr, br; // 4 Drive Motors
     DcMotor InL, InR; // Intake Motors
     DcMotor sLift;
-    Servo Grabber;
+    Servo Grabber, intakeR;
     Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
     double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
-    double GrabberPos, sLiftPower;
+    double GrabberPos, sLiftPower, intakeRPos;
 
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
@@ -66,7 +67,7 @@ public class MecanumDrive{
         releaseIn.setPosition(releaseInPos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
         InL.setPower(InLPower); InR.setPower(InLPower);
-
+        intakeR.setPosition(intakeRPos);
 
     }
 
