@@ -11,24 +11,25 @@ public class MecanumDrive{
         fl = HM.dcMotor.get("fl"); bl = HM.dcMotor.get("bl"); // Maps all our motors/servos
         fr = HM.dcMotor.get("fr"); br = HM.dcMotor.get("br");
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
-        releaseIn = HM.servo.get("releaseIn");
-        PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
-        intakeR = HM.servo.get("intakeR");
 
-        Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
+        //sLift = HM.dcMotor.get("sLift");
+        PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
+        //intakeR = HM.servo.get("intakeR");
+
+        //Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
 
 
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        sLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //sLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER); br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER); bl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        sLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //sLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        sLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //sLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //Reverse Direction of certain motors/servos
         fl.setDirection(DcMotorSimple.Direction.REVERSE); bl.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -38,8 +39,8 @@ public class MecanumDrive{
 
     DcMotor fl, bl, fr, br; // 4 Drive Motors
     DcMotor InL, InR; // Intake Motors
-    DcMotor sLift;
-    Servo Grabber, intakeR;
+    //DcMotor sLift;
+    //Servo Grabber, intakeR;
     Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
     double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
@@ -62,12 +63,12 @@ public class MecanumDrive{
         // Sets the power/pos of all our hardware to what it should be
         fl.setPower(LFWheelPower); bl.setPower(LBWheelPower);//
         fr.setPower(RFWheelPower); br.setPower(RBWheelPower);
-        Grabber.setPosition(GrabberPos); sLift.setPower(sLiftPower);
+        //Grabber.setPosition(GrabberPos); sLift.setPower(sLiftPower);
 
         releaseIn.setPosition(releaseInPos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
         InL.setPower(InLPower); InR.setPower(InLPower);
-        intakeR.setPosition(intakeRPos);
+        //intakeR.setPosition(intakeRPos);
 
     }
 

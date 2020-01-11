@@ -122,7 +122,7 @@ public class MainOpMode extends LinearOpMode {
             telemetry.addData("GrabR Current Pos: ", Drive.PlateGrabR.getPosition());
             telemetry.addData("GrabR Target Pos: ", Drive.PlateGrabRPos);
 
-            telemetry.addData("Intake Release pos: ", Drive.intakeR.getPosition());
+            //telemetry.addData("Intake Release pos: ", Drive.intakeR.getPosition());
             telemetry.addData("Intake R Target pos: ", Drive.intakeRPos);
             telemetry.update();
         }

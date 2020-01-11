@@ -27,7 +27,7 @@ public class AutonFunctions {
         FL = hardwareMap.dcMotor.get("fl"); BL = hardwareMap.dcMotor.get("bl"); // map the Front wheels
         FR = hardwareMap.dcMotor.get("fr"); BR = hardwareMap.dcMotor.get("br"); // Map the Back wheels
         InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
-        releaseIn = hardwareMap.servo.get("releaseIn");
+        releaseIn = hardwareMap.servo.get("intakeR");
         PlateGrabL = hardwareMap.servo.get("PlateGrabL"); PlateGrabR = hardwareMap.servo.get("PlateGrabR");
 
 
