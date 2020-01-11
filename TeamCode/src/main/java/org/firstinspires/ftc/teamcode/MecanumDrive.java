@@ -14,7 +14,7 @@ public class MecanumDrive{
 
         //sLift = HM.dcMotor.get("sLift");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
-        //intakeR = HM.servo.get("intakeR");
+        releaseIn = HM.servo.get("intakeR");
 
         //Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
 
@@ -49,10 +49,10 @@ public class MecanumDrive{
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
         // the math for the mecanum wheel
-        LFWheelPower = (-left_stick_y + right_stick_x + left_stick_x) * 4;
-        LBWheelPower = (-left_stick_y + right_stick_x - left_stick_x) * 4;
-        RFWheelPower = (-left_stick_y - right_stick_x - left_stick_x) * 4;
-        RBWheelPower = (-left_stick_y - right_stick_x + left_stick_x) * 4;
+        LFWheelPower = (-left_stick_y + right_stick_x + left_stick_x) * 2;
+        LBWheelPower = (-left_stick_y + right_stick_x - left_stick_x) * 2;
+        RFWheelPower = (-left_stick_y - right_stick_x - left_stick_x) * 2;
+        RBWheelPower = (-left_stick_y - right_stick_x + left_stick_x) * 2;
     }
     public void DriveTrain(double x) { // For Strafing rather than normal movement
         LFWheelPower = RFWheelPower = x;

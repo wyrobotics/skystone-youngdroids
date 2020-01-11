@@ -2,15 +2,13 @@ package org.firstinspires.ftc.teamcode;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Disabled
-public class AutonFunctions {
+public class AutonFunctions{
 
     DcMotor FL, FR, BL, BR; // All 4 drive motors
 
@@ -20,26 +18,35 @@ public class AutonFunctions {
     Servo PlateGrabL, PlateGrabR; // Plate grab servos
 
 
-    public double RotationsPerTileForward = 2150, RotationsPer90 = 1800, RotationsPerStafe = 3000;
+    public double RotationsPerTileForward = 2150, RotationsPer90 = 1700, RotationsPerStafe = 3000;
 
-    public void init(HardwareMap hardwareMap){
-        // HARDWARE MAPPING AND INITIALIZING
-        FL = hardwareMap.dcMotor.get("fl"); BL = hardwareMap.dcMotor.get("bl"); // map the Front wheels
-        FR = hardwareMap.dcMotor.get("fr"); BR = hardwareMap.dcMotor.get("br"); // Map the Back wheels
-        InL = hardwareMap.dcMotor.get("InL"); InR = hardwareMap.dcMotor.get("InR");
-        releaseIn = hardwareMap.servo.get("intakeR");
-        PlateGrabL = hardwareMap.servo.get("PlateGrabL"); PlateGrabR = hardwareMap.servo.get("PlateGrabR");
+
+    public void init(HardwareMap HM) {
+        FL = HM.dcMotor.get("fl"); BL = HM.dcMotor.get("bl"); // Maps all our motors/servos
+        FR = HM.dcMotor.get("fr"); BR = HM.dcMotor.get("br");
+        InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
+
+        //sLift = HM.dcMotor.get("sLift");
+        PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
+        releaseIn = HM.servo.get("intakeR");
+
+        //Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
 
 
         FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //sLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //sLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //sLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);// reverse the left wheels direction
+        //Reverse Direction of certain motors/servos
+        FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
     }
