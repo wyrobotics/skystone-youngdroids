@@ -1,10 +1,11 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.SkyStone;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(
-        name = "RedAutonLeft"
+import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctions;
+
+@Autonomous( name = "RedAutonLeft", group = "SkyStone"
 )
 public class RedAutonLeft extends LinearOpMode {
 

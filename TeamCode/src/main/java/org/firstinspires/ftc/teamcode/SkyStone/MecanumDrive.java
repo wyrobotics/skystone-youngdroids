@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.SkyStone;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+@Disabled
 public class MecanumDrive{
 
     public void init(HardwareMap HM) {
@@ -37,14 +39,14 @@ public class MecanumDrive{
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
     }
 
-    DcMotor fl, bl, fr, br; // 4 Drive Motors
-    DcMotor InL, InR; // Intake Motors
+    public DcMotor fl, bl, fr, br; // 4 Drive Motors
+    public DcMotor InL, InR; // Intake Motors
     //DcMotor sLift;
     //Servo Grabber, intakeR;
-    Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
-    double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
-    double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
-    double GrabberPos, sLiftPower, intakeRPos;
+    public Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
+    public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
+    public double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
+    public double GrabberPos, sLiftPower, intakeRPos;
 
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {

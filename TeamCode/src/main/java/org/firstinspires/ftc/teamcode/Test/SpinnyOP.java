@@ -1,10 +1,14 @@
-package org.firstinspires.ftc.teamcode;
+
+package org.firstinspires.ftc.teamcode.Test;
+
+import org.firstinspires.ftc.teamcode.SkyStone.*;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.GyroSensor;
 
-@TeleOp(name="SpinnyOP", group="Robot")
+
+import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
+
+@TeleOp(name="SpinnyOP", group="Test")
 public class SpinnyOP extends LinearOpMode{
     MecanumDrive Drive = new MecanumDrive();
 
