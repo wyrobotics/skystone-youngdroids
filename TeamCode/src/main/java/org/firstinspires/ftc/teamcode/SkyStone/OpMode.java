@@ -36,6 +36,16 @@ public class OpMode extends LinearOpMode {
         boolean dPadLeft = false, dPadRight = false;
 
         while (opModeIsActive()) {
+            //Driving
+            if (gamepad1.right_bumper) {
+                rightBumper = true;
+                leftBumper = false;
+            } else if (gamepad1.left_bumper) {
+                leftBumper = true;
+                rightBumper = false;
+            } else {
+                rightBumper = leftBumper = false;
+            }
             if (rightBumper) {
                 Drive.DriveTrain(5);
             } else if (leftBumper) {
@@ -45,6 +55,55 @@ public class OpMode extends LinearOpMode {
             }
 
 
+
+
+            Drive.SetMotorPower();
+            //grabber
+            if(gamepad1.dpad_up){
+                dPadUp = true;
+                dPadDown = false;
+            } else if (gamepad1.dpad_down){
+                dPadUp = false;
+                dPadDown = true;
+            }
+            if(dPadDown){
+                Drive.PlateGrabLPos = .6;
+                Drive.PlateGrabRPos = .6;
+            } else if (dPadUp){
+                Drive.PlateGrabLPos = .1;
+                Drive.PlateGrabRPos = .1;
+            }
+            //grabber fine adjustment
+            if(gamepad1.dpad_left){
+                dPadLeft = true;
+                dPadRight = false;
+            } else if (gamepad1.dpad_right){
+                dPadRight = true;
+                dPadLeft = false;
+            } else {
+                dPadRight = dPadLeft = false;
+            }
+            if(dPadLeft){
+                Drive.PlateGrabLPos += .1;
+                Drive.PlateGrabRPos += .1;
+            } else if(dPadRight){
+                Drive.PlateGrabLPos -= .1;
+                Drive.PlateGrabRPos -= .1;
+            }
+            //intake all controls
+            if(gamepad1.a){
+                aPressed = true;
+                xPressed = false;
+                yPressed = false;
+            } else if (gamepad1.x){
+                aPressed = false;
+                xPressed = true;
+                yPressed = false;
+            } else if (gamepad1.y){
+                aPressed = false;
+                xPressed = false;
+                yPressed = true;
+            }
             if(aPressed){
                 Drive.InLPower = 5;
                 Drive.InRPower = 5;
@@ -60,59 +119,6 @@ public class OpMode extends LinearOpMode {
                 Drive.intakeRPos -= 1;
             }
 
-            if(dPadDown){
-                Drive.PlateGrabLPos = .6;
-                Drive.PlateGrabRPos = .6;
-            } else if (dPadUp){
-                Drive.PlateGrabLPos = .1;
-                Drive.PlateGrabRPos = .1;
-            }
-            if(dPadLeft){
-                Drive.PlateGrabLPos += .1;
-                Drive.PlateGrabRPos += .1;
-            } else if(dPadRight){
-                Drive.PlateGrabLPos -= .1;
-                Drive.PlateGrabRPos -= .1;
-            }
-
-            Drive.SetMotorPower();
-            if(gamepad1.dpad_up){
-                dPadUp = true;
-                dPadDown = false;
-            } else if (gamepad1.dpad_down){
-                dPadUp = false;
-                dPadDown = true;
-            }
-            if(gamepad1.dpad_left){
-                dPadLeft = true;
-                dPadRight = false;
-            } else if (gamepad1.dpad_right){
-                dPadRight = false;
-                dPadLeft = true;
-            } else {
-                dPadRight = dPadLeft = false;
-            }
-            if(gamepad1.a){
-                aPressed = true;
-                xPressed = false;
-                yPressed = false;
-            } else if (gamepad1.x){
-                aPressed = false;
-                xPressed = true;
-                yPressed = false;
-            } else if (gamepad1.y){
-                aPressed = false;
-                xPressed = false;
-                yPressed = true;
-            } if (gamepad1.right_bumper) {
-                rightBumper = true;
-                leftBumper = false;
-            } else if (gamepad1.left_bumper) {
-                leftBumper = true;
-                rightBumper = false;
-            } else {
-                rightBumper = leftBumper = false;
-            }
 
 
 
