@@ -5,13 +5,11 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 @Disabled
 public class GamePadControls {
-    Gamepad gp;
-    Object[][] buttons;
-    Object[][] modes;
-    GamePadControls(Gamepad a, Object[][] b) {
-        gp = a;
+    Object[][] buttons; // {{name of button, value}}
+    Object[][] modes; // {{name of button, mode, start value}}
+    public GamePadControls(Gamepad a, Object[][] b) {
         modes = b;
-        init(gp);
+        init();
     }
 
     public boolean currentButVal(String a, Gamepad b) {
@@ -21,37 +19,63 @@ public class GamePadControls {
             case "b": cVal = b.b; break;
             case "x": cVal = b.x; break;
             case "y": cVal = b.y; break;
-            case "dpUp": cVal = b.a; break;
-            case "dpDown": cVal = b.a; break;
-            case "dpLeft": cVal = b.a; break;
-            case "dpRight": cVal = b.a; break;
-            case "rightBumper": cVal = b.a; break;
-            case "LeftBumper": cVal = b.a; break;
-            case "jsLeftButton": cVal = b.a; break;
-            case "jsRightButton": cVal = b.a; break;
-            case "guide": cVal = b.a; break;
-            case "start": cVal = b.a; break;
-            case "quit": cVal = b.a; break;
+            case "dpUp": cVal = b.dpad_up; break;
+            case "dpDown": cVal = b.dpad_down; break;
+            case "dpLeft": cVal = b.dpad_left; break;
+            case "dpRight": cVal = b.dpad_right; break;
+            case "rightBumper": cVal = b.right_bumper; break;
+            case "LeftBumper": cVal = b.left_bumper; break;
+            case "jsLeftButton": cVal = b.left_stick_button; break;
+            case "jsRightButton": cVal = b.right_stick_button; break;
+            case "guide": cVal = b.guide; break;
+            case "start": cVal = b.start; break;
+            case "back": cVal = b.back; break;
             default : cVal = false;
         }
         return cVal;
     }
 
-    public void init(Gamepad a) {
+    public void init() {
         for (int i = 0; i < modes.length; i++) {
             Object[] o = modes[i];
             String button = (String)o[0];
-            String mode = (String)o[1];
             Boolean start = (Boolean)o[2];
 
-
-
             buttons[i][0] = button;
-
-            switch (button) {
-                case "a": buttons[i][1] =
-            }
+            buttons[i][1] = start;
 
         }
+    }
+
+    public boolean toggle(Boolean a, Boolean b) {
+        if (b) {
+            return !a;
+        } else {
+            return a;
+        }
+    }
+
+    public boolean button(Boolean a, Boolean b) {
+        return b;
+    }
+
+    public void updateController(Gamepad g) {
+        for (int i = 0; i < buttons.length; i++) {
+            boolean currentState = (Boolean)buttons[i][1];
+            boolean gpButtonVal = currentButVal((String)buttons[i][0], g);
+            switch ((String)modes[i][1]) {
+                case "toggle": buttons[i][1] = toggle(currentState, gpButtonVal); break;
+                case "button": buttons[i][1] = button(currentState, gpButtonVal); break;
+            }
+        }
+    }
+
+    public boolean getVal(String a) {
+        for (int i = 0; i < buttons.length; i++) {
+            if (a == (String)buttons[i][0]) {
+                return (Boolean)buttons[i][1];
+            }
+        }
+        return false;
     }
 }
