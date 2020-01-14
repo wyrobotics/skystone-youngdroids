@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.SkyStone;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+
 @Disabled
 public class GamePadControls {
     Object[][] buttons; // {{name of button, value}}
@@ -11,6 +12,7 @@ public class GamePadControls {
         modes = b;
         init();
     }
+
 
     public boolean currentButVal(String a, Gamepad b) {
         boolean cVal;
