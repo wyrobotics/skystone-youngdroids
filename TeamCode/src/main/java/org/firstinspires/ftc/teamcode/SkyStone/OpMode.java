@@ -81,11 +81,9 @@ public class OpMode extends LinearOpMode {
                 dPadRight = dPadLeft = false;
             }
             if(dPadLeft){
-                Drive.PlateGrabLPos += .1;
-                Drive.PlateGrabRPos += .1;
+                Drive.releaseInPos += 5;
             } else if(dPadRight){
-                Drive.PlateGrabLPos -= .1;
-                Drive.PlateGrabRPos -= .1;
+                Drive.releaseInPos -= 5;
             }
             //intake all controls
             if(gamepad1.a){

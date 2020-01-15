@@ -13,10 +13,9 @@ public class MecanumDrive{
         fl = HM.dcMotor.get("fl"); bl = HM.dcMotor.get("bl"); // Maps all our motors/servos
         fr = HM.dcMotor.get("fr"); br = HM.dcMotor.get("br");
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
-
-
+        releaseIn = HM.servo.get("releaseIn");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
-        releaseIn = HM.servo.get("intakeR");
+        //releaseIn = HM.servo.get("intakeR");
 
 
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -67,7 +66,7 @@ public class MecanumDrive{
         releaseIn.setPosition(releaseInPos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
         InL.setPower(InLPower); InR.setPower(InLPower);
-        //intakeR.setPosition(intakeRPos);
+        releaseIn.setPosition(releaseInPos);
 
     }
 

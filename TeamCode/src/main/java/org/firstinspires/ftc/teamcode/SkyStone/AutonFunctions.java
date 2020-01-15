@@ -26,9 +26,10 @@ public class AutonFunctions{
         FR = HM.dcMotor.get("fr"); BR = HM.dcMotor.get("br");
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
 
+
         //sLift = HM.dcMotor.get("sLift");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
-        releaseIn = HM.servo.get("intakeR");
+        releaseIn = HM.servo.get("releaseIn");
 
         //Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
 
