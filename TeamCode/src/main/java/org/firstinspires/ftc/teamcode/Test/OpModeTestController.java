@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 import org.firstinspires.ftc.teamcode.SkyStone.GamePadControls;
 
 @TeleOp(name="OpMode", group = "Test")
-public class OpModeTestCOntroller extends LinearOpMode {
+public class OpModeTestController extends LinearOpMode {
 
 
     MecanumDrive Drive = new MecanumDrive();
@@ -82,6 +82,9 @@ public class OpModeTestCOntroller extends LinearOpMode {
                 Drive.InLPower = -.5;
                 Drive.InRPower = -.5;
             }
+
+            gp1.updateController(gamepad1);
+            
 
             telemetry.addData("LFMotorPower",Drive.LFWheelPower);
             telemetry.addData("LBMotorPower",Drive.LBWheelPower);
