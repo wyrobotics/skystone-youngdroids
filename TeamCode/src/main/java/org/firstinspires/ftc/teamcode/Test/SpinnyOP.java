@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 
-@TeleOp(name="SpinnyOP", group="Test")
+@TeleOp(name="SpinnyOP2019", group="Test")
 public class SpinnyOP extends LinearOpMode{
     MecanumDrive Drive = new MecanumDrive();
 

@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 
-@TeleOp(name="OpMode", group = "SkyStone")
+@TeleOp(name="OpMode2019", group = "SkyStone")
 public class OpMode extends LinearOpMode {
 
 

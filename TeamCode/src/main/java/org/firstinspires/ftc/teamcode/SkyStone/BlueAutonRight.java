@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctions;
 
-@Autonomous(name = "BlueAutonRight", group = "SkyStone")
+@Autonomous(name = "BlueAutonRight2019", group = "SkyStone")
 public class BlueAutonRight extends LinearOpMode {
 
     AutonFunctions auton = new AutonFunctions();

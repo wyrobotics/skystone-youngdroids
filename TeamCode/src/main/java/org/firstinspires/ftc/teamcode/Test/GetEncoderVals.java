@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "GetEncoderVals", group = "Test")
+@TeleOp(name = "GetEncoderVals2019", group = "Test")
 public class GetEncoderVals extends LinearOpMode {
 
     DcMotor FL, FR, BL, BR; // All 4 drive motors

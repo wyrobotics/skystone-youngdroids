@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctions;
 
-@Autonomous(name = "VuforiaLeft", group = "Vuforia")
+@Autonomous(name = "VuforiaLeft2019", group = "Vuforia")
 public class TestVuforiaAutonLeft extends LinearOpMode {
 
     AutonFunctions auton;

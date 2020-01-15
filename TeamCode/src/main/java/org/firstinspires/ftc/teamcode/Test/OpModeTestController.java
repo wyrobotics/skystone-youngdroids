@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 import org.firstinspires.ftc.teamcode.SkyStone.GamePadControls;
 
-@TeleOp(name="OpModeTestController", group = "Test")
+@TeleOp(name="OpModeTestController2019", group = "Test")
 public class OpModeTestController extends LinearOpMode {
 
 
