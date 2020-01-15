@@ -14,11 +14,9 @@ public class MecanumDrive{
         fr = HM.dcMotor.get("fr"); br = HM.dcMotor.get("br");
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
 
-        //sLift = HM.dcMotor.get("sLift");
+
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
         releaseIn = HM.servo.get("intakeR");
-
-        //Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
 
 
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -31,7 +29,7 @@ public class MecanumDrive{
 
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //sLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         //Reverse Direction of certain motors/servos
         fl.setDirection(DcMotorSimple.Direction.REVERSE); bl.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -41,12 +39,11 @@ public class MecanumDrive{
 
     public DcMotor fl, bl, fr, br; // 4 Drive Motors
     public DcMotor InL, InR; // Intake Motors
-    //DcMotor sLift;
-    //Servo Grabber, intakeR;
     public Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
+
     public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     public double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
-    public double GrabberPos, sLiftPower, intakeRPos;
+    public double intakeRPos;
 
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
