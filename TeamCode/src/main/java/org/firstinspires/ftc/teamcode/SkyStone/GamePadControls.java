@@ -11,7 +11,7 @@ public class GamePadControls {
         modes = b;
         init();
     }
-
+    //returns the current button value
     public boolean currentButVal(String a, Gamepad b) {
         boolean cVal;
         switch (a) {
@@ -35,18 +35,19 @@ public class GamePadControls {
         return cVal;
     }
 
+    //changes the 3 column object into a 2 column object {name, button or toggle, boolean} -> {name, boolean}
     public void init() {
         for (int i = 0; i < modes.length; i++) {
             Object[] o = modes[i];
-            String button = (String)o[0];
+            String name = (String)o[0];
             Boolean start = (Boolean)o[2];
 
-            buttons[i][0] = button;
+            buttons[i][0] = name;
             buttons[i][1] = start;
 
         }
     }
-
+    // toggle
     public boolean toggle(Boolean a, Boolean b) {
         if (b) {
             return !a;
@@ -55,10 +56,12 @@ public class GamePadControls {
         }
     }
 
+    // button
     public boolean button(Boolean a, Boolean b) {
         return b;
     }
 
+    //updates the values in the buttons object
     public void updateController(Gamepad g) {
         for (int i = 0; i < buttons.length; i++) {
             boolean currentState = (Boolean)buttons[i][1];
@@ -70,6 +73,7 @@ public class GamePadControls {
         }
     }
 
+    //returns the current value of a button
     public boolean getVal(String a) {
         for (int i = 0; i < buttons.length; i++) {
             if (a == (String)buttons[i][0]) {

@@ -32,7 +32,7 @@ public class OpModeTestCOntroller extends LinearOpMode {
                 {"dpLeft", "button", "false"},
                 {"dpRight", "button", "false"},
                 {"rightBumper", "button", "false"},
-                {"leftBumper", "button", "false"},});
+                {"leftBumper", "button", "false"}});
 
         telemetry.addData("say", "before opmode");
         telemetry.update();
