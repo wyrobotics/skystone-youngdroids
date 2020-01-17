@@ -13,6 +13,7 @@ public class MecanumDrive{
         fl = HM.dcMotor.get("fl"); bl = HM.dcMotor.get("bl"); // Maps all our motors/servos
         fr = HM.dcMotor.get("fr"); br = HM.dcMotor.get("br");
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
+
         releaseIn = HM.servo.get("releaseIn");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
         //releaseIn = HM.servo.get("intakeR");
@@ -39,6 +40,7 @@ public class MecanumDrive{
     public DcMotor fl, bl, fr, br; // 4 Drive Motors
     public DcMotor InL, InR; // Intake Motors
     public Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
+    
 
     public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     public double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)

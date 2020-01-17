@@ -15,6 +15,9 @@ public class AutonFunctions{
     DcMotor InL, InR; // Intake motors
     Servo releaseIn; // Intake release
 
+    DcMotor Lifter;
+    Servo Grabber;
+
     Servo PlateGrabL, PlateGrabR; // Plate grab servos
 
 
@@ -25,28 +28,24 @@ public class AutonFunctions{
         FL = HM.dcMotor.get("fl"); BL = HM.dcMotor.get("bl"); // Maps all our motors/servos
         FR = HM.dcMotor.get("fr"); BR = HM.dcMotor.get("br");
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
+        Lifter = HM.dcMotor.get("Lifter"); Grabber = HM.servo.get("Grabber");
 
 
-        //sLift = HM.dcMotor.get("sLift");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
         releaseIn = HM.servo.get("releaseIn");
 
-        //Grabber = HM.servo.get("Grabber"); sLift = HM.dcMotor.get("sLift");
-
-
+        Lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        //sLift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        Lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER); BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //sLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        Lifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); BL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        //sLift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //Reverse Direction of certain motors/servos
         FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
