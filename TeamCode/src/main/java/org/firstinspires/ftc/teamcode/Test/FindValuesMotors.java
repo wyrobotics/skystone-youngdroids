@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.SkyStone;
+package org.firstinspires.ftc.teamcode.Test;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -8,10 +8,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 
-@TeleOp(name="OpMode2019", group = "SkyStone")
-public class OpMode extends LinearOpMode {
-
-
+@TeleOp(name="FindValuesMotors2019", group = "SkyStone")
+public class FindValuesMotors extends LinearOpMode {
+    
     MecanumDrive Drive = new MecanumDrive();
 
 
