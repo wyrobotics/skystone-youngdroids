@@ -3,11 +3,8 @@ package org.firstinspires.ftc.teamcode.Test;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
-import org.firstinspires.ftc.teamcode.SkyStone.GamePadControls;
 
 @TeleOp(name="OpModeTestController2019", group = "Test")
 public class OpModeTestController extends LinearOpMode {

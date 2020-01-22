@@ -17,12 +17,13 @@ public class OpMode extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        //Robot.init(hardwareMap);
+
         Drive.init(hardwareMap);
         telemetry.addData("say", "before opmode");
         telemetry.update();
         waitForStart();
         //Drive.releaseInPos = 0.5;
+
         boolean aPressed = false;
         boolean yPressed = false;
         boolean xPressed = false;
