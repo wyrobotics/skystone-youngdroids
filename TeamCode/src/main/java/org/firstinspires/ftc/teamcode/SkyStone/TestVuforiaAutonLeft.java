@@ -24,7 +24,8 @@ public class TestVuforiaAutonLeft extends LinearOpMode {
 
     int SkyStoneNum = 0;
 
-    @Override public void runOpMode() throws InterruptedException{
+    @Override
+    public void runOpMode() throws InterruptedException{
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);

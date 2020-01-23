@@ -115,15 +115,6 @@ public abstract class LinearOpModeController extends LinearOpMode {
             OpModeEvents();
 
 
-            telemetry.addData("InLPower: ",Drive.InLPower);
-            telemetry.addData("InRPower: ",Drive.InRPower);
-            telemetry.addData("PlateGrabLPos: ",Drive.PlateGrabLPos);
-            telemetry.addData("PlateGrabRPos: ",Drive.PlateGrabRPos);
-            telemetry.addData("LifterPower: ",Drive.LifterPower);
-            telemetry.addData("GrabberPos: ",Drive.GrabberPos);
-            telemetry.addData("releaseInPos: ",Drive.releaseInPos);
-
-            telemetry.update();
         }
     }
 

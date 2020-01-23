@@ -2,12 +2,11 @@ package org.firstinspires.ftc.teamcode.Test;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="FindValuesMotors2019", group = "Test")
+@TeleOp(name="FindValuesMotorsTEST2019", group = "Test")
 public class FindValuesMotorsLOM2 extends LinearOpModeController {
 
     @Override
     public void OpModeEvents() {
-
         // Motor and servo Stuff
         if (rightBumper) {
             Drive.LifterPower = 1;
@@ -48,5 +47,30 @@ public class FindValuesMotorsLOM2 extends LinearOpModeController {
         }
 
         Drive.SetMotorPower();
+
+        telemetry.addData("InLPower: ",Drive.InLPower);
+        telemetry.addData("InRPower: ",Drive.InRPower);
+        telemetry.addData("PlateGrabLPos: ",Drive.PlateGrabLPos);
+        telemetry.addData("PlateGrabRPos: ",Drive.PlateGrabRPos);
+        telemetry.addData("LifterPower: ",Drive.LifterPower);
+        telemetry.addData("GrabberPos: ",Drive.GrabberPos);
+        telemetry.addData("releaseInPos: ",Drive.releaseInPos);
+
+
+
+
+        telemetry.addData("A: ", a);
+        telemetry.addData("A: ", a);
+        telemetry.addData("A: ", a);
+        telemetry.addData("A: ", a);
+        telemetry.addData("LT: ", leftTrigger);
+        telemetry.addData("RT: ", rightTrigger);
+        telemetry.addData("jsLX: ", jsLX);
+        telemetry.addData("jsLY: ", jsLY);
+        telemetry.addData("Start: ", start);
+        telemetry.addData("RB: ", rightBumper);
+        telemetry.addData("LB: ", leftBumper);
+
+        telemetry.update();
     }
 }
