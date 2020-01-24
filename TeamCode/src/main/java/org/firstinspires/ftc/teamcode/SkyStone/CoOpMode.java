@@ -41,8 +41,7 @@ public class CoOpMode extends LinearOpMode {
         a=b=x=y=dPadDown=dPadUp=dPadLeft=dPadRight=jsRightButton=jsLeftButton = butInit();
         rightBumper=leftBumper=leftTrigger=rightTrigger=start=back=guide = butInit();
         jsLeftX=jsLeftY=jsRightX=jsRightY = new double[]{0,0};
-
-        Gamepad[] gamepads = new Gamepad[]{gamepad1, gamepad2};
+        
 
 
         while (opModeIsActive()) {
@@ -207,7 +206,7 @@ public class CoOpMode extends LinearOpMode {
                 dPadLeft[i] = dPadRight[i] = false;
             }
 
-            
+
         }
     }
 }
