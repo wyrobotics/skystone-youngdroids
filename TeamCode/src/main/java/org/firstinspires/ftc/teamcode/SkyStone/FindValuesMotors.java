@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Test;
+package org.firstinspires.ftc.teamcode.SkyStone;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -26,7 +26,7 @@ public class FindValuesMotors extends LinearOpMode {
         boolean aPressed = false;
         boolean yPressed = false;
         boolean xPressed = false;
-        boolean bPressed;
+        boolean bPressed = false;
         boolean dPadUp = false;
         boolean dPadDown = true;
         boolean rightBumper = false, leftBumper = false;

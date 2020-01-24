@@ -15,7 +15,7 @@ public class MecanumDrive{
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
         Lifter = HM.dcMotor.get("Lifter"); Grabber = HM.servo.get("Grabber");
 
-        releaseIn = HM.servo.get("releaseIn");
+        inCtrlL = HM.servo.get("inCtrlL"); inCtrlR = HM.servo.get("inCtrlR");
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
 
 
@@ -35,17 +35,20 @@ public class MecanumDrive{
         fl.setDirection(DcMotorSimple.Direction.REVERSE); bl.setDirection(DcMotorSimple.Direction.REVERSE);
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
+        inCtrlL.setDirection(Servo.Direction.REVERSE);
     }
 
     public DcMotor fl, bl, fr, br; // 4 Drive Motors
     public DcMotor InL, InR; // Intake Motors
-    public Servo releaseIn, PlateGrabL, PlateGrabR; // Plate Servos + Release
+    public Servo PlateGrabL, PlateGrabR; // Plate Servos + Release
     public Servo Grabber;
     public DcMotor Lifter;
+    public Servo inCtrlL, inCtrlR;
 
     public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     public double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
     public double LifterPower, GrabberPos;
+    public double inCtrlLPos, inCtrlRpos;
 
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
@@ -66,7 +69,7 @@ public class MecanumDrive{
         fr.setPower(RFWheelPower); br.setPower(RBWheelPower);
         Grabber.setPosition(GrabberPos); Lifter.setPower(LifterPower);
 
-        releaseIn.setPosition(releaseInPos);
+        inCtrlL.setPosition(inCtrlLPos); inCtrlR.setPosition(inCtrlRpos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
         InL.setPower(InLPower); InR.setPower(InLPower);
 

@@ -60,9 +60,9 @@ public class FindValuesMotorsLOM2 extends LinearOpModeController {
 
 
         telemetry.addData("A: ", a);
-        telemetry.addData("A: ", a);
-        telemetry.addData("A: ", a);
-        telemetry.addData("A: ", a);
+        telemetry.addData("B: ", b);
+        telemetry.addData("X: ", x);
+        telemetry.addData("Y: ", y);
         telemetry.addData("LT: ", leftTrigger);
         telemetry.addData("RT: ", rightTrigger);
         telemetry.addData("jsLX: ", jsLX);

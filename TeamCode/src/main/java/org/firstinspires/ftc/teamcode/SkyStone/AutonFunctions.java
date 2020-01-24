@@ -13,7 +13,7 @@ public class AutonFunctions{
     DcMotor FL, FR, BL, BR; // All 4 drive motors
 
     DcMotor InL, InR; // Intake motors
-    Servo releaseIn; // Intake release
+    Servo inCtrlL, inCtrlR; // Intake release
 
     DcMotor Lifter;
     Servo Grabber;
@@ -32,7 +32,8 @@ public class AutonFunctions{
 
 
         PlateGrabL = HM.servo.get("PlateGrabL"); PlateGrabR = HM.servo.get("PlateGrabR");
-        releaseIn = HM.servo.get("releaseIn");
+        inCtrlL = HM.servo.get("inCtrlL"); inCtrlR = HM.servo.get("inCtrlR");
+
 
         Lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -49,6 +50,7 @@ public class AutonFunctions{
         FL.setDirection(DcMotorSimple.Direction.REVERSE); BL.setDirection(DcMotorSimple.Direction.REVERSE);
         InL.setDirection(DcMotorSimple.Direction.REVERSE);
         PlateGrabL.setDirection(Servo.Direction.REVERSE);
+        inCtrlL.setDirection(Servo.Direction.REVERSE);
     }
 
     public void Rotate90(double pow, boolean opActive){ // pow is how fast it moves, + is CW, - is CCW
