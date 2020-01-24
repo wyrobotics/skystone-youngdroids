@@ -97,6 +97,8 @@ public class FindValuesMotors extends LinearOpMode {
                 leftTrigger = rightTrigger = false;
             }
 
+
+
             // Motor and servo Stuff
             if (rightBumper) {
                 Drive.LifterPower = 1;
@@ -111,21 +113,28 @@ public class FindValuesMotors extends LinearOpMode {
                 Drive.GrabberPos -= .1;
             }
             if (dPadUp) {
+                Drive.inCtrlLPos += .1;
+            } else if (dPadDown) {
+                Drive.inCtrlLPos -= 1;
+            }
+            if(dPadLeft) {
+                Drive.inCtrlRpos += 1;
+            } else if(dPadRight){
+                Drive.inCtrlRpos -= 1;
+            }
+
+
+            if (xPressed) {
                 Drive.PlateGrabLPos += .1;
                 Drive.PlateGrabRPos += .1;
-            } else if (dPadDown) {
+            } else if (bPressed) {
                 Drive.PlateGrabLPos -= .1;
                 Drive.PlateGrabRPos -= .1;
-            }
-            if (xPressed) {
-                Drive.releaseInPos -= .1;
-            } else if (bPressed) {
-                Drive.releaseInPos += .1;
             }
             if (yPressed) {
                 Drive.InLPower += 1;
                 Drive.InRPower += 1;
-            } else if (xPressed) {
+            } else if (aPressed) {
                 Drive.InRPower -= 1;
                 Drive.InLPower += 1;
             }
@@ -137,9 +146,14 @@ public class FindValuesMotors extends LinearOpMode {
             telemetry.addData("InRPower: ",Drive.InRPower);
             telemetry.addData("PlateGrabLPos: ",Drive.PlateGrabLPos);
             telemetry.addData("PlateGrabRPos: ",Drive.PlateGrabRPos);
+
             telemetry.addData("LifterPower: ",Drive.LifterPower);
+            telemetry.addData("LifterPos: ", Drive.Lifter.getCurrentPosition());
+
             telemetry.addData("GrabberPos: ",Drive.GrabberPos);
-            telemetry.addData("releaseInPos: ",Drive.releaseInPos);
+
+            telemetry.addData("IntakeControl Left: ",Drive.inCtrlLPos);
+            telemetry.addData("IntakeControl Right: ", Drive.inCtrlRpos);
 
             telemetry.update();
         }

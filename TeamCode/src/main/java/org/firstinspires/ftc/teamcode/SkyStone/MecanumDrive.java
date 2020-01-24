@@ -46,7 +46,7 @@ public class MecanumDrive{
     public Servo inCtrlL, inCtrlR;
 
     public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
-    public double releaseInPos, PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
+    public double PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
     public double LifterPower, GrabberPos;
     public double inCtrlLPos, inCtrlRpos;
 
