@@ -22,7 +22,7 @@ public class BlueAutonRight extends LinearOpMode {
 
             //move forward with start orientation facing tape
             //FOR ROBOPHINS
-            auton.releaseIn.setPosition(.5);
+            // ////////auton.releaseIn.setPosition(.5);
             auton.MoveForward(.5,opModeIsActive());
 
             //grab a SINGLE block and park on the duct tape

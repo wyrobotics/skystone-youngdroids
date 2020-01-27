@@ -21,7 +21,7 @@ public class RedAutonLeft extends LinearOpMode {
 
         if (opModeIsActive()){
 
-            auton.releaseIn.setPosition(0);
+            ////////auton.releaseIn.setPosition(0);
             auton.InR.setPower(-1); auton.InR.setPower(-1);
             auton.MoveForward(2,opModeIsActive());
             auton.InL.setPower(1); auton.InR.setPower(1);

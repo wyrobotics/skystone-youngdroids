@@ -33,14 +33,14 @@ public class FindValuesMotorsLOM2 extends LinearOpModeController {
         }
 
 
-        if (x) {
-            Drive.releaseInPos -= .1;
-        } else if (b) {
-            Drive.releaseInPos += .1;
-        }
+        //if (x) {
+          //  Drive.releaseInPos -= .1;
+        //} else if (b) {
+         //   Drive.releaseInPos += .1;
+        //}
         if (y) {
             Drive.InLPower += 1;
-            Drive.InRPower += 1;
+            Drive.InRPower += 1; 
         } else if (a) {
             Drive.InRPower -= 1;
             Drive.InLPower += 1;
@@ -54,7 +54,7 @@ public class FindValuesMotorsLOM2 extends LinearOpModeController {
         telemetry.addData("PlateGrabRPos: ",Drive.PlateGrabRPos);
         telemetry.addData("LifterPower: ",Drive.LifterPower);
         telemetry.addData("GrabberPos: ",Drive.GrabberPos);
-        telemetry.addData("releaseInPos: ",Drive.releaseInPos);
+        ////telemetry.addData("releaseInPos: ",Drive.releaseInPos);
 
 
 
