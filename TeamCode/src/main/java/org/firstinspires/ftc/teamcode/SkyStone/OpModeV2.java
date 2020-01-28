@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.SkyStone;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-@TeleOp(name="OpMode2020", group = "SkyStone")
+@TeleOp(name="OpMode2020V2", group = "SkyStone")
 public class OpModeV2 extends LinearOpMode {
 
 

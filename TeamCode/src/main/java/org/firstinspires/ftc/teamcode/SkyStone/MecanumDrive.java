@@ -52,19 +52,19 @@ public class MecanumDrive{
     public double inCtrlLPos, inCtrlRPos;
 
 
-    public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
+    public synchronized void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
         // the math for the mecanum wheel
         LFWheelPower = (-left_stick_y + right_stick_x + left_stick_x) * 2;
         LBWheelPower = (-left_stick_y + right_stick_x - left_stick_x) * 2;
         RFWheelPower = (-left_stick_y - right_stick_x - left_stick_x) * 2;
         RBWheelPower = (-left_stick_y - right_stick_x + left_stick_x) * 2;
     }
-    public void DriveTrain(double x) { // For Strafing rather than normal movement
+    public synchronized void DriveTrain(double x) { // For Strafing rather than normal movement
         LFWheelPower = RFWheelPower = x;
         LBWheelPower = RBWheelPower = -x;
     }
 
-    public void SetMotorPower(){
+    public synchronized void SetMotorPower(){
         // Sets the power/pos of all our hardware to what it should be
         fl.setPower(LFWheelPower); bl.setPower(LBWheelPower);//
         fr.setPower(RFWheelPower); br.setPower(RBWheelPower);
