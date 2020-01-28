@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.SkyStone;
+package org.firstinspires.ftc.teamcode.Test;
 
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 import java.lang.Math.*;
 
-@TeleOp(name="FindValuesMotors2019", group = "Test")
+@TeleOp(name="FindValuesMotors2020", group = "Test")
 public class FindValuesMotors extends LinearOpMode {
     
     MecanumDrive Drive = new MecanumDrive();
@@ -188,7 +188,19 @@ public class FindValuesMotors extends LinearOpMode {
 
             telemetry.addData("IntakeControl Left: ",Drive.inCtrlLPos);
             telemetry.addData("IntakeControl Right: ", Drive.inCtrlRPos);
+            telemetry.addData("LFMotorPower",Drive.LFWheelPower);
+            telemetry.addData("LBMotorPower",Drive.LBWheelPower);
+            telemetry.addData("RFMotorPower",Drive.RFWheelPower);
+            telemetry.addData("RBMotorPower",Drive.RBWheelPower);
 
+            telemetry.addData("LF Position: ", Drive.fl.getCurrentPosition());
+            telemetry.addData("LR Position: ", Drive.bl.getCurrentPosition());
+            telemetry.addData("RF Position: ", Drive.fr.getCurrentPosition());
+            telemetry.addData("RB Position: ", Drive.br.getCurrentPosition());
+            telemetry.addData("GrabL Current Pos: ", Drive.PlateGrabL.getPosition());
+            telemetry.addData("GrabL Target Pos: ", Drive.PlateGrabLPos);
+            telemetry.addData("GrabR Current Pos: ", Drive.PlateGrabR.getPosition());
+            telemetry.addData("GrabR Target Pos: ", Drive.PlateGrabRPos);
             telemetry.update();
 
 

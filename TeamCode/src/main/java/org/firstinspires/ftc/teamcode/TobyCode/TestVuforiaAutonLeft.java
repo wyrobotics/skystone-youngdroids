@@ -1,6 +1,7 @@
-package org.firstinspires.ftc.teamcode.SkyStone;
+package org.firstinspires.ftc.teamcode.TobyCode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctions;
 
 @Autonomous(name = "VuforiaLeft2019", group = "Vuforia")
+@Disabled
 public class TestVuforiaAutonLeft extends LinearOpMode {
 
     AutonFunctions auton;
@@ -64,8 +66,8 @@ public class TestVuforiaAutonLeft extends LinearOpMode {
                 auton.Strafe(1/3,opModeIsActive());
             } else {
                 i = 3;
-                auton.InL.setPower(1);
-                auton.InR.setPower(1);
+                //auton.InL.setPower(1);
+                //auton.InR.setPower(1);
                 auton.MoveForward(1,opModeIsActive());
                 auton.MoveForward(-1,opModeIsActive());
             }

@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode.Test;
+package org.firstinspires.ftc.teamcode.ForOffSeason;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name="FindValuesMotorsTEST2019", group = "Test")
+@Disabled
 public class FindValuesMotorsLOM2 extends LinearOpModeController {
 
     @Override
