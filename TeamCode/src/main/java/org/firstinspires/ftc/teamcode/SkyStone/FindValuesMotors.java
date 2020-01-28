@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
+import java.lang.Math.*;
 
 @TeleOp(name="FindValuesMotors2019", group = "Test")
 public class FindValuesMotors extends LinearOpMode {
@@ -16,10 +17,20 @@ public class FindValuesMotors extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        // Plate Grabbers: 0.4
+        // Intake On::     IntakeCtrL Pos: 0.62100 IntakeCtrlR: 0.67500
+        // Grabber Out:    IntakeCtrL Pos: 0.16200 IntakeCtrlR: 0.13400
+
+        // Grabber Close Pos: 0.57700 Grabber Open Pos: 0.42600
+
 
         Drive.init(hardwareMap);
         telemetry.addData("say", "before testmode");
         telemetry.update();
+        Drive.inCtrlLPos = 1;
+        Drive.inCtrlRPos = 1;
+        Drive.SetMotorPower();
+
         waitForStart();
 
 
@@ -28,13 +39,15 @@ public class FindValuesMotors extends LinearOpMode {
         boolean xPressed = false;
         boolean bPressed = false;
         boolean dPadUp = false;
-        boolean dPadDown = true;
+        boolean dPadDown = false;
         boolean rightBumper = false, leftBumper = false;
         boolean dPadLeft = false, dPadRight = false;
         boolean rightTrigger = false, leftTrigger = false;
-
+        boolean start = false, back = false;
 
         while (opModeIsActive()) {
+
+
 
             // Controller Stuff
             if (gamepad1.right_bumper) {
@@ -108,36 +121,55 @@ public class FindValuesMotors extends LinearOpMode {
                 Drive.LifterPower = 0;
             }
             if  (leftTrigger) {
-                Drive.GrabberPos += .1;
+                Drive.GrabberPos += .001;
             } else if (rightTrigger) {
-                Drive.GrabberPos -= .1;
+                Drive.GrabberPos -= .001;
             }
             if (dPadUp) {
-                Drive.inCtrlLPos += .1;
+                Drive.inCtrlLPos += .001;
             } else if (dPadDown) {
-                Drive.inCtrlLPos -= 1;
+                Drive.inCtrlLPos -= .001;
             }
             if(dPadLeft) {
-                Drive.inCtrlRpos += 1;
+                Drive.inCtrlRPos += .001;
             } else if(dPadRight){
-                Drive.inCtrlRpos -= 1;
+                Drive.inCtrlRPos -= .001;
             }
 
 
             if (xPressed) {
-                Drive.PlateGrabLPos += .1;
-                Drive.PlateGrabRPos += .1;
+                Drive.PlateGrabLPos += .001;
+                Drive.PlateGrabRPos += .001;
             } else if (bPressed) {
-                Drive.PlateGrabLPos -= .1;
-                Drive.PlateGrabRPos -= .1;
+                Drive.PlateGrabLPos -= .001;
+                Drive.PlateGrabRPos -= .001;
             }
             if (yPressed) {
-                Drive.InLPower += 1;
-                Drive.InRPower += 1;
+                Drive.InLPower += .01;
+                Drive.InRPower = Drive.InRPower * 4;
             } else if (aPressed) {
-                Drive.InRPower -= 1;
-                Drive.InLPower += 1;
+                Drive.InLPower -= .01;
+                Drive.InRPower = Drive.InRPower * 4;
             }
+
+            if (start) {
+                Drive.DriveTrain(5);
+            } else if (back) {
+                Drive.DriveTrain(-5);
+            } else {
+                Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
+            }
+
+
+            Drive.inCtrlLPos = Drive.limServo(Drive.inCtrlLPos);
+            Drive.inCtrlRPos = Drive.limServo(Drive.inCtrlRPos);;
+            Drive.GrabberPos = Drive.limServo(Drive.GrabberPos);;
+            Drive.PlateGrabLPos = Drive.limServo(Drive.PlateGrabLPos);;
+            Drive.PlateGrabRPos = Drive.limServo(Drive.PlateGrabRPos);;
+
+            Drive.InLPower = Math.max(-10, (Math.min(Drive.InLPower, 10)));
+            Drive.InRPower = Math.max(-10, (Math.min(Drive.InRPower, 10)));
+
 
             Drive.SetMotorPower();
 
@@ -148,14 +180,25 @@ public class FindValuesMotors extends LinearOpMode {
             telemetry.addData("PlateGrabRPos: ",Drive.PlateGrabRPos);
 
             telemetry.addData("LifterPower: ",Drive.LifterPower);
-            telemetry.addData("LifterPos: ", Drive.Lifter.getCurrentPosition());
+
+            int lifterPos = Drive.Lifter.getCurrentPosition();
+            telemetry.addData("LifterPos: ", lifterPos);
 
             telemetry.addData("GrabberPos: ",Drive.GrabberPos);
 
             telemetry.addData("IntakeControl Left: ",Drive.inCtrlLPos);
-            telemetry.addData("IntakeControl Right: ", Drive.inCtrlRpos);
+            telemetry.addData("IntakeControl Right: ", Drive.inCtrlRPos);
 
             telemetry.update();
+
+
+
+            try {
+                wait(500);
+            } catch( Exception e){
+                e.getStackTrace();
+            }
+
         }
     }
 }

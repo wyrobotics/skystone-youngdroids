@@ -84,7 +84,7 @@ public class OpMode extends LinearOpMode {
             if(dPadLeft){
                 Drive.inCtrlLPos += 5;
             } else if(dPadRight){
-                Drive.inCtrlRpos -= 5;
+                Drive.inCtrlRPos -= 5;
             }
             //intake all controls
             if(gamepad1.a){

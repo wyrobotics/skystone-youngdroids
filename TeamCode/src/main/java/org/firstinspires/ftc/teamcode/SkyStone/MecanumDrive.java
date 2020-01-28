@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import java.lang.Math.*;
 
 @Disabled
 public class MecanumDrive{
@@ -48,7 +49,7 @@ public class MecanumDrive{
     public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     public double PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
     public double LifterPower, GrabberPos;
-    public double inCtrlLPos, inCtrlRpos;
+    public double inCtrlLPos, inCtrlRPos;
 
 
     public void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
@@ -69,10 +70,14 @@ public class MecanumDrive{
         fr.setPower(RFWheelPower); br.setPower(RBWheelPower);
         Grabber.setPosition(GrabberPos); Lifter.setPower(LifterPower);
 
-        inCtrlL.setPosition(inCtrlLPos); inCtrlR.setPosition(inCtrlRpos);
+        inCtrlL.setPosition(inCtrlLPos); inCtrlR.setPosition(inCtrlRPos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
         InL.setPower(InLPower); InR.setPower(InLPower);
 
+    }
+
+    public double limServo(double x) {
+        return Math.max((Math.min(x, 1.0)),0.0);
     }
 
 }
