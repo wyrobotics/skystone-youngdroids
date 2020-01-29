@@ -86,21 +86,21 @@ public final class R {
         public static final int icon = 0x7f060054;
         public static final int icon_group = 0x7f060055;
         public static final int info = 0x7f06005b;
-        public static final int italic = 0x7f060062;
-        public static final int line1 = 0x7f060067;
-        public static final int line3 = 0x7f060068;
-        public static final int normal = 0x7f06008e;
-        public static final int notification_background = 0x7f06008f;
-        public static final int notification_main_column = 0x7f060090;
-        public static final int notification_main_column_container = 0x7f060091;
-        public static final int right_icon = 0x7f0600a0;
-        public static final int right_side = 0x7f0600a1;
-        public static final int scrollView = 0x7f0600ad;
-        public static final int tag_transition_group = 0x7f0600b7;
-        public static final int text = 0x7f0600bd;
-        public static final int text2 = 0x7f0600be;
-        public static final int time = 0x7f0600d7;
-        public static final int title = 0x7f0600d8;
+        public static final int italic = 0x7f060063;
+        public static final int line1 = 0x7f060068;
+        public static final int line3 = 0x7f060069;
+        public static final int normal = 0x7f06008f;
+        public static final int notification_background = 0x7f060090;
+        public static final int notification_main_column = 0x7f060091;
+        public static final int notification_main_column_container = 0x7f060092;
+        public static final int right_icon = 0x7f0600a1;
+        public static final int right_side = 0x7f0600a2;
+        public static final int scrollView = 0x7f0600ae;
+        public static final int tag_transition_group = 0x7f0600b8;
+        public static final int text = 0x7f0600be;
+        public static final int text2 = 0x7f0600bf;
+        public static final int time = 0x7f0600d9;
+        public static final int title = 0x7f0600da;
     }
     public static final class integer {
         private integer() {}
@@ -121,7 +121,7 @@ public final class R {
         private string() {}
 
         public static final int app_name = 0x7f0b0033;
-        public static final int status_bar_notification_info_overflow = 0x7f0b022d;
+        public static final int status_bar_notification_info_overflow = 0x7f0b0233;
     }
     public static final class style {
         private style() {}
