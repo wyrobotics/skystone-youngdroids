@@ -5,12 +5,17 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
+
 import java.lang.Math.*;
 
 @Disabled
 public class MecanumDrive{
 
     public void init(HardwareMap HM) {
+        tSensor = HM.touchSensor.get("tSensor");
+
+
         fl = HM.dcMotor.get("fl"); bl = HM.dcMotor.get("bl"); // Maps all our motors/servos
         fr = HM.dcMotor.get("fr"); br = HM.dcMotor.get("br");
         InL = HM.dcMotor.get("InL"); InR = HM.dcMotor.get("InR");
@@ -45,6 +50,7 @@ public class MecanumDrive{
     public Servo Grabber;
     public DcMotor Lifter;
     public Servo inCtrlL, inCtrlR;
+    TouchSensor tSensor;
 
     public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     public double PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)
@@ -60,8 +66,8 @@ public class MecanumDrive{
         RBWheelPower = (-left_stick_y - right_stick_x + left_stick_x) * 2;
     }
     public synchronized void DriveTrain(double x) { // For Strafing rather than normal movement
-        LFWheelPower = RFWheelPower = x;
-        LBWheelPower = RBWheelPower = -x;
+        LFWheelPower = LBWheelPower = x;
+        RFWheelPower = RBWheelPower = -x;
     }
 
     public synchronized void SetMotorPower(){

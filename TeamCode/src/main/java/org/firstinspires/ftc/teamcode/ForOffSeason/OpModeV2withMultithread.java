@@ -1,6 +1,8 @@
-package org.firstinspires.ftc.teamcode.SkyStone;
+package org.firstinspires.ftc.teamcode.ForOffSeason;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 
 @TeleOp(name="OpModeWithMultiThreading", group = "Test")
 public class OpModeV2withMultithread extends LinearOpMode {
@@ -46,20 +48,13 @@ public class OpModeV2withMultithread extends LinearOpMode {
 
 
 
-
-        Thread move = new Thread(new Runnable() {
+        Thread moveBot = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (opModeIsActive()) {
-                    Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
-                }
-            }
-        });
-
-        Thread a = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(opModeIsActive()) {
+                    synchronized (this) {
+                        Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
+                    }
                     synchronized (this) {
                         if (aPressed) {
                             Drive.GrabberPos = GrabberClosePos;
@@ -69,28 +64,17 @@ public class OpModeV2withMultithread extends LinearOpMode {
                             Drive.SetMotorPower();
                         }
                     }
-                }
-            }
-        });
-
-        Thread b = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (opModeIsActive()) {
                     synchronized (this) {
                         if (bPressed) {
                             Drive.GrabberPos = GrabberOpenPos; Drive.SetMotorPower();
+                            try {
+                                sleep(500);
+                            } catch (Exception e) {
+                                e.getStackTrace();
+                            }
                             Drive.GrabberPos = GrabberClosePos;
                         }
                     }
-                }
-            }
-        });
-
-        Thread x = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (opModeIsActive()) {
                     synchronized (this) {
                         if (xPressed) {
                             Drive.GrabberPos = GrabberOpenPos;
@@ -99,14 +83,6 @@ public class OpModeV2withMultithread extends LinearOpMode {
                             Drive.InLPower = InLSpeed; Drive.InRPower = InRSpeed;
                         }
                     }
-                }
-            }
-        });
-
-        Thread bumpers = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (opModeIsActive()) {
                     synchronized (this) {
                         if (rightBumper) {
                             Drive.LifterPower = LifterSpeed;
@@ -116,14 +92,6 @@ public class OpModeV2withMultithread extends LinearOpMode {
                             Drive.LifterPower = 0;
                         }
                     }
-                }
-            }
-        });
-
-        Thread dpad = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (opModeIsActive()) {
                     synchronized (this) {
                         if (dPadUp) {
                             Drive.PlateGrabRPos = Drive.PlateGrabLPos = 0;
@@ -132,9 +100,11 @@ public class OpModeV2withMultithread extends LinearOpMode {
                             Drive.PlateGrabRPos = Drive.PlateGrabLPos = PlateGrabberDownPos;
                         }
                     }
+
                 }
             }
         });
+
 
         Thread controller = new Thread(new Runnable() {
             @Override
@@ -200,6 +170,8 @@ public class OpModeV2withMultithread extends LinearOpMode {
                 }
             }
         });
+
+
 
 
     }

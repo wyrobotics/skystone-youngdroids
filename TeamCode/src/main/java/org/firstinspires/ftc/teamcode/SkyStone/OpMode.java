@@ -122,8 +122,7 @@ public class OpMode extends LinearOpMode {
             }
             if (aPressed) { // Grabs Block, Stops intake, and opens intake
                 Drive.GrabberPos = 0.577;
-                Drive.inCtrlLPos = 0.621;
-                Drive.inCtrlRPos = 0.675;
+                Drive.inCtrlLPos = 0.621;                Drive.inCtrlRPos = 0.675;
                 Drive.InRPower = 0;
                 Drive.InLPower = 0;
                 Drive.SetMotorPower();
@@ -131,6 +130,11 @@ public class OpMode extends LinearOpMode {
             if (bPressed) { // Opens Grabber to drop block, then closes again
                 Drive.GrabberPos = 0.426;
                 Drive.SetMotorPower();
+                try {
+                    sleep(500);
+                } catch (Exception e) {
+                    e.getStackTrace();
+                }
                 Drive.GrabberPos = 0.577;
             }
             if (xPressed) { // Opens Grabber, Closes Intake, Turns on intake

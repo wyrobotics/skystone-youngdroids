@@ -20,9 +20,9 @@ public class OpModeV2 extends LinearOpMode {
 
         inCtrlLOpenPos = 0.162; inCtrlLClosePos = 0.621;
         inCtrlROpenPos = 0.134; inCtrlRClosePos = 0.675;
-        InLSpeed = 10; InRSpeed = 5;
+        InLSpeed = 10; InRSpeed = 10;
         LifterSpeed = 1;
-        GrabberOpenPos = 0.426; GrabberClosePos = 0.577;
+        GrabberOpenPos = 0.426; GrabberClosePos = 0.590;
         PlateGrabberDownPos = 0.4;
 
         Drive.inCtrlLPos = Drive.inCtrlRPos = 1;
@@ -92,12 +92,19 @@ public class OpModeV2 extends LinearOpMode {
                 aPressed = xPressed = yPressed = bPressed = false;
             }
 
-            Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
+            if (gamepad1.right_trigger > .9) {
+                Drive.DriveTrain(5);
+            } else if (gamepad1.left_trigger >.9) {
+                Drive.DriveTrain(-5);
+            } else {
+                Drive.DriveTrain(gamepad1.left_stick_x,gamepad1.left_stick_y,gamepad1.right_stick_x);
+            }
 
-            if (rightBumper) {
-                Drive.LifterPower = LifterSpeed;
-            } else if (leftBumper) {
+
+            if (leftBumper && (Drive.Lifter.getCurrentPosition() > 0)) {
                 Drive.LifterPower = LifterSpeed * -1;
+            } else if (rightBumper && (Drive.Lifter.getCurrentPosition() <= 3150)) {
+                Drive.LifterPower = LifterSpeed;
             } else {
                 Drive.LifterPower = 0;
             }
@@ -109,6 +116,11 @@ public class OpModeV2 extends LinearOpMode {
             }
             if (bPressed) {
                 Drive.GrabberPos = GrabberOpenPos; Drive.SetMotorPower();
+                try {
+                    sleep(500);
+                } catch (Exception e) {
+                    e.getStackTrace();
+                }
                 Drive.GrabberPos = GrabberClosePos;
             }
             if (xPressed) {
@@ -125,6 +137,10 @@ public class OpModeV2 extends LinearOpMode {
             }
 
             Drive.SetMotorPower();
+
+            telemetry.addData("Button Pressesed: ", Drive.tSensor.isPressed());
+            telemetry.addData("Button Value: ", Drive.tSensor.getValue());
+            telemetry.update();
         }
     }
 }
