@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.SkyStone;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
@@ -13,7 +14,7 @@ import java.lang.Math.*;
 public class MecanumDrive{
 
     public void init(HardwareMap HM) {
-        tSensor = HM.touchSensor.get("tSensor");
+        tSensor = HM.get(DigitalChannel.class,"tSensor");
 
 
         fl = HM.dcMotor.get("fl"); bl = HM.dcMotor.get("bl"); // Maps all our motors/servos
@@ -32,6 +33,8 @@ public class MecanumDrive{
         Lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER); br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER); bl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        tSensor.setMode(DigitalChannel.Mode.INPUT);
+
 
         Lifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -50,7 +53,7 @@ public class MecanumDrive{
     public Servo Grabber;
     public DcMotor Lifter;
     public Servo inCtrlL, inCtrlR;
-    TouchSensor tSensor;
+    public DigitalChannel tSensor;
 
     public double LFWheelPower, LBWheelPower, RFWheelPower, RBWheelPower; // Power/Position of m/s
     public double PlateGrabLPos, PlateGrabRPos, InLPower, InRPower; // (motors/servos)

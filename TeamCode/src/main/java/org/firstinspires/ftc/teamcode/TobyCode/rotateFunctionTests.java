@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.TobyCode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 
+@Disabled
 @TeleOp(name = "rotateFunctions2019", group = "Test")
 public class rotateFunctionTests extends LinearOpMode {
     DcMotor lf = hardwareMap.dcMotor.get("lf"), lb = hardwareMap.dcMotor.get("lb");

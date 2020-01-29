@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TobyCode;
+package org.firstinspires.ftc.teamcode.Test;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -7,9 +7,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Disabled
-@TeleOp(name = "GetEncoderVals2019", group = "Test")
-public class GetEncoderVals extends LinearOpMode {
+
+@TeleOp(name = "GetEncoderVals2020", group = "SkyStone")
+public class GetEncoderVals2020 extends LinearOpMode {
 
     DcMotor FL, FR, BL, BR; // All 4 drive motors
 
