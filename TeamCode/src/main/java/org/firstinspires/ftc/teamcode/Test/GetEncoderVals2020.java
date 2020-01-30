@@ -3,31 +3,23 @@ package org.firstinspires.ftc.teamcode.Test;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctions;
-
-import java.util.concurrent.TimeUnit;
+import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 
 
 @TeleOp(name = "GetEncoderVals2020", group = "SkyStone")
 public class GetEncoderVals2020 extends LinearOpMode {
 
-   AutonFunctions auto = new AutonFunctions();
+   MecanumDrive Drive = new MecanumDrive();
 
-
-    public double RotationsPerTileForward = 2100, RotationsPer90 = 1050, RotationsPerStafe = 1050;
     String test = "Do nothing";
 
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        auto.init(hardwareMap);
+        Drive.init(hardwareMap);
 
         Thread ch = new Thread(new Runnable() {
             @Override
@@ -44,38 +36,60 @@ public class GetEncoderVals2020 extends LinearOpMode {
 
         while(opModeIsActive()){
             telemetry.addData("Current Task: ", test);
+            telemetry.addData("FL, FR: ", Drive.fl.getCurrentPosition() + " , " + Drive.fr.getCurrentPosition());
+            telemetry.addData("BL, BR: ", Drive.bl.getCurrentPosition() + " , " + Drive.br.getCurrentPosition());
+
             telemetry.update();
+
         }
     }
 
     public void gamepadHandler(boolean op) {
-        if(gamepad1.y){
+        if(gamepad1.dpad_up){
             test = "Move Forward";
-            auto.MoveForward(1,op);
+            setPowers(1,1,1,1);
 
-        } else if(gamepad1.a){
+        } else if(gamepad1.dpad_down){
             test = "Move Backward";
-            auto.MoveForward(-1, op);
+            setPowers(-1,-1,-1,-1);
 
-        } else if(gamepad1.x){
+        } else if(gamepad1.dpad_left){
             test = "Strafe Left";
-            auto.Strafe(-1, op);
+            setPowers(1,-1,-1,1);
 
-        } else if(gamepad1.b){
+        } else if(gamepad1.dpad_right){
             test = "Strafe Right";
-            auto.Strafe(1, op);
+            setPowers(-1,1,1,-1);
 
         } else if(gamepad1.left_bumper){
             test = "Rotate CW";
-            auto.Rotate90(-.6, op);
+            setPowers(1,-1,1,-1);
 
         } else if(gamepad1.right_bumper){
             test = "Rotate CCW";
-            auto.Rotate90(.6, op);
+            setPowers(-1,1,-1,1);
 
+        } else if(gamepad1.start) {
+            test = "Resetting";
+            reset();
         } else {
             test = "Do Nothing";
+            setPowers(0,0,0,0);
         }
+    }
+
+    public void setPowers(double a, double b, double c, double d) {
+        Drive.LFWheelPower = a; Drive.RFWheelPower = b;
+        Drive.LBWheelPower = c; Drive.RBWheelPower = d;
+        Drive.SetMotorPower();
+    }
+    public void reset() {
+        setPowers(0,0,0,0);
+        Drive.fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); Drive.br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Drive.fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); Drive.bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        Drive.fr.setMode(DcMotor.RunMode.RUN_USING_ENCODER); Drive.br.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Drive.fl.setMode(DcMotor.RunMode.RUN_USING_ENCODER); Drive.bl.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
 }
