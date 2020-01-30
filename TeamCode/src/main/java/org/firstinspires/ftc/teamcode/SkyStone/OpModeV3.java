@@ -92,7 +92,7 @@ public class OpModeV3 extends LinearOpMode {
                         Drive.inCtrlLPos = inCtrlLOpenPos; Drive.inCtrlRPos = inCtrlROpenPos;
                         Drive.InRPower = Drive.InLPower = 0;
                         Drive.SetMotorPower();
-                    }
+                     }
                 });
                 CloseGrabber.start();
             } else if (gamepad1.b) {

@@ -54,13 +54,14 @@ public class AutonFunctions{
     public Servo inCtrlL, inCtrlR;
     public DigitalChannel tSensor;
 
-    public double RotationsPerTileForward = 2150, RotationsPer90 = 1700, RotationsPerStafe = 3000;
+    public final double RotationsPerTileForward = 2150, RotationsPer90 = 1700, RotationsPerStafe = 3000;
 
     public void Rotate90(double pow, boolean opActive){ // pow is how fast it moves, + is CW, - is CCW
+        if (!opActive) {return;}
 
         double dir = pow / Math.abs(pow);
 
-        while( dir * AvgLeftPos() <= dir * RotationsPer90 && dir * AvgRightPos() <= dir * RotationsPer90 && opActive){
+        while( (dir * AvgLeftPos() <= dir * RotationsPer90) && (dir * AvgRightPos() >= dir * RotationsPer90)){
             fl.setPower(pow); bl.setPower(pow);
             fr.setPower(-pow); br.setPower(-pow);
         }
@@ -106,7 +107,7 @@ public class AutonFunctions{
 
         double dir = tiles / Math.abs(tiles);
 
-        while( dir * AverageRotation() <= dir * tiles * RotationsPerTileForward){ // Checks to see if it has travelled [x] tiles
+        while( dir * AverageRotation() <= dir * (tiles * RotationsPerTileForward)){ // Checks to see if it has travelled [x] tiles
             fl.setPower(dir * .5); bl.setPower(dir * .5); // If not, keep moving forward
             fr.setPower(dir * .5); br.setPower(dir * .5);
         }
