@@ -3,28 +3,28 @@
 3    package="com.qualcomm.ftcrobotcontroller.test" >
 4
 5    <uses-sdk
-5-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:5:5-74
+5-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:5:5-74
 6        android:minSdkVersion="19"
-6-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:5:15-41
+6-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:5:15-41
 7        android:targetSdkVersion="28" />
-7-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:5:42-71
+7-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:5:42-71
 8
 9    <instrumentation
-9-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:11:5-15:86
+9-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:11:5-15:86
 10        android:name="android.test.InstrumentationTestRunner"
-10-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:11:22-75
+10-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:11:22-75
 11        android:functionalTest="false"
-11-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:14:22-52
+11-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:14:22-52
 12        android:handleProfiling="false"
-12-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:13:22-53
+12-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:13:22-53
 13        android:label="Tests for com.qualcomm.ftcrobotcontroller.test"
-13-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:15:22-84
+13-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:15:22-84
 14        android:targetPackage="com.qualcomm.ftcrobotcontroller.test" />
-14-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:12:22-82
+14-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:12:22-82
 15
 16    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-16-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-81
-16-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:22-78
+16-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:5-81
+16-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:12:22-78
 17    <uses-permission
 17-->[:Inspection-release:] C:\Users\jdlan\.gradle\caches\transforms-2\files-2.1\c149d627b6e78a25bed9a25487ae410c\Inspection-release\AndroidManifest.xml:11:5-76
 18        android:name="android.permission.ACCESS_WIFI_STATE"
@@ -147,96 +147,96 @@
 82-->[:RobotCore-release:] C:\Users\jdlan\.gradle\caches\transforms-2\files-2.1\d23434822d58ad874b0d7344926b9c29\RobotCore-release\AndroidManifest.xml:84:19-57
 83
 84    <application
-84-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:7:5-9:19
+84-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:7:5-9:19
 85        android:name="org.firstinspires.ftc.robotcore.internal.system.RobotApplication"
 85-->[:RobotCore-release:] C:\Users\jdlan\.gradle\caches\transforms-2\files-2.1\d23434822d58ad874b0d7344926b9c29\RobotCore-release\AndroidManifest.xml:86:18-97
 86        android:allowBackup="true"
-86-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:9-35
+86-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:15:9-35
 87        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
 87-->[com.android.support:support-compat:28.0.0] C:\Users\jdlan\.gradle\caches\transforms-2\files-2.1\b73d0db3c489aeab8b531c92b0313ef9\support-compat-28.0.0\AndroidManifest.xml:22:18-91
 88        android:debuggable="true"
-88-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:7:18-43
+88-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:7:18-43
 89        android:icon="@drawable/ic_launcher"
-89-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:9-45
+89-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:16:9-45
 90        android:label="@string/app_name"
-90-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-41
+90-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:17:9-41
 91        android:largeHeap="true"
-91-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:9-33
+91-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:18:9-33
 92        android:theme="@style/AppThemeRedRC" >
-92-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-45
+92-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:19:9-45
 93        <uses-library android:name="android.test.runner" />
-93-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:8:9-60
-93-->D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger7546637544719145453.xml:8:23-57
+93-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:8:9-60
+93-->C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger3340186535595425456.xml:8:23-57
 94        <!-- Indicates to the ControlHubUpdater what the latest version of the Control Hub is that this app supports -->
 95        <meta-data
-95-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:9-24:33
+95-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:22:9-24:33
 96            android:name="org.firstinspires.latestSupportedControlHubVersion"
-96-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-78
+96-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:23:13-78
 97            android:value="1" /> <!-- The main robot controller activity -->
-97-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-30
+97-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:24:13-30
 98        <activity
-98-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-38:20
+98-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:27:9-38:20
 99            android:name="org.firstinspires.ftc.robotcontroller.internal.PermissionValidatorWrapper"
-99-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-101
+99-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:28:13-101
 100            android:configChanges="orientation|screenSize"
-100-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-59
+100-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:29:13-59
 101            android:label="@string/app_name"
-101-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-45
+101-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:30:13-45
 102            android:launchMode="singleTask"
-102-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-44
+102-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:31:13-44
 103            android:screenOrientation="fullUser" >
-103-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:32:13-49
+103-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:32:13-49
 104            <intent-filter>
-104-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-37:29
+104-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:33:13-37:29
 105                <category android:name="android.intent.category.LAUNCHER" />
-105-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:17-77
-105-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:27-74
+105-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:17-77
+105-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:34:27-74
 106
 107                <action android:name="android.intent.action.MAIN" />
-107-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:17-69
-107-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:25-66
+107-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:17-69
+107-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:36:25-66
 108            </intent-filter>
 109        </activity>
 110        <activity
-110-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:9-57:20
+110-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:39:9-57:20
 111            android:name="org.firstinspires.ftc.robotcontroller.internal.FtcRobotControllerActivity"
-111-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:40:13-101
+111-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:40:13-101
 112            android:configChanges="orientation|screenSize"
-112-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-59
+112-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:41:13-59
 113            android:label="@string/app_name"
-113-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:13-45
+113-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:42:13-45
 114            android:launchMode="singleTask"
-114-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:43:13-44
+114-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:43:13-44
 115            android:screenOrientation="fullUser" >
-115-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:44:13-49
+115-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:44:13-49
 116            <intent-filter>
-116-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:45:13-47:29
+116-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:45:13-47:29
 117                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-117-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:46:17-90
-117-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:46:25-87
+117-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:46:17-90
+117-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:46:25-87
 118            </intent-filter>
 119
 120            <meta-data
-120-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:49:13-51:57
+120-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:49:13-51:57
 121                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-121-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:50:17-79
+121-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:50:17-79
 122                android:resource="@xml/device_filter" />
-122-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:51:17-54
+122-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:51:17-54
 123
 124            <!-- org.firstinspires.main.entry indicates that this app is compatible with the Dragonboard Control Hub -->
 125            <meta-data
-125-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:54:13-56:40
+125-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:54:13-56:40
 126                android:name="org.firstinspires.main.entry"
-126-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:55:17-60
+126-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:55:17-60
 127                android:value="true" />
-127-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-37
+127-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:56:17-37
 128        </activity> <!-- The robot controller service in which most of the robot functionality is managed -->
 129        <service
-129-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:60:9-62:38
+129-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:60:9-62:38
 130            android:name="com.qualcomm.ftccommon.FtcRobotControllerService"
-130-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:61:13-76
+130-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:61:13-76
 131            android:enabled="true" />
-131-->[__tested_artifact__::FtcRobotController] D:\FTC Stuff\myCopy\skystone-youngdroids\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:62:13-35
+131-->[__tested_artifact__::FtcRobotController] C:\Users\jdlan\Desktop\Code\FtcRobotController\build\intermediates\library_manifest\debug\AndroidManifest.xml:62:13-35
 132
 133        <activity
 133-->[:Inspection-release:] C:\Users\jdlan\.gradle\caches\transforms-2\files-2.1\c149d627b6e78a25bed9a25487ae410c\Inspection-release\AndroidManifest.xml:20:9-24:20

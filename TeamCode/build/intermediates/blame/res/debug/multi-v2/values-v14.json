@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\FTC Stuff\\myCopy\\skystone-youngdroids\\TeamCode\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
+            "outputFile": "C:\\Users\\jdlan\\Desktop\\Code\\TeamCode\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
             "map": [
                 {
                     "source": "C:\\Users\\jdlan\\.gradle\\caches\\transforms-2\\files-2.1\\d23434822d58ad874b0d7344926b9c29\\RobotCore-release\\res\\values-v14\\values-v14.xml",

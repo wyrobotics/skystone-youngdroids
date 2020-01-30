@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.SkyStone;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name="OpMode2020V3", group = "SkyStone")
 public class OpModeV3 extends LinearOpMode {
@@ -27,7 +28,25 @@ public class OpModeV3 extends LinearOpMode {
         PlateGrabberDownPos = 0.4;
         maxLifterHeight = 3150; minLifterHeight = 0;
 
+        Drive.inCtrlLPos = inCtrlLOpenPos;
+        Drive.inCtrlRPos = inCtrlROpenPos;
+        Drive.SetMotorPower();
+        while (Drive.tSensor.getState()) {
+            Drive.LifterPower = LifterSpeed * -1;
+            Drive.SetMotorPower();
+        }
+        try {
+            sleep(650);
+        } catch (Exception e){
+            e.getStackTrace();
+        }
+        Drive.LifterPower = 0;
         Drive.inCtrlLPos = Drive.inCtrlRPos = 1;
+        Drive.SetMotorPower();
+        Drive.Lifter.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        Drive.Lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Drive.Lifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         Drive. GrabberPos = GrabberOpenPos;
         Drive.SetMotorPower();
 
@@ -50,7 +69,7 @@ public class OpModeV3 extends LinearOpMode {
             }
 
             if (Drive.InRPower == 0 && Drive.InLPower == 0) {
-                if (gamepad1.left_bumper && (Drive.Lifter.getCurrentPosition() > minLifterHeight)) {
+                if (gamepad1.left_bumper && (Drive.Lifter.getCurrentPosition() >= minLifterHeight)) {
                     Drive.LifterPower = LifterSpeed * -1;
                 } else if (gamepad1.right_bumper && (Drive.Lifter.getCurrentPosition() <= maxLifterHeight)) {
                     Drive.LifterPower = LifterSpeed;
@@ -60,19 +79,37 @@ public class OpModeV3 extends LinearOpMode {
             }
 
             if (gamepad1.a) {
-                Drive.GrabberPos = GrabberClosePos;
-                Drive.inCtrlLPos = inCtrlLOpenPos; Drive.inCtrlRPos = inCtrlROpenPos;
-                Drive.InRPower = Drive.InLPower = 0;
-                Drive.SetMotorPower();
+                Thread CloseGrabber = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Drive.GrabberPos = GrabberClosePos;
+                        Drive.SetMotorPower();
+                        try {
+                            sleep(500);
+                        } catch (Exception e) {
+                            e.getStackTrace();
+                        }
+                        Drive.inCtrlLPos = inCtrlLOpenPos; Drive.inCtrlRPos = inCtrlROpenPos;
+                        Drive.InRPower = Drive.InLPower = 0;
+                        Drive.SetMotorPower();
+                    }
+                });
+                CloseGrabber.start();
             } else if (gamepad1.b) {
-                Drive.GrabberPos = GrabberOpenPos; Drive.SetMotorPower();
-                try {
-                    sleep(500);
-                } catch (Exception e) {
-                    e.getStackTrace();
-                }
-                Drive.GrabberPos = GrabberClosePos;
-            } else if (gamepad1.x && (Drive.Lifter.getCurrentPosition() <= 0)) {
+                Thread letgoBlock = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Drive.GrabberPos = GrabberOpenPos * .75; Drive.SetMotorPower();
+                        try {
+                            sleep(1000);
+                        } catch (Exception e) {
+                            e.getStackTrace();
+                        }
+                        Drive.GrabberPos = GrabberClosePos;
+                    }
+                });
+                letgoBlock.start();
+            } else if (gamepad1.x && !Drive.tSensor.getState()) {
                 Drive.GrabberPos = GrabberOpenPos;
                 Drive.inCtrlLPos = inCtrlLClosePos; Drive.inCtrlRPos = inCtrlRClosePos;
                 Drive.SetMotorPower();

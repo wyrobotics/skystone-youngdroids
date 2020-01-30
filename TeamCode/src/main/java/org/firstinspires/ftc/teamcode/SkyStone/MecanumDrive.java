@@ -73,11 +73,17 @@ public class MecanumDrive{
         RFWheelPower = RBWheelPower = -x;
     }
 
-    public synchronized void SetMotorPower(){
+    public void SetMotorPower(){
+        synchronized (this) {
+            Grabber.setPosition(GrabberPos);
+        }
+        Lifter.setPower(LifterPower);
+
         // Sets the power/pos of all our hardware to what it should be
         fl.setPower(LFWheelPower); bl.setPower(LBWheelPower);//
         fr.setPower(RFWheelPower); br.setPower(RBWheelPower);
-        Grabber.setPosition(GrabberPos); Lifter.setPower(LifterPower);
+
+
 
         inCtrlL.setPosition(inCtrlLPos); inCtrlR.setPosition(inCtrlRPos);
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);

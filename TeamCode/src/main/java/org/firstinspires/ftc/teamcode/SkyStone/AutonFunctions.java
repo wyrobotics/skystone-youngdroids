@@ -57,10 +57,9 @@ public class AutonFunctions{
     public double RotationsPerTileForward = 2150, RotationsPer90 = 1700, RotationsPerStafe = 3000;
 
     public void Rotate90(double pow, boolean opActive){ // pow is how fast it moves, + is CW, - is CCW
-        double dir = 1;
-        if(pow < 0){
-            dir = -1;
-        }
+
+        double dir = pow / Math.abs(pow);
+
         while( dir * AvgLeftPos() <= dir * RotationsPer90 && dir * AvgRightPos() <= dir * RotationsPer90 && opActive){
             fl.setPower(pow); bl.setPower(pow);
             fr.setPower(-pow); br.setPower(-pow);
