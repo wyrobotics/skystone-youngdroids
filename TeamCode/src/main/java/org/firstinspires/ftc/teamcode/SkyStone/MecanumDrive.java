@@ -61,12 +61,15 @@ public class MecanumDrive{
     public double inCtrlLPos, inCtrlRPos;
 
 
-    public synchronized void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x) {
+    public synchronized void DriveTrain(double left_stick_x,double left_stick_y, double right_stick_x, double rt, double lt) {
         // the math for the mecanum wheel
-        LFWheelPower = (-left_stick_y + right_stick_x + left_stick_x) * 2;
-        LBWheelPower = (-left_stick_y + right_stick_x - left_stick_x) * 2;
-        RFWheelPower = (-left_stick_y - right_stick_x - left_stick_x) * 2;
-        RBWheelPower = (-left_stick_y - right_stick_x + left_stick_x) * 2;
+        LFWheelPower = (-left_stick_y + right_stick_x + left_stick_x) * 2 + (rt - lt) * 2;
+        LBWheelPower = (-left_stick_y + right_stick_x - left_stick_x) * 2 + (rt - lt) * 2;
+        RFWheelPower = (-left_stick_y - right_stick_x - left_stick_x) * 2 + (lt - rt) * 2;
+        RBWheelPower = (-left_stick_y - right_stick_x + left_stick_x) * 2 + (lt - rt) * 2;
+    }
+    public synchronized  void DriveTrain(double lsx, double lsy, double rsx) {
+        DriveTrain(lsx,lsy,rsx,0,0);
     }
     public synchronized void DriveTrain(double x) { // For Strafing rather than normal movement
         LFWheelPower = LBWheelPower = x;

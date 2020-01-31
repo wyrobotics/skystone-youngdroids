@@ -21,53 +21,68 @@ public class GetEncoderVals2020 extends LinearOpMode {
 
         Drive.init(hardwareMap);
 
-        Thread ch = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (opModeIsActive()) {
-                    gamepadHandler(opModeIsActive());
-                }
-            }
-        });
+
 
         waitForStart();
 
-        ch.start();
-
         while(opModeIsActive()){
+            gamepadHandler(opModeIsActive());
             telemetry.addData("Current Task: ", test);
             telemetry.addData("FL, FR: ", Drive.fl.getCurrentPosition() + " , " + Drive.fr.getCurrentPosition());
             telemetry.addData("BL, BR: ", Drive.bl.getCurrentPosition() + " , " + Drive.br.getCurrentPosition());
-
+            telemetry.addData("", " ");
+            telemetry.addData("Lifter Position: ", Drive.Lifter.getCurrentPosition());
+            telemetry.addData("","");
+            telemetry.addData("Average Front: ", (Drive.fl.getCurrentPosition() + Drive.fr.getCurrentPosition()) / 2);
+            telemetry.addData("Average Back: ", (Drive.bl.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2);
+            telemetry.addData("Average Left: ", (Drive.fl.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 2);
+            telemetry.addData("Average Right: ", (Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2);
             telemetry.update();
+
 
         }
     }
 
     public void gamepadHandler(boolean op) {
+        if (!opModeIsActive()) {
+            return;
+        }
         if(gamepad1.dpad_up){
             test = "Move Forward";
-            setPowers(1,1,1,1);
+            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition() +
+                    Drive.fl.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 4 <= 2100) {
+                setPowers(1,1,1,1);
+            }
 
         } else if(gamepad1.dpad_down){
             test = "Move Backward";
-            setPowers(-1,-1,-1,-1);
-
-        } else if(gamepad1.dpad_left){
-            test = "Strafe Left";
-            setPowers(1,-1,-1,1);
+            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition() +
+                    Drive.fl.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 4 >= -2100) {
+                setPowers(-1,-1,-1,-1);
+            }
 
         } else if(gamepad1.dpad_right){
             test = "Strafe Right";
-            setPowers(-1,1,1,-1);
-
-        } else if(gamepad1.left_bumper){
-            test = "Rotate CW";
-            setPowers(1,-1,1,-1);
+            while ((Drive.fr.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 2 >= -3000) {
+                setPowers(1,-1,-1,1);
+            }
+        } else if(gamepad1.dpad_left){
+            test = "Strafe Left";
+            while ((Drive.fr.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 2 <= 3000) {
+                setPowers(-1,1,1,-1);
+            }
 
         } else if(gamepad1.right_bumper){
+            test = "Rotate CW";
+            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2 >= -1650) {
+                setPowers(1,-1,1,-1);
+            }
+
+        } else if(gamepad1.left_bumper){
             test = "Rotate CCW";
-            setPowers(-1,1,-1,1);
+            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2 <= 1650) {
+                setPowers(-1,1,-1,1);
+            }
 
         } else if(gamepad1.start) {
             test = "Resetting";
