@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.SkyStone;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctions;
+import org.firstinspires.ftc.teamcode.TobyCode.AutonFunctions;
 
 @Autonomous( name = "RedAutonLeft2020", group = "SkyStone"
 )

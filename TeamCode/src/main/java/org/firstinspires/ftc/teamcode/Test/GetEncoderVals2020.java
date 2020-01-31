@@ -4,14 +4,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctions;
+import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctionsV2;
 import org.firstinspires.ftc.teamcode.SkyStone.MecanumDrive;
 
 
 @TeleOp(name = "GetEncoderVals2020", group = "SkyStone")
 public class GetEncoderVals2020 extends LinearOpMode {
 
-   MecanumDrive Drive = new MecanumDrive();
+    AutonFunctionsV2 Drive = new AutonFunctionsV2();
 
     String test = "Do nothing";
 
