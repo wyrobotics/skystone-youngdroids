@@ -54,7 +54,7 @@ public class AutonFunctions{
     public Servo inCtrlL, inCtrlR;
     public DigitalChannel tSensor;
 
-    public final double RotationsPerTileForward = 2150, RotationsPer90 = 1700, RotationsPerStafe = 3000;
+    public final double RotationsPerTileForward = 2150, RotationsPer90 = 1650, RotationsPerStafe = 3000;
 
     public void Rotate90(double pow, boolean opActive){ // pow is how fast it moves, + is CW, - is CCW
         if (!opActive) {return;}
