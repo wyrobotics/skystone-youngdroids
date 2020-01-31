@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctionsV2;
 
-@TeleOp(name="Test This Second", group="Test")
-public class FakePID extends LinearOpMode {
+@TeleOp(name="TestThisFirst", group="Test")
+public class OldTestFakePID extends LinearOpMode {
     AutonFunctionsV2 auto = new AutonFunctionsV2();
 
     String test = "Do nothing";
@@ -47,11 +47,11 @@ public class FakePID extends LinearOpMode {
         if(gamepad1.dpad_up){
             test = "Move Forward";
 
-            forward(1, Mode.FORWARD);
+            forward(1);
 
         } else if(gamepad1.dpad_down){
             test = "Move Backward";
-            forward(-1, Mode.FORWARD);
+            forward(-1);
 
         } else if(gamepad1.dpad_left){
             test = "Strafe Left";
@@ -95,63 +95,11 @@ public class FakePID extends LinearOpMode {
         auto.fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); auto.br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public enum Mode {
-        FORWARD, STRAFE, ROTATE;
-
-    }
-
-    public double modeWheels(String x, Mode m) {
-        double k, lWheels, rWheels;
-        switch (m) {
-            case STRAFE: k = auto.RotationsPerStafe;
-                                lWheels = auto.AvgCornersLeft();
-                                rWheels = auto.AvgCornersRight(); break;
-            case FORWARD : k  = auto.RotationsPerTileForward;
-                                lWheels = auto.AvgLeftPos();
-                                rWheels = auto.AvgRightPos(); break;
-            case ROTATE: k = auto.RotationsPer90;
-                                lWheels = auto.AvgLeftPos();
-                                rWheels = auto.AvgRightPos(); break;
-            default : k = 0; lWheels = rWheels = 0; System.out.println("ERROR");
-        }
-
-        switch (x) {
-            case "Constant" : return k;
-            case "RightWheels" : return rWheels;
-            case "LeftWheels" : return  lWheels;
-
-        }
-        System.out.println("ERROR");
-        return 0;
-    }
-
-    public void modeSetPowers(double x, double y, Mode m) {
-        switch (m) {
-            case STRAFE: setPowers(x,y,y,x);
-            case FORWARD : setPowers(x,y,x,y);
-            case ROTATE:  setPowers(x,y,x,y);
-            default : System.out.println("ERROR");
-        }
-    }
-    public static void main(String[] args) {
-    }
-
-    public void forward(int tiles, Mode m) {
-        double goalConstantL, goalConstantR;
-
-        goalConstantL = modeWheels("Constant", m);
-        if (m == Mode.FORWARD) {
-            goalConstantR = goalConstantL;
-        } else {
-            goalConstantR = goalConstantL * -1;
-        }
-
-
+    public void forward(int tiles) {
         reset();
-        double goalL = tiles * goalConstantL;
-        double goalR = tiles * goalConstantR;
-        double errorR = goalR, errorRT = 0;
-        double errorL = goalL, errorLT = 0;
+        double goal = tiles * auto.RotationsPerTileForward;
+        double errorR = goal, errorRT = 0;
+        double errorL = goal, errorLT = 0;
         double lastErrorR = errorR;
         double lastErrorL = errorL;
 
@@ -169,7 +117,7 @@ public class FakePID extends LinearOpMode {
 
         double currentR, currentL;
 
-        while (errorCount < 1000) {
+        while (errorCount < 100) {
             if ( Math.abs(errorR) <= 25 && Math.abs(errorL) <= 25) {
                 errorCount++;
             } else {
@@ -177,8 +125,8 @@ public class FakePID extends LinearOpMode {
             }
 
 
-            errorR = goalR - modeWheels("RightWheels", m);
-            errorL = goalL - modeWheels("LeftWHeels", m);
+            errorR = goal - auto.AvgRightPos();
+            errorL = goal - auto.AvgRightPos();
 
 
             if (Math.abs(errorR) < integralZone && errorR != 0) {
@@ -216,7 +164,7 @@ public class FakePID extends LinearOpMode {
             currentL = proportionalL + integralL + derivativeL;
             currentR = proportionalR + integralR + derivativeR;
 
-            modeSetPowers(currentL,currentR, m);
+            setPowers(currentL,currentR,currentL,currentR);
 
             lastErrorL = errorL; lastErrorR = errorR;
         }
