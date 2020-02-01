@@ -19,7 +19,7 @@ public class RedAutonLeft extends LinearOpMode {
     }
     @Override
     public void runOpMode(){
-
+        //boolean run = true;
 
         waitForStart();
 
@@ -50,6 +50,8 @@ public class RedAutonLeft extends LinearOpMode {
             auton.SetMotorPower();
 
             auton.MoveForward(1.7, opModeIsActive());
+            return;
         }
+        return;
     }
 }

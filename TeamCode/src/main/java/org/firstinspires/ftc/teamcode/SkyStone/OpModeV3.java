@@ -31,7 +31,7 @@ public class OpModeV3 extends LinearOpMode {
 
         inCtrlLOpenPos = 0.169; inCtrlLClosePos = 0.590;
         inCtrlROpenPos = 0.0; inCtrlRClosePos = 0.470;
-        InLSpeed = 10; InRSpeed = 10;
+        InLSpeed = 20; InRSpeed = 20;
         LifterSpeed = 1;
         GrabberOpenPos = 0.819; GrabberClosePos = 1.0;
         PlateGrabberDownPos = 0.4;
