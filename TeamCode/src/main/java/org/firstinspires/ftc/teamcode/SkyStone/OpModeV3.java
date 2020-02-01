@@ -4,10 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 
-import java.security.cert.Extension;
 import java.util.concurrent.TimeUnit;
 
-@TeleOp(name="OpMode2020V3", group = "SkyStone")
+@TeleOp(name="OpMode 2020", group = "SkyStone")
 public class OpModeV3 extends LinearOpMode {
 
 

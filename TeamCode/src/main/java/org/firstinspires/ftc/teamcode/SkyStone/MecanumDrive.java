@@ -71,10 +71,6 @@ public class MecanumDrive{
     public synchronized  void DriveTrain(double lsx, double lsy, double rsx) {
         DriveTrain(lsx,lsy,rsx,0,0);
     }
-    public synchronized void DriveTrain(double x) { // For Strafing rather than normal movement
-        LFWheelPower = LBWheelPower = x;
-        RFWheelPower = RBWheelPower = -x;
-    }
 
     public void SetMotorPower(){
         synchronized (this) {
@@ -92,10 +88,6 @@ public class MecanumDrive{
         PlateGrabL.setPosition(PlateGrabLPos); PlateGrabR.setPosition(PlateGrabRPos);
         InL.setPower(InLPower); InR.setPower(InLPower);
 
-    }
-
-    public double limServo(double x) {
-        return Math.max((Math.min(x, 1.0)),0.0);
     }
 
 }

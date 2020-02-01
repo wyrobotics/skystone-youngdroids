@@ -3,20 +3,11 @@ package org.firstinspires.ftc.teamcode.SkyStone;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.TobyCode.AutonFunctions;
-
-
-@Autonomous(name = "BlueAutonRight2020", group = "SkyStone")
+//Next to plate
+@Autonomous(name = "BlueAutonRight 2020", group = "SkyStone")
 public class BlueAutonRight extends LinearOpMode {
 
-
-    AutonFunctionsV2 auton = new AutonFunctionsV2();
-    int t = 1;
-    public void pause() {
-        while (!gamepad1.start) {
-            t ++;
-        }
-    }
+    AutonFunctions auton = new AutonFunctions();
 
     public void rest(int a) {
         try {
