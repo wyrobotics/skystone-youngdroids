@@ -12,19 +12,41 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Disabled
 public class AutonFunctionsV2 extends MecanumDrive {
 
-    public final double RotationsPerTileForward = 2150, RotationsPer90 = 1700, RotationsPerStafe = 3000;
+    public final double RotationsPerTileForward = 1850, RotationsPer90 = 1225, RotationsPerStafe = 3000;
 
-    public void Rotate90(double pow, boolean opActive){ // pow is how fast it moves, + is CW, - is CCW
+    public void MoveForward(double tiles, boolean opActive){ // pow is how fast it moves, + is CW, - is CCW
         if (!opActive) {return;}
-
-        double dir = pow / Math.abs(pow);
-
-        while( (dir * AvgLeftPos() <= dir * RotationsPer90) && (dir * AvgRightPos() >= dir * RotationsPer90)){
-            fl.setPower(pow); bl.setPower(pow);
-            fr.setPower(-pow); br.setPower(-pow);
+        resetMotorEncoder();
+        if ( tiles < 0) {
+            while ((fr.getCurrentPosition() + br.getCurrentPosition() +
+                    fl.getCurrentPosition() + bl.getCurrentPosition()) / 4 >= RotationsPerTileForward * tiles) {
+                setPowers(-.875,-1.0,-.875,-1.0);
+            }
+            setPowers(0,0,0,0);
+        } else if ( tiles > 0) {
+            while ((fr.getCurrentPosition() + br.getCurrentPosition() +
+                    fl.getCurrentPosition() + bl.getCurrentPosition()) / 4 <= RotationsPerTileForward * tiles) {
+                setPowers(.9,1.0,.9,1.0);
+            }
+            setPowers(0,0,0,0);
         }
-        fl.setPower(0); bl.setPower(0);
-        fr.setPower(0); br.setPower(0);
+        resetMotorEncoder();
+    }
+    public void Rotate90(double tiles, boolean opActive) {
+        if (!opActive) {return;}
+        resetMotorEncoder();
+        if ( tiles < 0) {
+            while ((fr.getCurrentPosition() + br.getCurrentPosition()) / 2 >=  tiles * RotationsPer90) {
+                setPowers(1,-1,1,-1);
+            }
+            setPowers(0,0,0,0);
+        } else if ( tiles > 0) {
+            while ((fr.getCurrentPosition() + br.getCurrentPosition()) / 2 <= tiles * RotationsPer90) {
+                setPowers(-1,1,-1,1);
+            }
+            setPowers(0,0,0,0);
+        }
+        resetMotorEncoder();
     }
 
     public void Strafe(double tiles, boolean opActive){ // + is to the right, - to the left
@@ -63,20 +85,6 @@ public class AutonFunctionsV2 extends MecanumDrive {
         return (fl.getCurrentPosition() + fr.getCurrentPosition() + bl.getCurrentPosition() + br.getCurrentPosition()) / 4;
     }
 
-    public void MoveForward(double tiles, boolean opActive){ // Moves forward [x] tiles
-        if (!opActive) {return;}
-
-        double dir = tiles / Math.abs(tiles);
-
-        while( dir * AverageRotation() <= dir * (tiles * RotationsPerTileForward)){ // Checks to see if it has travelled [x] tiles
-            fl.setPower(dir * .5); bl.setPower(dir * .5); // If not, keep moving forward
-            fr.setPower(dir * .5); br.setPower(dir * .5);
-        }
-        fl.setPower(0); bl.setPower(0);
-        fr.setPower(0); br.setPower(0);
-        resetMotorEncoder();
-    }
-
     public void resetMotorEncoder(){
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -85,6 +93,11 @@ public class AutonFunctionsV2 extends MecanumDrive {
 
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+    }
+    public void setPowers(double a, double b, double c, double d) {
+        LFWheelPower = a; RFWheelPower = b;
+        LBWheelPower = c; RBWheelPower = d;
+        SetMotorPower();
     }
 
 

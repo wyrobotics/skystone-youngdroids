@@ -10,13 +10,19 @@ import org.firstinspires.ftc.teamcode.TobyCode.AutonFunctions;
 public class BlueAutonRight extends LinearOpMode {
 
 
-
-
-    AutonFunctions auton = new AutonFunctions();
+    AutonFunctionsV2 auton = new AutonFunctionsV2();
     int t = 1;
     public void pause() {
         while (!gamepad1.start) {
             t ++;
+        }
+    }
+
+    public void rest(int a) {
+        try {
+            sleep(a);
+        } catch (Exception e) {
+            e.getStackTrace();
         }
     }
     @Override
@@ -28,17 +34,30 @@ public class BlueAutonRight extends LinearOpMode {
         auton.init(hardwareMap);
 
         if (opModeIsActive()){
+            auton.inCtrlLPos = auton.inCtrlRPos = 1;
+            auton.SetMotorPower();
+
+
             auton.MoveForward(1, opModeIsActive());
-            pause();
+            auton.Rotate90(2.5, opModeIsActive());
+            auton.MoveForward(-.5, opModeIsActive());
+
+            rest(250);
+
+            auton.PlateGrabLPos = auton.PlateGrabRPos = .4;
+            auton.SetMotorPower();
+
+            rest(500);
+
+            auton.MoveForward(1, opModeIsActive());
+            auton.Rotate90(4, opModeIsActive());
+
             auton.MoveForward(-1, opModeIsActive());
-            pause();
-            auton.Rotate90( 5, opModeIsActive());
-            pause();
-            auton.Rotate90(-5, opModeIsActive());
-            pause();
-            auton.Strafe(1, opModeIsActive());
-            pause();
-            auton.Strafe(-1, opModeIsActive());
+
+            auton.PlateGrabLPos = auton.PlateGrabRPos = 0;
+            auton.SetMotorPower();
+
+            auton.MoveForward(1.7, opModeIsActive());
         }
     }
 }

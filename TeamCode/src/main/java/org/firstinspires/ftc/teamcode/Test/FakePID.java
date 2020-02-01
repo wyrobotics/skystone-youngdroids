@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode.Test;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.SkyStone.AutonFunctionsV2;
 
+@Disabled
 @TeleOp(name="Test This Second", group="Test")
 public class FakePID extends LinearOpMode {
     AutonFunctionsV2 auto = new AutonFunctionsV2();

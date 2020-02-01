@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.SkyStone;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import org.firstinspires.ftc.robotcore.internal.system.Deadline;
 
 import java.security.cert.Extension;
+import java.util.concurrent.TimeUnit;
 
 @TeleOp(name="OpMode2020V3", group = "SkyStone")
 public class OpModeV3 extends LinearOpMode {
@@ -11,9 +13,13 @@ public class OpModeV3 extends LinearOpMode {
 
     MecanumDrive Drive = new MecanumDrive();
 
+    int openGrabber = 1;
+
+
 
     @Override
     public void runOpMode() {
+
         Drive.init(hardwareMap);
 
         telemetry.addData("say", "before testmode"); telemetry.update();
@@ -22,18 +28,19 @@ public class OpModeV3 extends LinearOpMode {
         final double LifterSpeed, GrabberOpenPos, GrabberClosePos, PlateGrabberDownPos;
         final int maxLifterHeight, minLifterHeight;
 
-        int openGrabber = 1;
 
-        inCtrlLOpenPos = 0.162; inCtrlLClosePos = 0.60010;
-        inCtrlROpenPos = 0.134; inCtrlRClosePos = 0.62000;
+
+        inCtrlLOpenPos = 0.169; inCtrlLClosePos = 0.590;
+        inCtrlROpenPos = 0.0; inCtrlRClosePos = 0.470;
         InLSpeed = 10; InRSpeed = 10;
         LifterSpeed = 1;
-        GrabberOpenPos = 0.426; GrabberClosePos = 0.590;
+        GrabberOpenPos = 0.819; GrabberClosePos = 1.0;
         PlateGrabberDownPos = 0.4;
         maxLifterHeight = 3150; minLifterHeight = 0;
 
         Drive.inCtrlLPos = inCtrlLOpenPos;
         Drive.inCtrlRPos = inCtrlROpenPos;
+        Drive.GrabberPos = GrabberClosePos;
         Drive.SetMotorPower();
         while (Drive.tSensor.getState()) {
             Drive.LifterPower = LifterSpeed * -1;
@@ -46,6 +53,8 @@ public class OpModeV3 extends LinearOpMode {
         }
         Drive.LifterPower = 0;
         Drive.inCtrlRPos = 1;
+        Drive. GrabberPos = GrabberOpenPos;
+
         Drive.SetMotorPower();
         try {
             sleep(200);
@@ -58,15 +67,16 @@ public class OpModeV3 extends LinearOpMode {
         Drive.Lifter.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Drive.Lifter.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        Drive. GrabberPos = GrabberOpenPos;
-        Drive.SetMotorPower();
+
 
         waitForStart();
+
+        Deadline gamepadRateLimit = new Deadline(1000, TimeUnit.MILLISECONDS);
 
         Drive.inCtrlLPos = inCtrlLClosePos; Drive.inCtrlRPos = inCtrlRClosePos;
         Drive.SetMotorPower();
 
-        Drive.InLPower = 5; Drive.InRPower = 10;
+        Drive.InLPower = 10; Drive.InRPower = 10;
 
 
         while (opModeIsActive()) {
@@ -107,13 +117,16 @@ public class OpModeV3 extends LinearOpMode {
                      }
                 });
                 CloseGrabber.start();
-            } else if (gamepad1.b) {
+            } else if (gamepad1.b && gamepadRateLimit.hasExpired()) {
                 openGrabber ++;
                 if (openGrabber % 2 == 0) {
                     Drive.GrabberPos = GrabberClosePos;
                 } else {
-                    Drive.GrabberPos = GrabberOpenPos * .75;
+                    Drive.GrabberPos = GrabberOpenPos;
                 }
+                gamepadRateLimit.reset();
+
+
             } else if (gamepad1.x && !Drive.tSensor.getState()) {
                 Drive.GrabberPos = GrabberOpenPos;
                 Drive.inCtrlLPos = inCtrlLClosePos; Drive.inCtrlRPos = inCtrlRClosePos;

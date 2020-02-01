@@ -20,7 +20,7 @@ public class GetEncoderVals2020 extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
 
         Drive.init(hardwareMap);
-
+        Drive.Grabber.setPosition(0.6);
 
 
         waitForStart();
@@ -50,37 +50,37 @@ public class GetEncoderVals2020 extends LinearOpMode {
         if(gamepad1.dpad_up){
             test = "Move Forward";
             while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition() +
-                    Drive.fl.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 4 <= 2100) {
-                setPowers(1,1,1,1);
+                    Drive.fl.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 4 <= Drive.RotationsPerTileForward) {
+                setPowers(.9,1.0,.9,1.0);
             }
 
         } else if(gamepad1.dpad_down){
             test = "Move Backward";
             while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition() +
-                    Drive.fl.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 4 >= -2100) {
-                setPowers(-1,-1,-1,-1);
+                    Drive.fl.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 4 >= -1 * Drive.RotationsPerTileForward) {
+                setPowers(-.875,-1.0,-.875,-1.0);
             }
 
         } else if(gamepad1.dpad_right){
             test = "Strafe Right";
-            while ((Drive.fr.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 2 >= -3000) {
+            while ((Drive.fr.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 2 >= -1 * Drive.RotationsPerStafe) {
                 setPowers(1,-1,-1,1);
             }
         } else if(gamepad1.dpad_left){
             test = "Strafe Left";
-            while ((Drive.fr.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 2 <= 3000) {
-                setPowers(-1,1,1,-1);
+            while ((Drive.fr.getCurrentPosition() + Drive.bl.getCurrentPosition()) / 2 <= Drive.RotationsPerStafe) {
+                setPowers(-1,1,.9,-.9);
             }
 
         } else if(gamepad1.right_bumper){
             test = "Rotate CW";
-            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2 >= -1650) {
+            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2 >= -1 * Drive.RotationsPer90) {
                 setPowers(1,-1,1,-1);
             }
 
         } else if(gamepad1.left_bumper){
             test = "Rotate CCW";
-            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2 <= 1650) {
+            while ((Drive.fr.getCurrentPosition() + Drive.br.getCurrentPosition()) / 2 <= Drive.RotationsPer90) {
                 setPowers(-1,1,-1,1);
             }
 
