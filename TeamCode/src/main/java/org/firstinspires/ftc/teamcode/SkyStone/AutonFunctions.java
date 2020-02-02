@@ -27,6 +27,24 @@ public class AutonFunctions extends MecanumDrive {
         LBWheelPower = c; RBWheelPower = d;
         SetMotorPower();
     }
+    public double AvgCornersLeft() {
+        return (fr.getCurrentPosition() + bl.getCurrentPosition()) / 2;
+    }
+    public double AvgCornersRight() {
+        return (fr.getCurrentPosition() + bl.getCurrentPosition()) / 2;
+    }
+    public double AvgLeftPos() {
+        return (fr.getCurrentPosition() + bl.getCurrentPosition()) / 2;
+    }
+    public double AvgRightPos() {
+        return (fr.getCurrentPosition() + bl.getCurrentPosition()) / 2;
+    }public double AvgTop() {
+        return (fr.getCurrentPosition() + bl.getCurrentPosition()) / 2;
+    }
+    public double AvgBot() {
+        return (fr.getCurrentPosition() + bl.getCurrentPosition()) / 2;
+    }
+
 
 
 }

@@ -89,5 +89,7 @@ public class MecanumDrive{
         InL.setPower(InLPower); InR.setPower(InLPower);
 
     }
-
+    public double limServo(double x) {
+        return Math.min(-1,(Math.max(1,x)));
+    }
 }
