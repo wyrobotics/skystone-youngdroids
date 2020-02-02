@@ -3,7 +3,7 @@
 *.ap_
 
 # Java class files
-*.class
+
 
 # generated files
 bin/
@@ -22,7 +22,8 @@ Thumbs.db
 *.iml
 .idea
 .gradle
-build/
+TeamCode/build
+FtcRobotController/build
 
 *ASUS_PC_01*
 
