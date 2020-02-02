@@ -103,7 +103,7 @@ public class OpModeV3 extends LinearOpMode {
                 Thread CloseGrabber = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Drive.GrabberPos = GrabberClosePos;
+                        Drive.GrabberPos = GrabberOpenPos;
                         Drive.SetMotorPower();
                         try {
                             sleep(500);
@@ -136,12 +136,7 @@ public class OpModeV3 extends LinearOpMode {
                     @Override
                     public void run() {
                         Drive.InLPower = InLSpeed * -.25; Drive.InRPower = InLSpeed * -.25;
-                        try {
-                            sleep(500);
-                        } catch(Exception e) {
-                            e.getStackTrace();
-                        }
-                        Drive.InLPower = InLSpeed; Drive.InRPower = InRSpeed;
+
                     }
                 });
                 ejectBlock.start();

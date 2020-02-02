@@ -13,41 +13,6 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class AutonFunctions extends MecanumDrive {
 
     public final double RotationsPerTileForward = 1850, RotationsPer90 = 1225, RotationsPerStafe = 3000;
-
-    public void MoveForward(double tiles, boolean opActive){ // pow is how fast it moves, + is CW, - is CCW
-        if (!opActive) {return;}
-        resetMotorEncoder();
-        if ( tiles < 0) {
-            while ((fr.getCurrentPosition() + br.getCurrentPosition() +
-                    fl.getCurrentPosition() + bl.getCurrentPosition()) / 4 >= RotationsPerTileForward * tiles) {
-                setPowers(-.875,-1.0,-.875,-1.0);
-            }
-            setPowers(0,0,0,0);
-        } else if ( tiles > 0) {
-            while ((fr.getCurrentPosition() + br.getCurrentPosition() +
-                    fl.getCurrentPosition() + bl.getCurrentPosition()) / 4 <= RotationsPerTileForward * tiles) {
-                setPowers(.9,1.0,.9,1.0);
-            }
-            setPowers(0,0,0,0);
-        }
-        resetMotorEncoder();
-    }
-    public void Rotate90(double tiles, boolean opActive) {
-        if (!opActive) {return;}
-        resetMotorEncoder();
-        if ( tiles < 0) {
-            while ((fr.getCurrentPosition() + br.getCurrentPosition()) / 2 >=  tiles * RotationsPer90) {
-                setPowers(1,-1,1,-1);
-            }
-            setPowers(0,0,0,0);
-        } else if ( tiles > 0) {
-            while ((fr.getCurrentPosition() + br.getCurrentPosition()) / 2 <= tiles * RotationsPer90) {
-                setPowers(-1,1,-1,1);
-            }
-            setPowers(0,0,0,0);
-        }
-        resetMotorEncoder();
-    }
     public void resetMotorEncoder(){
         fr.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); br.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         fl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER); bl.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
